@@ -1,0 +1,66 @@
+[gd_scene load_steps=7 format=3 uid="uid://cssx12t5rdrws"]
+
+[ext_resource type="Texture2D" uid="uid://dbvdnmhfahhnk" path="res://Assets/Graphics/Terrain/desert/desert_sky.png" id="1_nou1i"]
+[ext_resource type="Texture2D" uid="uid://dkjes2ae6ng4j" path="res://Assets/Graphics/Terrain/desert/desert_cloud.png" id="2_iyauh"]
+[ext_resource type="Texture2D" uid="uid://8xwpu345ysrf" path="res://Assets/Graphics/Terrain/desert/desert_mountain.png" id="3_c8g3j"]
+[ext_resource type="Texture2D" uid="uid://5bi6chvoeecs" path="res://Assets/Graphics/Terrain/desert/desert_dunemid.png" id="4_2mc2a"]
+[ext_resource type="Texture2D" uid="uid://dpr61iy078lxa" path="res://Assets/Graphics/Terrain/desert/desert_dunefrontt.png" id="5_cqp1w"]
+[ext_resource type="Script" path="res://Src/Paralax/Desert/scroll_controller.gd" id="6_tslq4"]
+
+[node name="Desert-Background" type="Node2D"]
+
+[node name="Paralax-Background" type="Node2D" parent="."]
+
+[node name="Sky" type="Parallax2D" parent="Paralax-Background"]
+scale = Vector2(1, 1.2)
+scroll_scale = Vector2(0.1, 0)
+repeat_size = Vector2(1900, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Paralax-Background/Sky"]
+texture = ExtResource("1_nou1i")
+centered = false
+
+[node name="Clouds" type="Parallax2D" parent="Paralax-Background"]
+scale = Vector2(1, 1.2)
+scroll_scale = Vector2(0.2, 0)
+repeat_size = Vector2(1900, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Paralax-Background/Clouds"]
+texture = ExtResource("2_iyauh")
+centered = false
+
+[node name="Mountians" type="Parallax2D" parent="Paralax-Background"]
+scale = Vector2(1, 1.2)
+scroll_scale = Vector2(0.4, 0)
+repeat_size = Vector2(3800, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Paralax-Background/Mountians"]
+texture = ExtResource("3_c8g3j")
+centered = false
+
+[node name="DuneMid" type="Parallax2D" parent="Paralax-Background"]
+scale = Vector2(1, 1.2)
+scroll_scale = Vector2(0.75, 0)
+repeat_size = Vector2(1900, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Paralax-Background/DuneMid"]
+texture = ExtResource("4_2mc2a")
+centered = false
+
+[node name="DuneFront" type="Parallax2D" parent="Paralax-Background"]
+scale = Vector2(1, 1.2)
+repeat_size = Vector2(1900, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Paralax-Background/DuneFront"]
+texture = ExtResource("5_cqp1w")
+centered = false
+
+[node name="ScrollController" type="Node2D" parent="."]
+script = ExtResource("6_tslq4")
+
+[node name="Camera2D" type="Camera2D" parent="ScrollController"]

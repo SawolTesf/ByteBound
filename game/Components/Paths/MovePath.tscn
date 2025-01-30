@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8u3gpcnm3cg0"]
+
+[ext_resource type="Script" path="res://Components/Paths/move_path.gd" id="1_7yj28"]
+
+[sub_resource type="Curve2D" id="Curve2D_icc6m"]
+
+[node name="MovePath" type="Path2D"]
+position = Vector2(1, 2)
+curve = SubResource("Curve2D_icc6m")
+script = ExtResource("1_7yj28")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+position = Vector2(-1, 66)
+rotates = false
+cubic_interp = false
