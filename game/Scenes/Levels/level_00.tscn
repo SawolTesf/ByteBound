@@ -5,7 +5,7 @@
 [ext_resource type="TileSet" uid="uid://dkluhtamjn2qc" path="res://Assets/Terrain/TileSets/ForestGround.tres" id="3_igqb8"]
 [ext_resource type="TileSet" uid="uid://csfewv7h7hq2w" path="res://Assets/Terrain/TileSets/Water.tres" id="4_kqu2h"]
 [ext_resource type="TileSet" uid="uid://brnkhxw7uhsbr" path="res://Assets/Terrain/TileSets/ForestProps.tres" id="5_d1ivb"]
-[ext_resource type="PackedScene" uid="uid://bbnivbfgvtu3c" path="res://Actors/Enemy/Enemy.tscn" id="5_ppk1e"]
+[ext_resource type="PackedScene" uid="uid://bbnivbfgvtu3c" path="res://Actors/enemy/Enemy.tscn" id="5_ppk1e"]
 
 [node name="Level00" instance=ExtResource("1_iif8o")]
 
@@ -51,10 +51,10 @@ position = Vector2(32, 303)
 
 [node name="Enemy" parent="Enemies" index="0" node_paths=PackedStringArray("player") instance=ExtResource("5_ppk1e")]
 position = Vector2(356, 310)
-player = NodePath("../../Player")
 idle_duration = 1.0
 move_duration = 1.3
 sight_distance = 150.0
 sight_angle = 70.0
 can_move = true
 can_idle = true
+player = NodePath("../../Player")

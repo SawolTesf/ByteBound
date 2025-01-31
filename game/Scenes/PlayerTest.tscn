@@ -1,10 +1,15 @@
-[gd_scene format=3 uid="uid://do76d5k5o6032"]
+[gd_scene load_steps=3 format=3 uid="uid://do76d5k5o6032"]
+
+[ext_resource type="Texture2D" uid="uid://djvbkibgi8whf" path="res://Assets/Sprites/Player/Player_Spritesheet.aseprite" id="1_y4ed7"]
+[ext_resource type="Texture2D" uid="uid://cpdnvj5bm3e0t" path="res://Assets/Sprites/Enemy/Enemy_Spritesheet.aseprite" id="2_4hnye"]
 
 [node name="Node2D" type="Node2D"]
 
 [node name="Player" type="Sprite2D" parent="."]
+texture = ExtResource("1_y4ed7")
 hframes = 6
 
 [node name="Enemy" type="Sprite2D" parent="."]
 position = Vector2(17, 0)
+texture = ExtResource("2_4hnye")
 hframes = 5
