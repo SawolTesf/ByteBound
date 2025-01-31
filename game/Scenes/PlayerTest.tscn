@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://do76d5k5o6032"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Player" type="Sprite2D" parent="."]
+hframes = 6
+
+[node name="Enemy" type="Sprite2D" parent="."]
+position = Vector2(17, 0)
+hframes = 5
