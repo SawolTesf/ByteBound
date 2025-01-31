@@ -1,0 +1,1 @@
+class_name LevelTemplate extends Node2D

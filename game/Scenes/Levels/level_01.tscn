@@ -1,0 +1,58 @@
+[gd_scene load_steps=8 format=4 uid="uid://dyt6rjjf4vkws"]
+
+[ext_resource type="PackedScene" uid="uid://dj33b6ynfouwy" path="res://Scenes/Level_Template.tscn" id="1_42ubl"]
+[ext_resource type="PackedScene" uid="uid://qt1cif8vuaw5" path="res://Assets/ParalaxBackgrounds/Forest/forest-background.tscn" id="2_id7yy"]
+[ext_resource type="TileSet" uid="uid://brnkhxw7uhsbr" path="res://Assets/Terrain/TileSets/ForestProps.tres" id="3_u6eva"]
+[ext_resource type="TileSet" uid="uid://dkluhtamjn2qc" path="res://Assets/Terrain/TileSets/ForestGround.tres" id="4_0r1s3"]
+[ext_resource type="TileSet" uid="uid://csfewv7h7hq2w" path="res://Assets/Terrain/TileSets/Water.tres" id="5_fsjgf"]
+[ext_resource type="PackedScene" uid="uid://dveonqmfkatdx" path="res://Objects/MovableSquare/MovableSquare.tscn" id="6_kpfdh"]
+[ext_resource type="PackedScene" uid="uid://bbnivbfgvtu3c" path="res://Actors/Enemy/Enemy.tscn" id="6_uj7ma"]
+
+[node name="Level01" instance=ExtResource("1_42ubl")]
+
+[node name="Forest-background" parent="." index="0" instance=ExtResource("2_id7yy")]
+
+[node name="Level" type="Node" parent="." index="1"]
+
+[node name="Decor" type="Node" parent="Level" index="0"]
+
+[node name="Background" type="TileMapLayer" parent="Level/Decor" index="0"]
+scale = Vector2(2, 2)
+tile_map_data = PackedByteArray("AAACAAgAFQABAAAAAAADAAgAFQACAAAAAAAEAAgAFQAJAAEAAAAFAAgAFQAKAAEAAAAGAAgAFQALAAEAAAA=")
+tile_set = ExtResource("3_u6eva")
+
+[node name="Midground" type="TileMapLayer" parent="Level/Decor" index="1"]
+tile_map_data = PackedByteArray("AAAIABEAFQAIAAIAAAAJABEAFQAJAAIAAAAKABEAFQAXAAAAAAANABEAFQAIAAIAABAMABEAFQAJAAIAABALABEAFQAXAAAAAAA=")
+tile_set = ExtResource("3_u6eva")
+
+[node name="Foreground" type="TileMapLayer" parent="Level/Decor" index="2"]
+tile_map_data = PackedByteArray("AAALABEAFQASAAAAAAAIABEAFQASAAAAAAAJABEAFQARAAAAAAAKABEAFQATAAAAAAAMABEAFQATAAAAAAAEABEAFQAAAAAAAAAGABEAFQAAAAAAAAA=")
+tile_set = ExtResource("3_u6eva")
+
+[node name="Ground" type="TileMapLayer" parent="Level" index="1"]
+scale = Vector2(2, 2)
+tile_map_data = PackedByteArray("AAAAAAkAAwAAAAAAAAAAAAoAAwAAAAEAAAAAAAsAAwAAAAIAAAABAAkAAwABAAAAAAABAAoAAwABAAEAAAABAAsAAwABAAIAAAACAAkAAwABAAAAAAACAAoAAwABAAEAAAACAAsAAwABAAIAAAADAAkAAwABAAAAAAADAAoAAwABAAEAAAADAAsAAwABAAIAAAAEAAkAAwABAAAAAAAEAAoAAwABAAEAAAAEAAsAAwABAAIAAAAFAAkAAwABAAAAAAAFAAoAAwABAAEAAAAFAAsAAwABAAIAAAAGAAkAAwABAAAAAAAGAAoAAwABAAEAAAAGAAsAAwABAAIAAAAHAAkAAwABAAAAAAAHAAoAAwABAAEAAAAHAAsAAwABAAIAAAAIAAkAAwAQAAQAAAAJAAkAAwARAAQAAAAKAAkAAwASAAQAAAALAAkAAwATAAQAAAAMAAkAAwABAAAAAAAMAAoAAwABAAEAAAAMAAsAAwABAAIAAAANAAkAAwABAAAAAAANAAoAAwABAAEAAAANAAsAAwABAAIAAAAOAAkAAwABAAAAAAAOAAoAAwABAAEAAAAOAAsAAwABAAIAAAAPAAkAAwABAAAAAAAPAAoAAwABAAEAAAAPAAsAAwABAAIAAAAQAAkAAwABAAAAAAAQAAoAAwABAAEAAAAQAAsAAwABAAIAAAARAAkAAwABAAAAAAARAAoAAwABAAEAAAARAAsAAwABAAIAAAASAAkAAwABAAAAAAASAAoAAwABAAEAAAASAAsAAwABAAIAAAATAAkAAwACAAAAAAATAAoAAwACAAEAAAATAAsAAwACAAIAAAAIAAcAAwASAAMAAAALAAYAAwASAAAAAAAMAAYAAwATAAAAAAANAAYAAwAUAAAAAAA=")
+tile_set = ExtResource("4_0r1s3")
+
+[node name="Hazards" type="TileMapLayer" parent="Level" index="2"]
+tile_map_data = PackedByteArray("AAAQABUAAAAHAAQAAAAQABYAAAAHAAQAAAAQABcAAAAHAAQAAAARABUAAAAHAAQAAAARABYAAAAHAAQAAAARABcAAAAHAAQAAAASABUAAAAHAAQAAAASABYAAAAHAAQAAAASABcAAAAHAAQAAAATABUAAAAHAAQAAAATABYAAAAHAAQAAAATABcAAAAHAAQAAAAUABUAAAAHAAQAAAAUABYAAAAHAAQAAAAUABcAAAAHAAQAAAAVABUAAAAHAAQAAAAVABYAAAAHAAQAAAAVABcAAAAHAAQAAAAWABUAAAAHAAQAAAAWABYAAAAHAAQAAAAWABcAAAAHAAQAAAAXABUAAAAHAAQAAAAXABYAAAAHAAQAAAAXABcAAAAHAAQAAAD5/xgAAAAHAAQAAAD6/xgAAAAHAAQAAAD7/xgAAAAHAAQAAAD8/xgAAAAHAAQAAAD9/xgAAAAHAAQAAAD+/xgAAAAHAAQAAAD//xgAAAAHAAQAAAAAABgAAAAHAAQAAAABABgAAAAHAAQAAAACABgAAAAHAAQAAAADABgAAAAHAAQAAAAEABgAAAAHAAQAAAAFABgAAAAHAAQAAAAGABgAAAAHAAQAAAAHABgAAAAHAAQAAAAIABgAAAAHAAQAAAAJABgAAAAHAAQAAAAKABgAAAAHAAQAAAALABgAAAAHAAQAAAAMABgAAAAHAAQAAAANABgAAAAHAAQAAAAOABgAAAAHAAQAAAAPABgAAAAHAAQAAAAQABgAAAAHAAQAAAARABgAAAAHAAQAAAASABgAAAAHAAQAAAATABgAAAAHAAQAAAAUABgAAAAHAAQAAAAVABgAAAAHAAQAAAAWABgAAAAHAAQAAAAXABgAAAAHAAQAAAAYABgAAAAHAAQAAAAZABgAAAAHAAQAAAAaABgAAAAHAAQAAAAbABgAAAAHAAQAAAAcABgAAAAHAAQAAAAdABgAAAAHAAQAAAAeABgAAAAHAAQAAAAfABgAAAAHAAQAAAAgABgAAAAHAAQAAAAhABgAAAAHAAQAAAAiABgAAAAHAAQAAAAjABgAAAAHAAQAAAAkABgAAAAHAAQAAAAlABgAAAAHAAQAAAAmABgAAAAHAAQAAAAnABgAAAAHAAQAAAAoABgAAAAHAAQAAAApABgAAAAHAAQAAAAqABgAAAAHAAQAAAArABgAAAAHAAQAAAAsABgAAAAHAAQAAAAtABgAAAAHAAQAAAAuABgAAAAHAAQAAAAvABgAAAAHAAQAAAA=")
+tile_set = ExtResource("5_fsjgf")
+
+[node name="ExitDoor" parent="." index="2"]
+top_level = true
+position = Vector2(403, 255)
+
+[node name="Player" parent="." index="3"]
+top_level = true
+position = Vector2(44, 271)
+
+[node name="MovableSquare" parent="." index="4" instance=ExtResource("6_kpfdh")]
+position = Vector2(426, 180)
+collision_mask = 35
+
+[node name="Enemy" parent="." index="5" node_paths=PackedStringArray("player") instance=ExtResource("6_uj7ma")]
+position = Vector2(571, 278)
+player = NodePath("../Player")
+sight_distance = 300.0
+sight_angle = 20.0
+starting_direction = -1

@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://dj33b6ynfouwy"]
+
+[ext_resource type="Script" path="res://Scenes/level_template.gd" id="1_74oc5"]
+[ext_resource type="PackedScene" uid="uid://5rdkceb8frqw" path="res://Actors/Player/Player.tscn" id="1_dpdov"]
+[ext_resource type="PackedScene" uid="uid://b6io5qp6db3l" path="res://Objects/ExitDoor/ExitDoor.tscn" id="2_bov5a"]
+
+[node name="LevelTemplate" type="Node2D"]
+script = ExtResource("1_74oc5")
+
+[node name="ExitDoor" parent="." instance=ExtResource("2_bov5a")]
+position = Vector2(499, 58)
+scale = Vector2(2, 2)
+collision_layer = 16
+collision_mask = 2
+
+[node name="Player" parent="." instance=ExtResource("1_dpdov")]
+position = Vector2(49, 36)
