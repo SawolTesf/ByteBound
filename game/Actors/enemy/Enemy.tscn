@@ -1,28 +1,28 @@
-[gd_scene load_steps=11 format=3 uid="uid://dbjjkh2er7qig"]
+[gd_scene load_steps=11 format=3 uid="uid://bbnivbfgvtu3c"]
 
-[ext_resource type="Texture2D" uid="uid://5cakxygvxc81" path="res://Assets/Sprites/Blob/frame_blob0001.png" id="1_arcig"]
-[ext_resource type="Script" path="res://Actors/enemy/enemy.gd" id="1_ou8bc"]
-[ext_resource type="Texture2D" uid="uid://bqcfpt74fpdft" path="res://Assets/Sprites/Blob/frame_blob0002.png" id="2_rpblh"]
-[ext_resource type="Texture2D" uid="uid://boghq5fys8wc1" path="res://Assets/Sprites/Blob/frame_blob0003.png" id="3_xr6fs"]
-[ext_resource type="Texture2D" uid="uid://dpghmmjw4dihm" path="res://Assets/Sprites/Blob/frame_blob0004.png" id="4_jasmn"]
-[ext_resource type="PackedScene" uid="uid://yn8mnupom0tf" path="res://Components/Gravity/gravity_component.tscn" id="6_cbba6"]
-[ext_resource type="PackedScene" uid="uid://blbw63k24k8n6" path="res://Components/Animations/animation_component.tscn" id="7_mpk8r"]
-[ext_resource type="PackedScene" uid="uid://cuyr8mvps46j5" path="res://Components/Movement/movement_component.tscn" id="8_0kl6j"]
+[ext_resource type="Texture2D" uid="uid://5cakxygvxc81" path="res://Assets/Sprites/Blob/frame_blob0001.png" id="1_a6j1d"]
+[ext_resource type="Script" path="res://Actors/Enemy/enemy.gd" id="1_jji55"]
+[ext_resource type="Resource" uid="uid://cl15epbgotcko" path="res://Actors/Enemy/base_enemy_move_stats.tres" id="2_cdpts"]
+[ext_resource type="Texture2D" uid="uid://bqcfpt74fpdft" path="res://Assets/Sprites/Blob/frame_blob0002.png" id="2_focx3"]
+[ext_resource type="Texture2D" uid="uid://boghq5fys8wc1" path="res://Assets/Sprites/Blob/frame_blob0003.png" id="3_1q3to"]
+[ext_resource type="Texture2D" uid="uid://dpghmmjw4dihm" path="res://Assets/Sprites/Blob/frame_blob0004.png" id="4_drf5v"]
+[ext_resource type="PackedScene" uid="uid://blbw63k24k8n6" path="res://Components/Animations/animation_component.tscn" id="7_1gcsm"]
+[ext_resource type="PackedScene" uid="uid://yn8mnupom0tf" path="res://Components/Gravity/gravity_component.tscn" id="8_8076d"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_onwn6"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_v106i"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_arcig")
+"texture": ExtResource("1_a6j1d")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_rpblh")
+"texture": ExtResource("2_focx3")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_xr6fs")
+"texture": ExtResource("3_1q3to")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_jasmn")
+"texture": ExtResource("4_drf5v")
 }],
 "loop": true,
 "name": &"Idle",
@@ -30,43 +30,59 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_arcig")
+"texture": ExtResource("1_a6j1d")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_rpblh")
+"texture": ExtResource("2_focx3")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_xr6fs")
+"texture": ExtResource("3_1q3to")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_jasmn")
+"texture": ExtResource("4_drf5v")
 }],
 "loop": true,
 "name": &"Move",
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_802da"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_us04s"]
+size = Vector2(21, 20)
 
-[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("animations", "movement", "gravity")]
-position = Vector2(85, 48)
-script = ExtResource("1_ou8bc")
-animations = NodePath("EnemyAnimations")
-movement = NodePath("EnemyMovement")
-gravity = NodePath("EnemyGravity")
+[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("animations", "gravity", "fov", "fov_collision", "fov_display") groups=["Enemy"]]
+position = Vector2(11, 10)
+collision_layer = 4
+collision_mask = 35
+script = ExtResource("1_jji55")
+animations = NodePath("AnimationComponent")
+gravity = NodePath("GravityComponent")
+movement = ExtResource("2_cdpts")
+fov = NodePath("Enemy FoV")
+fov_collision = NodePath("Enemy FoV/Enemy FoV Collider")
+fov_display = NodePath("Enemy FoV/Enemy FoV Indicator")
 metadata/_edit_group_ = true
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.13, 0.13)
-sprite_frames = SubResource("SpriteFrames_onwn6")
-animation = &"Move"
+[node name="EnemySprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(-0.5, 0)
+scale = Vector2(0.13125, 0.125)
+sprite_frames = SubResource("SpriteFrames_v106i")
+animation = &"Idle"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_802da")
+[node name="EnemyBody" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_us04s")
 
-[node name="EnemyGravity" parent="." instance=ExtResource("6_cbba6")]
+[node name="Enemy FoV" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
 
-[node name="EnemyAnimations" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("7_mpk8r")]
-sprite = NodePath("../AnimatedSprite2D")
+[node name="Enemy FoV Collider" type="CollisionPolygon2D" parent="Enemy FoV"]
 
-[node name="EnemyMovement" parent="." instance=ExtResource("8_0kl6j")]
+[node name="Enemy FoV Indicator" type="Polygon2D" parent="Enemy FoV"]
+modulate = Color(0.941176, 1, 0.00784314, 0.588235)
+show_behind_parent = true
+
+[node name="AnimationComponent" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("7_1gcsm")]
+sprite = NodePath("../EnemySprite")
+
+[node name="GravityComponent" parent="." instance=ExtResource("8_8076d")]
