@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="MoveStats" load_steps=2 format=3 uid="uid://cl15epbgotcko"]
+
+[ext_resource type="Script" path="res://Components/Movement/move_statst.gd" id="1_c2xop"]
+
+[resource]
+script = ExtResource("1_c2xop")
+advanced_movement = false
+ground_speed = 100.0
+air_speed = 50.0
+ground_acceleration = 80.0
+air_acceleration = 20.0
+ground_decceleration = 50.0
+air_decceleratoin = 80.0
+mass = 20.0

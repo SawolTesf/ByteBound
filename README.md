@@ -2,7 +2,7 @@
 Introduction to Programming Video Games 2D platform game project
 
 ## Project Layout:
-** Prototype: subject to change ** 
+**Prototype: subject to change** 
 I Just wanted to add this to give y'all some information on how I laid out what I have.
 
 ### Assets:
@@ -24,18 +24,3 @@ This should probably be called 'Levels', as the idea is each level we make we ca
 The TestScene is currently where the whole game lives currently.
 
 
-## TODO:
-### Features
-#### Detection system:
-A way for the AI to detect things in the environment such as the player, sounds made from thrown object and the like.
-
-#### Turret that can scan for the player
-If we are going with a stealth platformer we need an enemy AI that can scan for the player and determine if the player is visible 
-
-#### Movable Boxes
-In general objects that the player can move around to try and block the LOS (line of sight) of the enemy.
-
-### Bugs
-#### Tile Collision on Slope
-The player when moving up a slope that transitions to a flat tile will become stuck and have to jump to get over it.
-This is most likely due to how the collision shape on the tile and can be adjusted in the TileSet (ground).

@@ -1,9 +1,9 @@
 [gd_scene load_steps=37 format=3 uid="uid://5rdkceb8frqw"]
 
-[ext_resource type="PackedScene" uid="uid://cuyr8mvps46j5" path="res://Components/Movement/movement_component.tscn" id="1_2huuo"]
 [ext_resource type="Script" path="res://Actors/Player/player.gd" id="1_6sfi4"]
 [ext_resource type="Texture2D" uid="uid://pg2xm33lhket" path="res://Assets/Sprites/Player/Crouch/adventurer-crouch-00-1.3.png" id="1_62hd0"]
 [ext_resource type="Texture2D" uid="uid://m8fgs78fuav8" path="res://Assets/Sprites/Player/Crouch/adventurer-crouch-01-1.3.png" id="2_7rwrt"]
+[ext_resource type="Resource" uid="uid://3y2cdy74dhsn" path="res://Actors/Player/player_move_stats.tres" id="2_buxuv"]
 [ext_resource type="PackedScene" uid="uid://c1wy8bd4a5us6" path="res://Components/Jumping/jump_component.tscn" id="2_yrs3k"]
 [ext_resource type="PackedScene" uid="uid://ba0doa040rdwp" path="res://Components/Input/input_component.tscn" id="3_js0gb"]
 [ext_resource type="Texture2D" uid="uid://bplm2yrtp2xgl" path="res://Assets/Sprites/Player/Crouch/adventurer-crouch-02-1.3.png" id="3_wg861"]
@@ -155,18 +155,23 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("gravity", "input", "movement", "animations", "jump")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("gravity", "input", "animations", "jump", "player_detection") groups=["Player"]]
 position = Vector2(22, 23)
+collision_layer = 2
+collision_mask = 63
 script = ExtResource("1_6sfi4")
 gravity = NodePath("Components/GravityComponent")
 input = NodePath("Components/InputComponent")
-movement = NodePath("Components/MovementComponent")
 animations = NodePath("Components/AnimationComponent")
 jump = NodePath("Components/jump_component")
+player_detection = NodePath("PlayerHitbox")
+player_move = ExtResource("2_buxuv")
 metadata/_edit_group_ = true
 
 [node name="PlayerHitbox" type="Area2D" parent="."]
-collision_mask = 4
+scale = Vector2(1.28, 1)
+collision_layer = 2
+collision_mask = 31
 
 [node name="HitboxShape" type="CollisionShape2D" parent="PlayerHitbox"]
 shape = SubResource("CapsuleShape2D_8a78l")
@@ -179,16 +184,14 @@ shape = SubResource("CapsuleShape2D_jxvtl")
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -4)
 sprite_frames = SubResource("SpriteFrames_getxw")
-animation = &"Death"
-frame = 6
-frame_progress = 1.0
+animation = &"Idle"
 
 [node name="Components" type="Node" parent="."]
 
-[node name="MovementComponent" parent="Components" instance=ExtResource("1_2huuo")]
-
 [node name="jump_component" parent="Components" instance=ExtResource("2_yrs3k")]
+jump_height = -425.0
 jumpbuffer_window = 0.02
+jump_speed = 150.0
 
 [node name="InputComponent" parent="Components" instance=ExtResource("3_js0gb")]
 
@@ -196,5 +199,3 @@ jumpbuffer_window = 0.02
 
 [node name="AnimationComponent" parent="Components" node_paths=PackedStringArray("sprite") instance=ExtResource("5_rivup")]
 sprite = NodePath("../../PlayerSprite")
-
-[connection signal="body_entered" from="PlayerHitbox" to="." method="_on_player_hazard_entered"]

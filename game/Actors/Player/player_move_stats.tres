@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="MoveStats" load_steps=2 format=3 uid="uid://3y2cdy74dhsn"]
+
+[ext_resource type="Script" path="res://Components/Movement/move_statst.gd" id="1_rfnv5"]
+
+[resource]
+script = ExtResource("1_rfnv5")
+advanced_movement = false
+ground_speed = 80.0
+air_speed = 100.0
+ground_acceleration = 80.0
+air_acceleration = 20.0
+ground_decceleration = 50.0
+air_decceleratoin = 80.0
+mass = 20.0
