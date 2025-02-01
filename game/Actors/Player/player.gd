@@ -14,6 +14,7 @@ var push_force: float = 50
 
 # Track when the player should die then process it in _process
 var is_detected: bool
+var has_key: bool = false  # New: track if the player has collected the key
 
 ### Built-Ins------------------------------------------------------------------
 func _ready() -> void:
@@ -42,4 +43,5 @@ func _process(_delta: float) -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Hazards"):
-		get_tree.call_deferred("reload_current_scene")
+		print("DEBUG: Player collided with a hazard. Reloading scene.")
+		get_tree().call_deferred("reload_current_scene")
