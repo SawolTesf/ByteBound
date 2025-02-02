@@ -45,7 +45,9 @@ position = Vector2(614, 288)
 
 [node name="Player" parent="." index="3"]
 top_level = true
-position = Vector2(32, 303)
+light_mask = 3
+visibility_layer = 63
+position = Vector2(86, 298)
 
 [node name="Enemies" type="Node" parent="." index="4"]
 

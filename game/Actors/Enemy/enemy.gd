@@ -1,7 +1,4 @@
 class_name Enemy extends CharacterBody2D
-## 
-##
-##
 
 @export_category("Components")
 @export_subgroup("Internal")
@@ -57,7 +54,7 @@ func _physics_process(delta: float) -> void:
 	sight_check()
 	update_fov()
 	# Things that always need to be handled
-	gravity.handle_gravity(self, delta)
+	gravity.handle_gravity(self, false, delta)
 	animations.handle_move_animation(direction)
 	
 	if (can_move and can_idle) or can_move:
@@ -135,9 +132,9 @@ func setup_idle_timer() -> void:
 ## if both move and idle are enabled, then go to idle when called
 ## if only move is eabled then flip directions and restart the timer
 func _on_move_timeout() -> void:
-	print("Move Timer Ended")
+	#print("Move Timer Ended")
 	if can_idle and can_move:
-		print("move and idle are enabled")
+		#print("move and idle are enabled")
 		is_idle = true
 		idle_timer.start()
 	elif can_move and not can_idle:
@@ -149,15 +146,15 @@ func _on_move_timeout() -> void:
 ## if only idle is enabled restart the timer
 ## regardless of options the direction will switch if this signal is called
 func _on_idle_timeout() -> void:
-	print("Idle Timer Ended")
+	#print("Idle Timer Ended")
 	direction = -direction
 	# if only idle is enabled
 	if not can_move and can_idle:
-		print("only idle is enabled restart the timer")
+		#print("only idle is enabled restart the timer")
 		idle_timer.start() # restart the timer
 	# if both move and idle are enabled
 	if can_idle and can_move:
-		print("idle and move enabled start moving again")
+		#print("idle and move enabled start moving again")
 		is_idle = false # we want to move
 		move_timer.start() # we just finished idleing start moving
 	

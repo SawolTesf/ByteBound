@@ -1,14 +1,26 @@
 [gd_resource type="Resource" script_class="MoveStats" load_steps=2 format=3 uid="uid://3y2cdy74dhsn"]
 
-[ext_resource type="Script" path="res://Components/Movement/move_statst.gd" id="1_rfnv5"]
+[ext_resource type="Script" path="res://Components/Movement/move_stats.gd" id="1_3bx64"]
 
 [resource]
-script = ExtResource("1_rfnv5")
-advanced_movement = false
-ground_speed = 80.0
-air_speed = 100.0
-ground_acceleration = 80.0
+script = ExtResource("1_3bx64")
+advanced_movement = true
+multi_jump = true
+enable_dash = false
+ground_speed = 100.0
+air_speed = 90.0
+ground_acceleration = 200.0
 air_acceleration = 20.0
-ground_decceleration = 50.0
-air_decceleratoin = 80.0
-mass = 20.0
+ground_decceleration = 150.0
+air_decceleratoin = 50.0
+gravity = 980.0
+fast_fall_gravity = 1500.0
+jump_height = -400.0
+max_jumps = 2
+multi_jump_height_multiplier = 0.8
+coyote_jump_time = 0.5
+jump_buffer_time = 0.2
+dash_multipler = 6.0
+dash_duration = 0.5
+dash_cooldown = 1.0
+dash_distance = 999999.0

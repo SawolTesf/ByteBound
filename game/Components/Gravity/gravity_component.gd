@@ -11,16 +11,22 @@ class_name GravityComponent extends Node
 ## The amount of force to be applied to the body.velocity.y 
 ## This value should be positive
 @export var gravity: float = 1000.0
+@export var fast_fall_gravity: float = 2000.0
+@export var low_gravity: float = 500.0
 
 ## Will be true if the body is not on the floor 
 ## and the body.velocity.y is positive
 var is_falling: bool
+var is_fast_falling: bool
 
 ## If the player is not on the floor apply a downward force.
 ## This is only applied if they are not on the floor 
 ## keeping the velocity.y from causing isues if the actor jumps
-func handle_gravity(body: CharacterBody2D, delta: float) -> void:
+func handle_gravity(body: CharacterBody2D, fast_fall: bool, delta: float) -> void:
 	if not body.is_on_floor():
-		body.velocity.y += gravity * delta
-		
-	is_falling = body.velocity.y > 0 and not body.is_on_floor()
+		if fast_fall:
+			body.velocity.y += fast_fall_gravity * delta
+			is_fast_falling = true
+		else:
+			body.velocity.y += gravity * delta
+			is_fast_falling = false

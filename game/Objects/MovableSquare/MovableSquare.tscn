@@ -1,18 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://dveonqmfkatdx"]
+[gd_scene load_steps=4 format=3 uid="uid://dveonqmfkatdx"]
+
+[ext_resource type="Script" path="res://Objects/MovableSquare/movable_square.gd" id="1_isbo7"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_fva78"]
 bounce = 0.05
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cd5u5"]
-size = Vector2(40, 40)
+size = Vector2(45, 38.3333)
 
 [node name="MovableSquare" type="RigidBody2D"]
+position = Vector2(-1, -1)
 collision_layer = 32
-collision_mask = 7
+collision_mask = 63
 physics_material_override = SubResource("PhysicsMaterial_fva78")
+script = ExtResource("1_isbo7")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 1)
 scale = Vector2(0.6, 0.6)
 shape = SubResource("RectangleShape2D_cd5u5")
 
@@ -29,3 +34,6 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.27797, 0.140373, 0, 0.811765)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

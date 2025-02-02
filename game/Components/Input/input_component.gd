@@ -5,14 +5,29 @@ class_name InputComponent extends Node
 ## Constanly pools for left and right input every frame and assigns it to [member InputComponent.input_horizontal]
 
 ## either -1.0, 0.0, 1.0
-var input_horizontal : float = 0.0
+var input_horizontal: float = 0.0
 
 # checks every frame if input was given
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	input_horizontal = Input.get_axis("ui_left", "ui_right")
 
-## Checks to see if the player wants to jump.
-## This is useful when combining the jump and input components.
-## Call this function as on of the parameters of [method JumpComponent.handle_jump]
-func get_jump_input() -> bool:
+func get_jump() -> bool:
 	return Input.is_action_just_pressed("ui_accept")
+
+func get_move() -> bool:
+	return get_left() or get_right()
+
+func get_left() -> bool:
+	return Input.is_action_pressed("ui_left")
+
+func get_right() -> bool:
+	return Input.is_action_pressed("ui_right")
+
+func get_fast_fall() -> bool:
+	return Input.is_action_pressed("ui_down")
+
+func get_dash() -> bool:
+	return Input.is_action_pressed("dash")
+
+func get_crouch() -> bool:
+	return Input.is_action_pressed("crouch")

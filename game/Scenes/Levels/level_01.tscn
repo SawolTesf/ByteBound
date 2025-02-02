@@ -46,13 +46,15 @@ position = Vector2(403, 255)
 top_level = true
 position = Vector2(44, 271)
 
-[node name="MovableSquare" parent="." index="4" instance=ExtResource("6_kpfdh")]
-position = Vector2(426, 180)
-collision_mask = 35
-
-[node name="Enemy" parent="." index="5" node_paths=PackedStringArray("player") instance=ExtResource("6_uj7ma")]
+[node name="Enemy" parent="." index="4" node_paths=PackedStringArray("player") instance=ExtResource("6_uj7ma")]
 position = Vector2(571, 278)
 player = NodePath("../Player")
 sight_distance = 300.0
 sight_angle = 20.0
 starting_direction = -1
+
+[node name="MovableSquare" parent="." index="5" instance=ExtResource("6_kpfdh")]
+top_level = true
+position = Vector2(126, 273)
+collision_layer = 33
+collision_mask = 35
