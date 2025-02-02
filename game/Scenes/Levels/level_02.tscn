@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bbnivbfgvtu3c" path="res://Actors/Enemy/Enemy.tscn" id="6_141q6"]
 [ext_resource type="PackedScene" uid="uid://dveonqmfkatdx" path="res://Objects/MovableSquare/MovableSquare.tscn" id="7_3weri"]
 
+
 [node name="Level02" instance=ExtResource("1_dff74")]
 
 [node name="Forest-background" parent="." index="0" instance=ExtResource("2_bi1dg")]
