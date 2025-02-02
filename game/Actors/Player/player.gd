@@ -4,8 +4,9 @@ var state_controller: StateMachine
 var sprite: AnimatedSprite2D
 var input: InputComponent
 @export var movement_stats: MoveStats
-var has_key: bool
+var has_key: bool = false 
 var is_detected: bool
+
 
 # Builtins --------------------------------------------------------------------
 func _ready() -> void:
