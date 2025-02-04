@@ -2,12 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://y5cy3nk6jm8l"
-valid=false
+uid="uid://cxc8pxcnoynku"
+path="res://.godot/imported/adventurer-smrslt-01-1.3.png-1e95e1b42c0fa0a7c4bede3ea6baf260.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
-source_file="res://Assets/Sprites/Enemy/Drone.aseprite"
+source_file="res://Assets/Sprites/Player/Original/Roll/adventurer-smrslt-01-1.3.png"
+dest_files=["res://.godot/imported/adventurer-smrslt-01-1.3.png-1e95e1b42c0fa0a7c4bede3ea6baf260.ctex"]
 
 [params]
 

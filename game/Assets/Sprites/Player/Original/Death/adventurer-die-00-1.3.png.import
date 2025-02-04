@@ -2,12 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://y5cy3nk6jm8l"
-valid=false
+uid="uid://chem3cyr7ssdx"
+path="res://.godot/imported/adventurer-die-00-1.3.png-7c4e19ddd4edd49e659f93faab3bcb51.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
-source_file="res://Assets/Sprites/Enemy/Drone.aseprite"
+source_file="res://Assets/Sprites/Player/Original/Death/adventurer-die-00-1.3.png"
+dest_files=["res://.godot/imported/adventurer-die-00-1.3.png-7c4e19ddd4edd49e659f93faab3bcb51.ctex"]
 
 [params]
 

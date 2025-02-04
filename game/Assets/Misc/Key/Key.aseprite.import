@@ -2,12 +2,12 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://y5cy3nk6jm8l"
+uid="uid://b18nx554gbnrp"
 valid=false
 
 [deps]
 
-source_file="res://Assets/Sprites/Enemy/Drone.aseprite"
+source_file="res://Assets/Misc/Key/Key.aseprite"
 
 [params]
 

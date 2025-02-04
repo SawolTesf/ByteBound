@@ -2,12 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://y5cy3nk6jm8l"
-valid=false
+uid="uid://bkfh0hvpf71v8"
+path="res://.godot/imported/Player_Spritesheet.png-b9a8e330f6d0d723b688dafac5f3ec4e.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
-source_file="res://Assets/Sprites/Enemy/Drone.aseprite"
+source_file="res://Assets/Sprites/Player/Robot/Player_Spritesheet.png"
+dest_files=["res://.godot/imported/Player_Spritesheet.png-b9a8e330f6d0d723b688dafac5f3ec4e.ctex"]
 
 [params]
 

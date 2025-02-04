@@ -2,12 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://y5cy3nk6jm8l"
-valid=false
+uid="uid://b3mqllmaxp3jj"
+path="res://.godot/imported/Enemy_Spritesheet.png-e5322a245d8b5973c2bece44418976ab.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
-source_file="res://Assets/Sprites/Enemy/Drone.aseprite"
+source_file="res://Assets/Sprites/Enemy/Enemy_Spritesheet.png"
+dest_files=["res://.godot/imported/Enemy_Spritesheet.png-e5322a245d8b5973c2bece44418976ab.ctex"]
 
 [params]
 

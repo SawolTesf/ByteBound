@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Actors/Player/player.gd" id="1_6sfi4"]
 [ext_resource type="Resource" uid="uid://3y2cdy74dhsn" path="res://Actors/Player/player_move_stats.tres" id="2_buxuv"]
 [ext_resource type="PackedScene" uid="uid://c1wy8bd4a5us6" path="res://Components/Jumping/jump_component.tscn" id="2_yrs3k"]
-[ext_resource type="Texture2D" uid="uid://djvbkibgi8whf" path="res://Assets/Sprites/Player/Player_Spritesheet.aseprite" id="3_dn4lt"]
+[ext_resource type="Texture2D" uid="uid://bkfh0hvpf71v8" path="res://Assets/Sprites/Player/Robot/Player_Spritesheet.png" id="3_dn4lt"]
 [ext_resource type="PackedScene" uid="uid://ba0doa040rdwp" path="res://Components/Input/input_component.tscn" id="3_js0gb"]
 [ext_resource type="PackedScene" uid="uid://yn8mnupom0tf" path="res://Components/Gravity/gravity_component.tscn" id="4_40eek"]
 [ext_resource type="PackedScene" uid="uid://blbw63k24k8n6" path="res://Components/Animations/animation_component.tscn" id="5_rivup"]

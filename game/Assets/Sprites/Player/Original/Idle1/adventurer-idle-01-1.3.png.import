@@ -2,12 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://y5cy3nk6jm8l"
-valid=false
+uid="uid://cu2g0rvw8yp20"
+path="res://.godot/imported/adventurer-idle-01-1.3.png-dfcb74089fa0744165f311185999a51d.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
-source_file="res://Assets/Sprites/Enemy/Drone.aseprite"
+source_file="res://Assets/Sprites/Player/Original/Idle1/adventurer-idle-01-1.3.png"
+dest_files=["res://.godot/imported/adventurer-idle-01-1.3.png-dfcb74089fa0744165f311185999a51d.ctex"]
 
 [params]
 

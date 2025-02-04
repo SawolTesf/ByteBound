@@ -3,15 +3,11 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://sbcvish0h17l"
-path="res://.godot/imported/PlatformTiles_V2.aseprite-1b5c8d22a3bea74a3c9fe60f8be41b73.ctex"
-metadata={
-"vram_texture": false
-}
+valid=false
 
 [deps]
 
 source_file="res://Assets/Terrain/Tiles/PlatformTiles_V2.aseprite"
-dest_files=["res://.godot/imported/PlatformTiles_V2.aseprite-1b5c8d22a3bea74a3c9fe60f8be41b73.ctex"]
 
 [params]
 

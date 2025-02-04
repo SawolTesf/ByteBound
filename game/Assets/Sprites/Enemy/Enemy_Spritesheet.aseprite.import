@@ -3,15 +3,11 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cpdnvj5bm3e0t"
-path="res://.godot/imported/Enemy_Spritesheet.aseprite-fea32736c2e88cc1062a7d290b7deeb5.ctex"
-metadata={
-"vram_texture": false
-}
+valid=false
 
 [deps]
 
 source_file="res://Assets/Sprites/Enemy/Enemy_Spritesheet.aseprite"
-dest_files=["res://.godot/imported/Enemy_Spritesheet.aseprite-fea32736c2e88cc1062a7d290b7deeb5.ctex"]
 
 [params]
 
