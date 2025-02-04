@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Actors/Enemy/enemy.gd" id="1_jji55"]
 [ext_resource type="Resource" uid="uid://cl15epbgotcko" path="res://Actors/Enemy/base_enemy_move_stats.tres" id="2_cdpts"]
-[ext_resource type="Texture2D" uid="uid://cpdnvj5bm3e0t" path="res://Assets/Sprites/Enemy/Enemy_Spritesheet.aseprite" id="3_q542k"]
+[ext_resource type="Texture2D" uid="uid://b3mqllmaxp3jj" path="res://Assets/Sprites/Enemy/Enemy_Spritesheet.png" id="3_q542k"]
 [ext_resource type="PackedScene" uid="uid://blbw63k24k8n6" path="res://Components/Animations/animation_component.tscn" id="7_1gcsm"]
 [ext_resource type="PackedScene" uid="uid://yn8mnupom0tf" path="res://Components/Gravity/gravity_component.tscn" id="8_8076d"]
 
