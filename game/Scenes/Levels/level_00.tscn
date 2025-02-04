@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=4 uid="uid://dwd5svvqjdvjc"]
+[gd_scene load_steps=8 format=4 uid="uid://dwd5svvqjdvjc"]
 
 [ext_resource type="PackedScene" uid="uid://dj33b6ynfouwy" path="res://Scenes/Level_Template.tscn" id="1_iif8o"]
 [ext_resource type="PackedScene" uid="uid://qt1cif8vuaw5" path="res://Assets/ParalaxBackgrounds/Forest/forest-background.tscn" id="2_4opyd"]
@@ -6,6 +6,7 @@
 [ext_resource type="TileSet" uid="uid://csfewv7h7hq2w" path="res://Assets/Terrain/TileSets/Water.tres" id="4_kqu2h"]
 [ext_resource type="TileSet" uid="uid://brnkhxw7uhsbr" path="res://Assets/Terrain/TileSets/ForestProps.tres" id="5_d1ivb"]
 [ext_resource type="PackedScene" uid="uid://bbnivbfgvtu3c" path="res://Actors/Enemy/Enemy.tscn" id="5_ppk1e"]
+[ext_resource type="PackedScene" uid="uid://biddtthbbkyfa" path="res://Objects/Key/Key.tscn" id="7_12m35"]
 
 [node name="Level00" instance=ExtResource("1_iif8o")]
 
@@ -60,3 +61,6 @@ sight_distance = 150.0
 sight_angle = 70.0
 can_move = true
 can_idle = true
+
+[node name="Key" parent="." index="5" instance=ExtResource("7_12m35")]
+position = Vector2(464, 239)
