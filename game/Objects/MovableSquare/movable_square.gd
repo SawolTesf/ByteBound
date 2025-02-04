@@ -1,16 +1,21 @@
 class_name Movable extends RigidBody2D
-## Allows movable objects to look for collisions with the player
-##
-## Uses signals to manage what happens when different objects collide with a moveable object
+### Allows the player to move an object by interacting with it.
 
-func _ready() -> void:
-	add_to_group("Movable")
-	contact_monitor = true
-	#body_entered.connect(_on_body_entered)
-	#body_exited.connect(_on_body_exited)
+@export var push_force: float
 
-func _on_body_entered(body: Node) -> void:
-	print("Collision detected with: ", body.name)
+var is_pushing: bool
+var is_pulling: bool
 
-func _on_body_exited(body: Node) -> void:
-	print("Collision ended with: ", body.name)
+var player: Player = null
+
+func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
+	if player: 
+		print("player defiend apply force")
+		var direction = (global_position - player.global_position).normalized()
+		apply_force(-direction * push_force)
+
+func start_interaction(player: CharacterBody2D) -> void:
+	player = player
+
+func stop_interaction() -> void:
+	player = null
