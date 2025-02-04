@@ -1,4 +1,7 @@
 class_name Enemy extends CharacterBody2D
+## 
+##
+##
 
 @export_category("Components")
 @export_subgroup("Internal")
