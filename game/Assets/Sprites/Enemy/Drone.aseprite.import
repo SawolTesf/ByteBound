@@ -3,11 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://y5cy3nk6jm8l"
-valid=false
+path="res://.godot/imported/Drone.aseprite-14882e7f300071c48a7b73d39e7b489d.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://Assets/Sprites/Enemy/Drone.aseprite"
+dest_files=["res://.godot/imported/Drone.aseprite-14882e7f300071c48a7b73d39e7b489d.ctex"]
 
 [params]
 

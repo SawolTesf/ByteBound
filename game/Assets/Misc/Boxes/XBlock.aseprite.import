@@ -3,11 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cs7xhkx7gflkb"
-valid=false
+path="res://.godot/imported/XBlock.aseprite-5d2c6eb26b170af329604af3b49fead9.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://Assets/Misc/Boxes/XBlock.aseprite"
+dest_files=["res://.godot/imported/XBlock.aseprite-5d2c6eb26b170af329604af3b49fead9.ctex"]
 
 [params]
 

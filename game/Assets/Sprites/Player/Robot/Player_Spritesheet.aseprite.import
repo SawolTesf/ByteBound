@@ -3,11 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://djvbkibgi8whf"
-valid=false
+path="res://.godot/imported/Player_Spritesheet.aseprite-4e9019098c60cd8c5ad9ab92486b1c75.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://Assets/Sprites/Player/Robot/Player_Spritesheet.aseprite"
+dest_files=["res://.godot/imported/Player_Spritesheet.aseprite-4e9019098c60cd8c5ad9ab92486b1c75.ctex"]
 
 [params]
 
