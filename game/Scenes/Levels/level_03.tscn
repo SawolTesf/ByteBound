@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=4 uid="uid://b7ln43q63g0qr"]
 
-[ext_resource type="Texture2D" uid="uid://sbcvish0h17l" path="res://Assets/Terrain/Tiles/PlatformTiles_V2.aseprite" id="1_6lny8"]
-[ext_resource type="PackedScene" uid="uid://5rdkceb8frqw" path="res://Actors/Player/Player.tscn" id="2_fs2j8"]
+[ext_resource type="Texture2D" uid="uid://b1yvnpispejbg" path="res://Assets/Terrain/TileSets/ShipTilesFinal.png" id="1_6lny8"]
+[ext_resource type="PackedScene" uid="uid://bw0ew7stacm2" path="res://Actors/Player/Player.tscn" id="2_fs2j8"]
 [ext_resource type="PackedScene" uid="uid://bbnivbfgvtu3c" path="res://Actors/Enemy/Enemy.tscn" id="3_0t8m1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rbrjd"]

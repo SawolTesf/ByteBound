@@ -7,9 +7,8 @@ var input: InputComponent
 var has_key: bool = false 
 var is_detected: bool
 
-var interacting_object: Movable = null
-@export var interaction_range: float = 32.0
-
+const PUSH_FORCE: float = 15.0
+const MIN_PUSH_FORCE: float = 10.0
 
 # Builtins --------------------------------------------------------------------
 func _ready() -> void:
@@ -21,14 +20,13 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	state_controller.process_physics(delta)
 	
-	if Input.is_action_just_pressed("interact"):
-		print("interact pressed")
-		if interacting_object:
-			interacting_object.stop_interaction()
-			interacting_object = null
-		else:
-			detect_and_interact()
-
+	# Collide with rigidbodys
+	for i in get_slide_collision_count():
+		var c = get_slide_collision(i)
+		if c.get_collider() is RigidBody2D:
+			var push_force = (PUSH_FORCE * velocity.length() / movement_stats.get_speed(self)) + MIN_PUSH_FORCE
+			c.get_collider().apply_central_impulse(-c.get_normal() * push_force)
+	
 
 func _process(delta: float) -> void:
 	# this is the dash timer
@@ -53,20 +51,3 @@ func dash_cooldown_check(delta: float):
 		movement_stats.dash_cooldown_timer -= delta
 		if movement_stats.dash_cooldown_timer <= 0:
 			movement_stats.is_dash_ready = true
-
-# DOES NOTWORK
-# need to find an implementatino that will allow the player to know when to interact with a rigidbody
-func detect_and_interact():
-	var space_state = get_world_2d().direct_space_state
-	var query = PhysicsPointQueryParameters2D.new()
-	query.position = global_position
-	query.collide_with_bodies = true
-	var results = space_state.intersect_point(query, 1)
-	print(results)
-	for result in results:
-		var body = result["collider"]
-		print(body)
-		if body is Movable:
-			interacting_object = body
-			body.start_interaction(self)
-			break

@@ -3,6 +3,8 @@
 [ext_resource type="Script" path="res://Objects/MovableSquare/movable_square.gd" id="1_isbo7"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_fva78"]
+friction = 0.3
+rough = true
 bounce = 0.05
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cd5u5"]
@@ -13,6 +15,7 @@ position = Vector2(-1, -1)
 collision_layer = 32
 collision_mask = 63
 physics_material_override = SubResource("PhysicsMaterial_fva78")
+gravity_scale = 4.0
 script = ExtResource("1_isbo7")
 metadata/_edit_group_ = true
 

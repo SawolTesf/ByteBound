@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://biddtthbbkyfa"]
 
-[ext_resource type="Script" path="res://Objects/Key/key.gd" id="1"]
+[ext_resource type="Script" path="res://Objects/Key/Key.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://cadgs5jm7jsc6" path="res://Assets/Terrain/TileSets/key.png" id="2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0"]

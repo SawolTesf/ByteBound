@@ -9,6 +9,6 @@ func _ready() -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
 		body.has_key = true
-		emit_signal("key_collected")
+		key_collected.emit() # Changed this line to be abit more standard with most godot examples
 		print("Key collected!")
 		queue_free()

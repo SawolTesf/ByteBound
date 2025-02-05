@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dj33b6ynfouwy"]
+[gd_scene load_steps=5 format=3 uid="uid://dj33b6ynfouwy"]
 
 [ext_resource type="Script" path="res://Scenes/level_template.gd" id="1_74oc5"]
-[ext_resource type="PackedScene" uid="uid://5rdkceb8frqw" path="res://Actors/Player/Player.tscn" id="1_dpdov"]
+[ext_resource type="PackedScene" uid="uid://bw0ew7stacm2" path="res://Actors/Player/Player.tscn" id="1_dpdov"]
 [ext_resource type="PackedScene" uid="uid://b6io5qp6db3l" path="res://Objects/ExitDoor/ExitDoor.tscn" id="2_bov5a"]
+[ext_resource type="PackedScene" uid="uid://biddtthbbkyfa" path="res://Objects/Key/Key.tscn" id="4_7o18d"]
 
 [node name="LevelTemplate" type="Node2D"]
 script = ExtResource("1_74oc5")
@@ -15,3 +16,7 @@ collision_mask = 2
 
 [node name="Player" parent="." instance=ExtResource("1_dpdov")]
 position = Vector2(49, 36)
+scale = Vector2(1.5, 1.5)
+
+[node name="Key" parent="." instance=ExtResource("4_7o18d")]
+position = Vector2(287, 89)
