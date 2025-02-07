@@ -1,7 +1,7 @@
 class_name InputComponent extends Node
 ## Handles Player Input 
 ##
-## This componet should only be added to game objects te player wants to control
+## This component should only be added to game objects te player wants to control
 ## Constanly pools for left and right input every frame and assigns it to [member InputComponent.input_horizontal]
 
 ## either -1.0, 0.0, 1.0
