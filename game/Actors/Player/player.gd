@@ -12,6 +12,7 @@ class_name Player extends CharacterBody2D
 var push_force: float = 50
 
 
+
 # Track when the player should die then process it in _process
 var is_detected: bool
 
