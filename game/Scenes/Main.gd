@@ -6,13 +6,9 @@ var exit_door: ExitDoor
 var current_level: Node2D
 var level: int = 0
 var level00 = preload("res://Scenes/Levels/level_00.tscn")
-var level01 = preload("res://Scenes/Levels/level_01.tscn")
-var level02 = preload("res://Scenes/Levels/level_02.tscn")
 
 func _ready() -> void:
 	list_of_levels.append(level00)
-	list_of_levels.append(level01)
-	list_of_levels.append(level02)
 	load_level(level)
 
 func load_level(num: int):

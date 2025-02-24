@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://dxugnw28lgh3r"]
+
+[ext_resource type="Script" path="res://Scripts/Objects/Buttons/Pedestals/BluePedestal/BluePedestal.gd" id="1_q303g"]
+[ext_resource type="Texture2D" uid="uid://b0fk3n7gwv588" path="res://Assets/Objects/Buttons/RedPedistal/RedPedistal3.png" id="2_ma2ac"]
+[ext_resource type="Texture2D" uid="uid://561kb2jlw0no" path="res://Assets/Objects/Buttons/BluePedistal/BluePedistal1.png" id="3_1goy0"]
+[ext_resource type="Texture2D" uid="uid://dl71cbudo33wx" path="res://Assets/Objects/Buttons/BluePedistal/BluePedistal2.png" id="4_t7sx4"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nen4n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_1goy0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_t7sx4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ma2ac")
+}],
+"loop": false,
+"name": &"Activate",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_1goy0")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6bjwr"]
+
+[node name="BluePedestal" type="Area2D"]
+collision_mask = 3
+script = ExtResource("1_q303g")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_nen4n")
+animation = &"Activate"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_6bjwr")

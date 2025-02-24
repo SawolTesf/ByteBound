@@ -1,1 +1,0 @@
-class_name MoveableBox extends RigidBody2D

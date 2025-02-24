@@ -101,3 +101,45 @@ I Changed the MoveStat resource. Originally I had messed with it being a replace
 But now the MoveStat is a resource that hold all the info about movement from speed, acceleration, and  deceleration to jump height and dash duration. \
 This new MoveStat also has the ability to toggle different kinds of movement such as allowing an actor to multi-jump or dash.\
 On top of this it has an option to turn on or off advanced movement. This advanced movement takes into account the acceleration and deceleration when moving. \
+
+## 2/5/2025 Jachin Minyard
+### Movable Crate (modified)
+The movable create can now be pushed around without it clipping through the terrain. To modify how it moves you need to change the rigidbody physics properties such as gravity,friction and mass.
+
+### Re-Styled Tile Sets
+Simple swap of the forest tiles to the mechanical ship tile sets. I also added a new sprite animation for the level doors. 
+
+
+## 2/24/2025 Jachin Minyard
+### SignalHub
+The SignalHub is a autoloads meaning it can be accessed by all other nodes in a scene tree. This allows for a centralized component that handles all custom signals. This helps to massively reduce the amount of coupling between game objects as instead of having to have a reference to any other object one object can simply call the SignalHub to emit a signal that other objects can connect to. Allows one object to emit a signal and have multiple other object react to the signal.
+
+### Globals
+Globals is an auto load that should be used as rarely as possible and mostly for type definitions and constants. It was added to store the enums that define what type of buttons and lasers exits.
+
+### Buttons
+I added functionality for both button types those being Pedestals and Pressure Plates. Since they are both buttons the both inherit from a class I made called TriggerButton (Button is a built in so I couldn't call it that). The TriggerButton class handles the set up of all buttons this includes 
+- Getting the Animated sprite
+- Adding any derivatives to the button group
+- Setting up the body_entered signal (all buttons should react to the player entering its area)
+- Defines a signal_emiter() function to be implemented by sub-classes
+
+#### Pressure Plates
+Pressure Plates are a type of temporary TriggerButton that react not just to the player entering its area but also leaving. As such the PressurePlate class Inherits from TriggerButton with the following additional functions
+- Adds all pressure plates to the PressurePlate group
+- Set up the on_body_exited signal
+- Defines the signal_emiter() to emit pressure plate related signals based on the plate color
+TODO: allow other object to trigger it.
+
+#### Pedestals
+Pedestals are a permanent type of TriggerButton, meaning once activated the object it activates stays in a deactivated state. Since Pedestals don't respond to the player leaving the area the only thing this class adds is the implementation of the signal_emiter() to emit pedestal signals based on the color 
+
+### Hazards
+Hazards are different objects that has consequences when a player interacts with them such as resetting the level. 
+
+#### Lasers
+Laser are a simple type of hazards that are tied to the button. By activating the right button you can activate or deactivate different lasers. The base Laser class handles the following:
+- Setting up the animated sprite.
+- Setting up the on_body_entered/exited signals
+The sub-classes are for each type of laser and connect to the button color specific signals in the SignalHub.
+

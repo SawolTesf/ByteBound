@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=4 uid="uid://b2n1r2vrxd1ff"]
 
-[ext_resource type="PackedScene" uid="uid://bw0ew7stacm2" path="res://Actors/Player/Player.tscn" id="1_ls0ex"]
-[ext_resource type="TileSet" uid="uid://dkluhtamjn2qc" path="res://Assets/Terrain/TileSets/ForestGround.tres" id="2_ekfjb"]
-[ext_resource type="PackedScene" uid="uid://dveonqmfkatdx" path="res://Objects/MovableSquare/MovableSquare.tscn" id="3_v748g"]
-[ext_resource type="PackedScene" uid="uid://bbnivbfgvtu3c" path="res://Actors/Enemy/Enemy.tscn" id="4_mmloe"]
+[ext_resource type="PackedScene" uid="uid://bw0ew7stacm2" path="res://Scripts/Actors/Player/Player.tscn" id="1_ls0ex"]
+[ext_resource type="TileSet" path="res://Assets/Terrain/TileSets/ForestGround.tres" id="2_ekfjb"]
+[ext_resource type="PackedScene" uid="uid://dveonqmfkatdx" path="res://Scripts/Objects/MovableSquare/MovableSquare.tscn" id="3_v748g"]
+[ext_resource type="PackedScene" uid="uid://bbnivbfgvtu3c" path="res://Scripts/Actors/Enemy/Enemy.tscn" id="4_mmloe"]
 
 [node name="TestScene" type="Node2D"]
 

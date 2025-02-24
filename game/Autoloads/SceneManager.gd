@@ -1,9 +1,38 @@
 extends Node
 
 # List of the levels in the game
-var Level_00 = preload("res://Scenes/Levels/level_00.tscn")
-#var Level_01 = preload("res://Scenes/Levels/level_01.tscn")
-#var Level_03 = preload("res://Scenes/Levels/level_02.tscn")
+var level_00 : String = "res://Scenes/Levels/level_00.tscn"
+var level_01 : String = "res://Scenes/Levels/level_01.tscn"
+var level_02 : String = "res://Scenes/Levels/level_02.tscn"
+var level_03 : String = "res://Scenes/Levels/level_03.tscn"
 
-func load_level(): 
-	pass
+var current_level_path: String
+var current_level = null
+
+func _ready() -> void:
+	var root = get_tree().root
+	current_level = root.get_child(- 1)
+
+
+func load_level(level) -> void:
+	_defered_load_level.call_deferred(level)
+
+
+func _defered_load_level(level) -> void:
+	# It is now safe to remove the current scene.
+	current_level.free()
+
+	# Load the new scene.
+	var s = ResourceLoader.load(level)
+
+	# Instance the new scene.
+	current_level_path = level
+	current_level = s.instantiate()
+
+	# Add it to the active scene, as child of root.
+	get_tree().root.add_child(current_level)
+
+	# Optionally, to make it compatible with the SceneTree.change_scene_to_file() API.
+	get_tree().current_scene = current_level
+	
+	
