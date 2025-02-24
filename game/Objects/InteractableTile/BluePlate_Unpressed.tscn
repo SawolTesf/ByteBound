@@ -1,25 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://vlr27ltyol87"]
+[gd_scene load_steps=4 format=3 uid="uid://vlr27ltyol87"]
 
 [ext_resource type="Script" path="res://Objects/InteractableTile/Interactable.gd" id="1_do1t1"]
-[ext_resource type="Texture2D" uid="uid://bpg3bvy83vtsr" path="res://Assets/Terrain/Tiles/Buttons.png" id="2_3s2r7"]
+[ext_resource type="Texture2D" uid="uid://slepn6q8rb5e" path="res://Assets/Interactable/Buttons/BluePlate_Unpressed.png" id="2_a4d0o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mhipb"]
-size = Vector2(8, 2)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mquvb"]
-atlas = ExtResource("2_3s2r7")
-region = Rect2(96, 0, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_ivp5c"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mquvb")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
+size = Vector2(8, 3.5)
 
 [node name="BluePlateUnpressed" type="Area2D"]
 script = ExtResource("1_do1t1")
@@ -28,7 +13,7 @@ script = ExtResource("1_do1t1")
 position = Vector2(0, 6)
 shape = SubResource("RectangleShape2D_mhipb")
 
-[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_ivp5c")
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_a4d0o")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
