@@ -140,6 +140,7 @@ Hazards are different objects that has consequences when a player interacts with
 #### Lasers
 Laser are a simple type of hazards that are tied to the button. By activating the right button you can activate or deactivate different lasers. The base Laser class handles the following:
 - Setting up the animated sprite.
-- Setting up the on_body_entered/exited signals
+- Setting up the on_body_entered/exited signals 
+  
 The sub-classes are for each type of laser and connect to the button color specific signals in the SignalHub.
 
