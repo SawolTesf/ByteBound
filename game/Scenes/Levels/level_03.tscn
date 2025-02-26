@@ -1,11 +1,10 @@
-[gd_scene load_steps=12 format=4 uid="uid://b7ln43q63g0qr"]
+[gd_scene load_steps=11 format=4 uid="uid://b7ln43q63g0qr"]
 
 [ext_resource type="Texture2D" uid="uid://dutgyst0qpw0c" path="res://Assets/Terrain/Tiles/ShipTiles.png" id="1_6lny8"]
 [ext_resource type="Texture2D" uid="uid://bpg3bvy83vtsr" path="res://Assets/Terrain/Tiles/Buttons.png" id="2_f3diu"]
 [ext_resource type="PackedScene" uid="uid://5rdkceb8frqw" path="res://Actors/Player/Player.tscn" id="2_fs2j8"]
 [ext_resource type="PackedScene" uid="uid://bbnivbfgvtu3c" path="res://Actors/Enemy/Enemy.tscn" id="3_0t8m1"]
 [ext_resource type="Texture2D" uid="uid://mj4583kt7c2b" path="res://Assets/Terrain/Tiles/BarrierTiles.png" id="3_titwa"]
-[ext_resource type="PackedScene" uid="uid://vlr27ltyol87" path="res://Objects/InteractableTile/BluePlate_Unpressed.tscn" id="6_xndom"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rbrjd"]
 texture = ExtResource("1_6lny8")
@@ -254,6 +253,3 @@ position = Vector2(-158, 151)
 
 [node name="Enemy2" parent="Enemy" instance=ExtResource("3_0t8m1")]
 position = Vector2(613, 138)
-
-[node name="BluePlateUnpressed" parent="." instance=ExtResource("6_xndom")]
-position = Vector2(186, 205)

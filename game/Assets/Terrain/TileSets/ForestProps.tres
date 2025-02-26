@@ -1,9 +1,6 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://brnkhxw7uhsbr"]
-
-[ext_resource type="Texture2D" uid="uid://5m2h8dgdg4sm" path="res://Assets/Terrain/TileSets/GrasslandProps.png" id="1_m162m"]
+[gd_resource type="TileSet" load_steps=2 format=3 uid="uid://brnkhxw7uhsbr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vc4m2"]
-texture = ExtResource("1_m162m")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0

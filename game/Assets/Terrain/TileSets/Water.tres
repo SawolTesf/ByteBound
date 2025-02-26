@@ -1,9 +1,6 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://csfewv7h7hq2w"]
-
-[ext_resource type="Texture2D" uid="uid://c5w30rcroilbs" path="res://Assets/Terrain/GrassLand/Terrain/Grassland_Terrain_ExtraTiles.png" id="1_w3cmj"]
+[gd_resource type="TileSet" load_steps=2 format=3 uid="uid://csfewv7h7hq2w"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1k4yc"]
-texture = ExtResource("1_w3cmj")
 7:4/0 = 0
 7:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
