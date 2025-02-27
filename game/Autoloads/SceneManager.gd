@@ -11,9 +11,11 @@ var level_paths : Array[String] = [level_00, level_01, level_03]
 var current_level_path: int = 0 # Start on the first level.
 var current_level = null
 
+
 func _ready() -> void:
 	var root = get_tree().root
 	current_level = root.get_child(-1)
+
 
 
 func load_level(level) -> void:
@@ -22,7 +24,8 @@ func load_level(level) -> void:
 
 func _defered_load_level(level) -> void:
 	# It is now safe to remove the current scene.
-	current_level.free()
+	if current_level != null:
+		current_level.queue_free()
 
 	# Load the new scene.
 	var s = ResourceLoader.load(level)
