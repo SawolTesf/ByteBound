@@ -11,12 +11,31 @@ var level_paths : Array[String] = [level_00, level_01, level_03]
 var current_level_path: int = 0 # Start on the first level.
 var current_level = null
 
+# link to main menu
+var mainMenuPath : String = "res://UI/MainMenu/MainMenuControlNode.tscn"
+
+# link to level select
+var levelSelectPath : String = "res://UI/Level-Select/LevelSelectMenu.tscn"
+
 
 func _ready() -> void:
 	var root = get_tree().root
 	current_level = root.get_child(-1)
 
+func play() -> void: #function to start game at level 1 when clicking play
+	current_level_path = 0
+	load_level(level_paths[0])
 
+func selectLevel(levelNum) -> void:
+	current_level_path = levelNum
+	load_level(level_paths[levelNum])
+
+func open_level_select(): #function to navigate to the level select scene
+	load_level(levelSelectPath)
+	
+func open_main_menu(): #function to navigate to main menu scene
+	load_level(mainMenuPath)
+	
 
 func load_level(level) -> void:
 	_defered_load_level.call_deferred(level)

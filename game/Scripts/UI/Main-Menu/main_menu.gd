@@ -6,12 +6,10 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	new_game_button.pressed.connect(play)
+	new_game_button.pressed.connect(SceneManager.play)
+	select_level_button.pressed.connect(SceneManager.open_level_select)
 	quit_button.pressed.connect(quit_game)
 
-func play():
-	SceneManager.current_level_path = 0
-	SceneManager.load_level(SceneManager.level_paths[0])
 
 func quit_game():
 	get_tree().quit()
