@@ -1,0 +1,97 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="ByteBound"
+run/main_scene="res://Scenes/Levels/level_00.tscn"
+config/features=PackedStringArray("4.3", "Forward Plus")
+config/icon="res://icon.svg"
+
+[autoload]
+
+SignalHub="*res://Autoloads/SignalHub.gd"
+SceneManager="*res://Autoloads/SceneManager.gd"
+Globals="*res://Autoloads/Globals.gd"
+
+[display]
+
+window/size/viewport_width=640
+window/size/viewport_height=360
+window/size/window_width_override=1280
+window/size/window_height_override=720
+window/stretch/mode="viewport"
+
+[dotnet]
+
+project/assembly_name="ByteBound"
+
+[file_customization]
+
+folder_colors={
+"res://Assets/": "gray",
+"res://Assets/Objects/Barriers/BlueBeam/": "blue",
+"res://Assets/Objects/Barriers/GreenBeam/": "green",
+"res://Assets/Objects/Barriers/RedBeam/": "red",
+"res://Assets/Objects/Buttons/BluePedistal/": "blue",
+"res://Assets/Objects/Buttons/BluePressurePlate/": "blue",
+"res://Assets/Objects/Buttons/GreenPedistal/": "green",
+"res://Assets/Objects/Buttons/GreenPressurePlate/": "green",
+"res://Assets/Objects/Buttons/RedPedistal/": "red",
+"res://Assets/Objects/Buttons/RedPressurePlate/": "red",
+"res://Autoloads/": "blue",
+"res://Scenes/": "purple",
+"res://Scripts/": "yellow",
+"res://Scripts/Objects/Buttons/Pedestals/BluePedestal/": "blue",
+"res://Scripts/Objects/Buttons/Pedestals/GreenPedestal/": "green",
+"res://Scripts/Objects/Buttons/Pedestals/RedPedestal/": "red",
+"res://Scripts/Objects/Buttons/PressurePlates/BluePressurePlate/": "blue",
+"res://Scripts/Objects/Buttons/PressurePlates/GreenPressurePlate/": "green",
+"res://Scripts/Objects/Buttons/PressurePlates/RedPressurePlate/": "red",
+"res://Scripts/Objects/Hazards/Lazers/BlueLazer/": "blue",
+"res://Scripts/Objects/Hazards/Lazers/GreenLaser/": "green",
+"res://Scripts/Objects/Hazards/Lazers/RedLaser/": "red",
+"res://UI/": "pink"
+}
+
+[global_group]
+
+Enemy="All Enemy units"
+Player="Player character"
+
+[input]
+
+dash={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194325,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
+]
+}
+crouch={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194326,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
+]
+}
+interact={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":69,"key_label":0,"unicode":101,"location":0,"echo":false,"script":null)
+]
+}
+
+[layer_names]
+
+2d_physics/layer_1="Terrain"
+2d_physics/layer_2="Player"
+2d_physics/layer_3="Enemies"
+2d_physics/layer_4="Hazards"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
+2d/snap/snap_2d_transforms_to_pixel=true
