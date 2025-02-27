@@ -1,9 +1,10 @@
 class_name MovableSquare extends CharacterBody2D
 
-@export var acceleration : float = 5.0
-@export var push_force : float = 5.0 # force applied to the box
-@export var max_push_force: float = 15.0 # maximum force that can be applied to the box
-@export var friction: float = 3.0 # allow the box to slide
+@export var acceleration : float = 10.0  # Increased from 5.0
+@export var push_force : float = 20.0  # Increased from 10.0 for faster movement
+@export var max_push_force: float = 30.0  # Increased from 18.0
+@export var friction: float = 2.0  # Keep as is
+@export var gravity_scale: float = 0.5  # New parameter to control falling speed (less than 1.0 for slower fall)
 
 # Refrences to the squares other nodes.
 @export var gravity : GravityComponent # allow the block to fall
@@ -29,6 +30,10 @@ func _ready() -> void:
 	hitbox.body_entered.connect(_on_body_entered)
 	hitbox.body_exited.connect(_on_body_exited)
 
+	# Modify the gravity value directly for slower falling
+	gravity.gravity = gravity.gravity * gravity_scale
+	gravity.fast_fall_gravity = gravity.fast_fall_gravity * gravity_scale
+
 
 func _physics_process(delta: float) -> void:
 	gravity.handle_gravity(self, false, delta) # always apply gravity to the box
@@ -38,7 +43,10 @@ func _physics_process(delta: float) -> void:
 	else:
 		# If the player is not in contact with the box, apply friction to the box.
 		velocity.x = lerp(velocity.x, 0.0, friction * delta)
-	
+
+	# Cap horizontal velocity to prevent excessive speed
+	velocity.x = clamp(velocity.x, -max_push_force, max_push_force)
+
 	move_and_slide()
 
 
