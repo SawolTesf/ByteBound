@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dj33b6ynfouwy"]
+[gd_scene load_steps=6 format=3 uid="uid://dj33b6ynfouwy"]
 
 [ext_resource type="Script" path="res://Scenes/level_template.gd" id="1_74oc5"]
 [ext_resource type="PackedScene" uid="uid://bw0ew7stacm2" path="res://Scripts/Actors/Player/Player.tscn" id="1_dpdov"]
-[ext_resource type="PackedScene" uid="uid://b6io5qp6db3l" path="res://Scripts/Objects/ExitDoor/ExitDoor.tscn" id="2_bov5a"]
+[ext_resource type="PackedScene" uid="uid://b6io5qp6db3l" path="res://Scripts/Objects/Doors/ExitDoor/ExitDoor.tscn" id="2_bov5a"]
 [ext_resource type="PackedScene" uid="uid://biddtthbbkyfa" path="res://Scripts/Objects/Key/Key.tscn" id="4_7o18d"]
+[ext_resource type="TileSet" uid="uid://tcqie33gwp1w" path="res://Assets/Terrain/TileSets/ShipTiles.tres" id="5_bgltd"]
 
 [node name="LevelTemplate" type="Node2D"]
 script = ExtResource("1_74oc5")
@@ -20,3 +21,8 @@ scale = Vector2(1.5, 1.5)
 
 [node name="Key" parent="." instance=ExtResource("4_7o18d")]
 position = Vector2(287, 89)
+
+[node name="Terrain" type="Node" parent="."]
+
+[node name="GroundLayer" type="TileMapLayer" parent="Terrain"]
+tile_set = ExtResource("5_bgltd")

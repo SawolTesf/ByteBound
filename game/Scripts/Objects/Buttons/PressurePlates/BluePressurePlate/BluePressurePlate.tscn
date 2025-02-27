@@ -60,7 +60,7 @@ shape = SubResource("RectangleShape2D_8w0ih")
 position = Vector2(-0.198425, -4.66299)
 scale = Vector2(0.911092, 0.756993)
 sprite_frames = SubResource("SpriteFrames_1y2nq")
-animation = &"Deactivate"
+animation = &"Idle"
 
 [node name="StaticBody" type="StaticBody2D" parent="."]
 
