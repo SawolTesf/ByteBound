@@ -80,10 +80,12 @@ func handle_gravity(body: CharacterBody2D, fast_fall: bool, delta: float) -> voi
 			body.velocity.y += gravity * delta
 
 func handle_jump(body: CharacterBody2D) -> void:
+	print("DEBUG: Handle jump called Jump count should increment")
 	if jumps_used == 0:
 		body.velocity.y = jump_height
 	else:
 		body.velocity.y = jump_height * multi_jump_height_multiplier
+
 	jumps_used += 1
 	
 func handle_dash(body: CharacterBody2D, direction: float, delta: float):

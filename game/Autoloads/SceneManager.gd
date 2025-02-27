@@ -4,6 +4,7 @@ extends Node
 var level_00 : String = "res://Scenes/Levels/level_00.tscn"
 var level_01 : String = "res://Scenes/Levels/level_01.tscn"
 var level_03 : String = "res://Scenes/Levels/level_03.tscn"
+var level_04 : String = "res://Scenes/Levels/level_04.tscn"
 
 # array to hold all the level paths
 var level_paths : Array[String] = [level_00, level_01, level_03]

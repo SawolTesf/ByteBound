@@ -23,4 +23,4 @@ jump_buffer_time = 0.2
 dash_multipler = 3.0
 dash_duration = 0.5
 dash_cooldown = 1.0
-dash_distance = 999999.0
+dash_distance = 100.0
