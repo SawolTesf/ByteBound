@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cadgs5jm7jsc6"
-path="res://.godot/imported/key.png-82c6c264c9d4452058a62a79359e88cd.ctex"
+uid="uid://dqmdkvic37urm"
+path="res://.godot/imported/KeyCard.png-3eb89ab9c2e099aefa23707fcc61a145.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Terrain/TileSets/key.png"
-dest_files=["res://.godot/imported/key.png-82c6c264c9d4452058a62a79359e88cd.ctex"]
+source_file="res://Assets/Objects/KeyCard.png"
+dest_files=["res://.godot/imported/KeyCard.png-3eb89ab9c2e099aefa23707fcc61a145.ctex"]
 
 [params]
 
