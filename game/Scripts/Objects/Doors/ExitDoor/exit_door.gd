@@ -3,6 +3,7 @@ class_name ExitDoor extends Area2D
 var _door_sprite : AnimatedSprite2D
 var _door_locked : bool = true
 var _door_open : bool = false
+var _level_complete : bool = false
 
 
 func _ready() -> void:
@@ -18,6 +19,11 @@ func _ready() -> void:
 	_door_sprite.play("Locked")
 	_door_sprite.animation_finished.connect(_on_animation_finished)
 
+
+func _process(delta: float) -> void:
+	if !_door_sprite.is_playing() and _level_complete:
+		_level_complete = false
+		SceneManager.next_level()
 	
 ## Called when the player collects a key, Chnage door state to unlocked
 func _on_key_collected() -> void:
@@ -32,9 +38,9 @@ func _on_body_entered(body: Node2D) -> void:
 		# Check the state of the door
 		if _door_locked == false:
 			print("Debug: Player Entered Door, and Door is unlocked.")
-			_door_open = true
 			_door_sprite.play("Open")
-			_door_sprite.animation_finished.emit("Open")
+			_door_sprite.animation_finished.emit()
+			_door_open = true
 		else:
 			print("Debug: Player Entered Door, but Door is locked.")
 
@@ -47,7 +53,7 @@ func _on_body_exited(body: Node2D) -> void:
 			_door_sprite.play("Close")
 
 
-func _on_animation_finished(anim_name: String) -> void:
+func _on_animation_finished() -> void:
 	# Make sure the door is opend and the animation is done playing 
-	if _door_open == true and anim_name == "Open":
-		SceneManager.next_level()
+	if _door_sprite.animation == "Open":
+		_level_complete = true

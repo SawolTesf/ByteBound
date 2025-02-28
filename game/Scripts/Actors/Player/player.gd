@@ -3,9 +3,12 @@ class_name Player extends CharacterBody2D
 var state_controller: StateMachine
 var sprite: AnimatedSprite2D
 var input: InputComponent
+@export var camera : Camera2D
 @export var movement_stats: MoveStats
 var has_key: bool = false 
 var is_detected: bool
+
+var last_direction : int = 1
 
 const PUSH_FORCE: float = 15.0
 const MIN_PUSH_FORCE: float = 1.0
@@ -29,9 +32,13 @@ func _ready() -> void:
 	# Set up the signals
 	SignalHub.key_collected.connect(_on_key_collected)
 
-
+	
 func _physics_process(delta: float) -> void:
 	state_controller.process_physics(delta)
+
+	if velocity.x != 0:
+		last_direction = sign(velocity.x)
+	sprite.flip_h = last_direction < 0
 	
 	for i in get_slide_collision_count():
 		var c = get_slide_collision(i)

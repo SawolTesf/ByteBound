@@ -1,25 +1,20 @@
 class_name GameOverlay extends CanvasLayer
 
 @onready var current_time: Label = %CurrentTime
-var run_timer : Timer
-var elpased_time: int
+var elapsed_time = 0.0
+var running = true
 
-func _ready() -> void:
-	setup_timer()
+func _process(delta):
+	if running:
+		elapsed_time += delta
+		current_time.text = format_time(elapsed_time)
 
-func setup_timer()-> void:
-	run_timer = Timer.new()
-	run_timer.wait_time = 1.0
-	add_child(run_timer)
-	run_timer.timeout.connect(_on_timer_timeout)
-	run_timer.start()
-	
-func _on_timer_timeout() -> void:
-	elpased_time += 1
-	current_time.text = format_time(elpased_time)
-	
-func format_time(seconds : int) -> String:
+func format_time(seconds: float) -> String:
 	var minutes = int(seconds) / 60
 	var secs = int(seconds) % 60
-	var millis = int((seconds - int(seconds)) * 100)
-	return "%02d:%02d.%02d" % [minutes, secs, millis]
+	var millis = int((seconds - int(seconds)) * 10)
+	return "%02d:%02d.%01d" % [minutes, secs, millis]
+
+func stop_clock():
+	running = false
+	print("Final time: ", format_time(elapsed_time))

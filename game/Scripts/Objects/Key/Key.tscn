@@ -9,7 +9,7 @@
 size = Vector2(29, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ns1r6"]
-size = Vector2(29, 16)
+size = Vector2(31, 18)
 
 [node name="KeyBody" type="CharacterBody2D"]
 position = Vector2(-1, 0)
