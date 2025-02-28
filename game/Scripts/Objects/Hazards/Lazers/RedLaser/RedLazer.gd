@@ -27,4 +27,6 @@ func _on_red_pressure_plate_deactivated() -> void:
 	if !is_active and !perma_open:
 		is_active = true
 		sprite.play("Activate")
+		just_activated = true
+		#sprite.animation_finished.emit()
 		print("DEBUG: The red lazer has been activated")

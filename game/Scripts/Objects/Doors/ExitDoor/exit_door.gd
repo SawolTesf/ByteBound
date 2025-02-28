@@ -34,7 +34,7 @@ func _on_body_entered(body: Node2D) -> void:
 			print("Debug: Player Entered Door, and Door is unlocked.")
 			_door_open = true
 			_door_sprite.play("Open")
-			_door_sprite.emit_signal("animation_finished", "Open")
+			_door_sprite.animation_finished.emit("Open")
 		else:
 			print("Debug: Player Entered Door, but Door is locked.")
 

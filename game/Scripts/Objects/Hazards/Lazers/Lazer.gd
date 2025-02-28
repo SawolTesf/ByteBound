@@ -5,6 +5,9 @@ var is_active : bool = true
 var perma_open: bool = false
 var type : Globals.LazerType = Globals.LazerType.DEFAULT
 
+# set true when the player leaves pressure plate, set false one the Active animation is playing
+var just_activated : bool = false 
+
 func _ready() -> void:
 	sprite = get_node("AnimatedSprite2D")
 	assert(sprite != null, "DEBUG Lazer/_ready(): The sprite is null")
@@ -14,6 +17,11 @@ func _ready() -> void:
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
 
+func _process(delta: float) -> void:
+	# if the laser was just activated and there is no animation playing, play active
+	if !sprite.is_playing() and just_activated:
+		sprite.play("Active")
+		just_activated = false
 
 func _on_body_entered(body : Node) -> void:
 	if body.is_in_group("Player"):

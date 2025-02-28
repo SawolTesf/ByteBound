@@ -7,7 +7,7 @@ var level_03 : String = "res://Scenes/Levels/level_03.tscn"
 var level_04 : String = "res://Scenes/Levels/level_04.tscn"
 
 # array to hold all the level paths
-var level_paths : Array[String] = [level_00, level_01, level_03]
+var level_paths : Array[String] = [level_04, level_03, level_00, level_01 ]
 
 var current_level_path: int = 0 # Start on the first level.
 var current_level = null

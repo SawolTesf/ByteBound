@@ -19,32 +19,32 @@ var sprite: AnimatedSprite2D
 var type: Globals.ButtonType = Globals.ButtonType.DEFAULT
 
 func _ready() -> void:
-    add_to_group("Buttons")
+	add_to_group("Buttons")
 
-    # Get the animated sprite node and check its not null
-    sprite = get_node("AnimatedSprite2D")
-    assert(sprite != null, "Button Sprite not found")
+	# Get the animated sprite node and check its not null
+	sprite = get_node("AnimatedSprite2D")
+	assert(sprite != null, "Button Sprite not found")
 
-    # connect the signals
-    body_entered.connect(_on_body_entered)
+	# connect the signals
+	body_entered.connect(_on_body_entered)
 
 
 func signal_emiter() -> void:
-    pass 
+	pass 
 
 
 func _on_body_entered(body: Node2D) -> void:
-    print("Button body entered")
-    if body is Player:
-        # Only emit the signal if the button is not already activated
-        # Keeps the signal from emiting more then once per entering.
-        if not is_activated:
-            # Play the transition animation (button being pressed)
-            sprite.play("Activate")
+	print("Button body entered")
+	if body is Player:
+		# Only emit the signal if the button is not already activated
+		# Keeps the signal from emiting more then once per entering.
+		if not is_activated:
+			# Play the transition animation (button being pressed)
+			sprite.play("Activate")
 
-            # Set before the signal is emitted
-            # Makes sure that on entering the activated signal is emitted
-            is_activated = true
+			# Set before the signal is emitted
+			# Makes sure that on entering the activated signal is emitted
+			is_activated = true
 
-            # emit the proper signal
-            signal_emiter()
+			# emit the proper signal
+			signal_emiter()
