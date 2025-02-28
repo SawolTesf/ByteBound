@@ -3,16 +3,20 @@ extends State
 ##
 ## The jump state can only enter 2 states itself for multi jumping and falling
 
+
 @export_category("Transitions")
 @export var fall_state: State
 @export var jump_state: State
 @export var dash_state: State
 
+@onready var jumpSound
 
 func enter() -> void:
 	super.enter()
 	# Immediatly make the player jump.
 	move_stats.handle_jump(parent)
+	jumpSound = get_node("JumpAudio")
+	jumpSound.play()
 	parent.move_and_slide()
 	# Every jump used should count against the max amount of jumps
 	print(move_stats.jumps_used)

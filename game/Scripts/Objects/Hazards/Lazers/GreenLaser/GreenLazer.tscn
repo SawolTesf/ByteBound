@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://da24un2f3vxpg"]
+[gd_scene load_steps=17 format=3 uid="uid://da24un2f3vxpg"]
 
 [ext_resource type="Script" path="res://Scripts/Objects/Hazards/Lazers/GreenLaser/GreenLazer.gd" id="1_2eoge"]
 [ext_resource type="Texture2D" uid="uid://b0cj1ib8pslf0" path="res://Assets/Objects/Barriers/GreenBeam/Disabled/GreenBeamDisabled7.png" id="1_i5abx"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://cbbv7b80i4776" path="res://Assets/Objects/Barriers/GreenBeam/Active/GreenBeamActive3.png" id="10_ve4dk"]
 [ext_resource type="Texture2D" uid="uid://d14ciheucjjfx" path="res://Assets/Objects/Barriers/GreenBeam/Active/GreenBeamActive4.png" id="11_ojt0b"]
 [ext_resource type="Texture2D" uid="uid://b77g76h1raoh1" path="res://Assets/Objects/Barriers/GreenBeam/Active/GreenBeamActive5.png" id="12_bgv64"]
+[ext_resource type="AudioStream" uid="uid://dtun8ph7ir3p3" path="res://Audio/LaserField.wav" id="14_4b832"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sbn3p"]
 size = Vector2(8, 48)
@@ -103,3 +104,6 @@ shape = SubResource("RectangleShape2D_sbn3p")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_f7qy1")
 animation = &"Active"
+
+[node name="LazerSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("14_4b832")

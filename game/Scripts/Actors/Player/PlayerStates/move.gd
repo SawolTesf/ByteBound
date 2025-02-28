@@ -1,3 +1,5 @@
+
+
 extends State
 ## MOVE STATE
 ##
@@ -12,7 +14,10 @@ extends State
 @export var idle_state: State
 @export var dash_state: State
 
+
+
 func enter() -> void:
+	
 	super.enter()
 	# player can only enter this state on the ground then we should reset the jumps
 	move_stats.jumps_used = 0

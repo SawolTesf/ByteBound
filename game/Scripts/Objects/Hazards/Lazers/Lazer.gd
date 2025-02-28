@@ -4,11 +4,15 @@ var sprite : AnimatedSprite2D
 var is_active : bool = true
 var perma_open: bool = false
 var type : Globals.LazerType = Globals.LazerType.DEFAULT
+var lazerSound : AudioStreamPlayer2D
 
 func _ready() -> void:
 	sprite = get_node("AnimatedSprite2D")
 	assert(sprite != null, "DEBUG Lazer/_ready(): The sprite is null")
 	sprite.play("Active") # Start the lazers off as active
+	
+	lazerSound = get_node("LazerSound")
+	lazerSound.play()
 	
 	# Set up the signals to detect player collision and animations
 	body_entered.connect(_on_body_entered)
