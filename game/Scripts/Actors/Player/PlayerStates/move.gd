@@ -15,6 +15,8 @@ extends State
 func enter() -> void:
 	super.enter()
 	print("DEBUG/MOVE: Player Entered the move state")
+	if parent.is_on_floor():
+		move_stats.jumps_used = 0
 	# player can only enter this state on the ground then we should reset the jumps
 	
 func exit() -> void:
