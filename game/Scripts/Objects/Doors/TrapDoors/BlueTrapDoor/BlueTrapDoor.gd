@@ -28,19 +28,19 @@ func _ready() -> void:
 ## once the open animation is done we need to disable the collision
 func _on_blue_pressure_plate_activated() -> void:
 	sprite.play("Open")
-	sprite.emit_signal("animation_finished", "Open")
+	sprite.animation_finished.emit()
 
 	
 ## when the pressure plate is deactivated close the doors
 ## TODO: decide if the collision comes back before the animation or after?
 func _on_blue_pressure_plate_deactivated() -> void:
 	sprite.play("Shut")
-	sprite.emit_signal("animation_finished", "Shut")
+	sprite.animation_finished.emit()
 
 	
 ## Used to change the collision of the door after the animation plays
-func _on_animation_finished(anim_name : String) -> void:
-	if anim_name == "Open":
+func _on_animation_finished() -> void:
+	if sprite.animation == "Open":
 		collision.set_deferred("disabled", true)
-	if anim_name == "Shut":
+	if sprite.animation == "Shut":
 		collision.set_deferred("disabled", false)

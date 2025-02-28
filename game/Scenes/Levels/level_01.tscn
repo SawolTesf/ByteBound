@@ -48,7 +48,6 @@ z_index = -1
 position = Vector2(860, 128)
 
 [node name="RedPedistal" parent="Buttons" index="2" instance=ExtResource("9_6wy4a")]
-z_index = -1
 position = Vector2(23, 32)
 
 [node name="Enemies" type="Node" parent="." index="5"]
@@ -61,8 +60,9 @@ sight_distance = 150.0
 sight_angle = 20.0
 can_idle = true
 
-[node name="Enemy2" parent="Enemies" index="1" instance=ExtResource("6_glck4")]
+[node name="Enemy2" parent="Enemies" index="1" node_paths=PackedStringArray("player") instance=ExtResource("6_glck4")]
 position = Vector2(703, 118)
+player = NodePath("../../Player")
 can_idle = true
 
 [node name="Key" parent="." index="6"]
