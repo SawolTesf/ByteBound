@@ -12,6 +12,7 @@ var direction: float
 
 func enter() -> void:
 	super()
+	print("Player Entered the Dash State")
 	get_direction()
 	move_stats.dash_timer = move_stats.dash_duration
 

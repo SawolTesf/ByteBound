@@ -18,7 +18,10 @@ extends State
 ## Upon entering the idle state all velocity the actor should come to a complete stop.
 func enter() -> void:
 	super()
-	move_stats.jumps_used = 0
+	print("DEBUG/IDLE: Player Entered the Idle State")
+	if parent.is_on_floor():
+		print("DEBUG/IDLE: Resetting Jump Count player is on floor ")
+		move_stats.jumps_used = 0
 	parent.velocity = Vector2.ZERO
 
 func exit() -> void:
@@ -26,9 +29,8 @@ func exit() -> void:
 
 ## An Idle player should be able to enter the jump, move, and dash states
 ## depending on the input and location of the parent body
-func process_input(event: InputEvent) -> State:
-	if parent.is_on_floor():
-		
+func process_input(_event: InputEvent) -> State:
+	if parent.is_on_floor() and move_stats.max_jumps > move_stats.jumps_used:		
 		# move to jump State (Must be on the floor)
 		if get_jump_input():
 			return jump_state

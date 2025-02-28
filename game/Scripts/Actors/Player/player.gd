@@ -46,7 +46,7 @@ func _process(delta: float) -> void:
 	dash_cooldown_check(delta)
 	# player has been spoted
 	if is_detected:
-		get_tree().call_deferred("reload_current_scene")
+		SceneManager.reload_current_level()
 	state_controller.process_frame(delta)
 
 
@@ -55,7 +55,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 # Signals --------------------------------------------------------------------
 func _on_body_entered(body: Node2D) -> void:
-	if body.is_in_group("Hazards"):
+	if body.is_in_group("Hazards"): #for some reason hazards are not being detected?
 		print("DEBUG: Player collided with a hazard. Reloading scene.")
 		get_tree().call_deferred("reload_current_scene")
 
