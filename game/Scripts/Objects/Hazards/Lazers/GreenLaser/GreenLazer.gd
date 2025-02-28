@@ -30,4 +30,5 @@ func _on_green_pressure_plate_deactivated() -> void:
 	if !is_active and !perma_open:
 		is_active = true
 		sprite.play("Activate")
+		sprite.animation_finished.emit()
 		print("DEBUG GreenLazer/PressurePlate: The green lazer has been activated")

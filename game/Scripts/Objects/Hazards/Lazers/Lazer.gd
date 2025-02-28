@@ -9,6 +9,7 @@ func _ready() -> void:
 	sprite = get_node("AnimatedSprite2D")
 	assert(sprite != null, "DEBUG Lazer/_ready(): The sprite is null")
 	sprite.play("Active") # Start the lazers off as active
+	sprite.connect("animation_finished", Callable(self, "_on_animation_finished"))
 	
 	# Set up the signals to detect player collision and animations
 	body_entered.connect(_on_body_entered)
@@ -27,3 +28,9 @@ func _on_body_entered(body : Node) -> void:
 func _on_body_exited(body : Node) -> void:
 	if body.is_in_group("Player"):
 		print("TODO Lazer/_on_body_exited(): The player has left the lazer, Why? What should happen?")
+
+
+func _on_animation_finished() -> void:
+	print("DEBUG: Lazer Animation Finished")
+	if sprite.animation == "Activate":
+		sprite.play("Active")

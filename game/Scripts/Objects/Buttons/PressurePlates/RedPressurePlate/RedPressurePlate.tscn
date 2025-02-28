@@ -26,13 +26,13 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_33imk")
+"texture": ExtResource("4_ou6nt")
 }, {
 "duration": 1.0,
 "texture": ExtResource("3_8mqxr")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_ou6nt")
+"texture": ExtResource("2_33imk")
 }],
 "loop": false,
 "name": &"Deactivate",
@@ -47,7 +47,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="GreenPressurePlate" type="Area2D"]
+[node name="RedPressurePlate" type="Area2D"]
 script = ExtResource("1_twbif")
 metadata/_edit_group_ = true
 
@@ -58,7 +58,7 @@ shape = SubResource("RectangleShape2D_8kjdl")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0.140308, -8.13785)
 sprite_frames = SubResource("SpriteFrames_s52gn")
-animation = &"Idle"
+animation = &"Deactivate"
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
