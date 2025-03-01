@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://dpvi06276d1ki"]
+[gd_scene load_steps=10 format=4 uid="uid://dpvi06276d1ki"]
 
 [ext_resource type="PackedScene" uid="uid://dj33b6ynfouwy" path="res://Scenes/Level_Template.tscn" id="1_iif8o"]
 [ext_resource type="PackedScene" uid="uid://dxugnw28lgh3r" path="res://Scripts/Objects/Buttons/Pedestals/BluePedestal/BluePedestal.tscn" id="4_s5xop"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bbgh8q32oohdc" path="res://Scripts/Objects/Hazards/Lazers/BlueLazer/BlueLazer.tscn" id="7_f2dls"]
 [ext_resource type="PackedScene" uid="uid://btec7li76t31c" path="res://Scripts/Objects/Buttons/Pedestals/GreenPedestal/GreenPedestal.tscn" id="8_kau4l"]
 [ext_resource type="PackedScene" uid="uid://1qa8vshk26o3" path="res://Scripts/Objects/Hazards/Lazers/RedLaser/RedLazer.tscn" id="9_5nk82"]
+[ext_resource type="PackedScene" uid="uid://dveonqmfkatdx" path="res://Scripts/Objects/MovableSquare/MovableSquare.tscn" id="9_i26tx"]
 [ext_resource type="PackedScene" uid="uid://bgcbd2ho8pv1d" path="res://Scripts/Objects/Buttons/Pedestals/RedPedestal/RedPedestal.tscn" id="10_l3oxe"]
 [ext_resource type="PackedScene" uid="uid://da24un2f3vxpg" path="res://Scripts/Objects/Hazards/Lazers/GreenLaser/GreenLazer.tscn" id="11_fsge7"]
 
@@ -69,3 +70,6 @@ can_idle = true
 
 [node name="Key" parent="." index="7"]
 position = Vector2(331, 336)
+
+[node name="MovableSquare" parent="." index="9" instance=ExtResource("9_i26tx")]
+position = Vector2(162, 274)

@@ -68,5 +68,5 @@ can_idle = true
 [node name="Key" parent="." index="6"]
 position = Vector2(116, 301)
 
-[node name="MovableSquare" parent="." index="7" instance=ExtResource("10_dqnoi")]
-position = Vector2(332, 202)
+[node name="MovableSquare" parent="." index="8" instance=ExtResource("10_dqnoi")]
+position = Vector2(324, 208)
