@@ -13,7 +13,7 @@ func _ready() -> void:
 
 func _on_body_exited(body: Node2D) -> void:
 	print("Pressure Plate body exited")
-	if body is Player:
+	if body.is_in_group("Player"):
 		# Play the transition animation (button being pressed)
 		sprite.play("Deactivate")
 		

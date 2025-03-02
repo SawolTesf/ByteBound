@@ -9,8 +9,7 @@ class_name MovableSquare extends CharacterBody2D
 # Refrences to the squares other nodes.
 @export var gravity : GravityComponent # allow the block to fall
 @export var collision : CollisionShape2D
-@export var hitbox : Area2D
-@export var hitbox_shape : CollisionShape2D
+@export var hitbox : Hitbox
 
 var push_box : bool = false # allows the box to be pushed
 var direction : float
@@ -24,7 +23,6 @@ func _ready() -> void:
 	assert(gravity != null, "Squares GravityComponent is null")
 	assert(collision != null, "Squares CollisionShape2D is null")
 	assert(hitbox != null, "Squares Area2D is null")
-	assert(hitbox_shape != null, "Squares Area2D CollisionShape2D is null")
 
 	# Set up the signals to detect when the player is in contact with the box.
 	hitbox.body_entered.connect(_on_body_entered)
@@ -51,7 +49,12 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_body_entered(body: Node) -> void:
+<<<<<<< Updated upstream
 	if body is Player:
+=======
+	# If the player is in contact with the box, set the box to be pushed.
+	if body.is_in_group("Player"):
+>>>>>>> Stashed changes
 		print("DEBUG: Player is in contact with the box")
 
 		direction = -sign(body.global_position.x - global_position.x) # should return -1 or 1

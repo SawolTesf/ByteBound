@@ -48,6 +48,8 @@ animations = [{
 }]
 
 [node name="RedPressurePlate" type="Area2D"]
+collision_layer = 16
+collision_mask = 2
 script = ExtResource("1_twbif")
 metadata/_edit_group_ = true
 

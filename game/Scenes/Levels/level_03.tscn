@@ -42,13 +42,13 @@ scale = Vector2(2.5, 2.5)
 
 [node name="Enemies" type="Node" parent="." index="6"]
 
-[node name="Enemy" parent="Enemies" index="0" node_paths=PackedStringArray("player") instance=ExtResource("5_hvuqc")]
+[node name="Enemy" parent="Enemies" index="0" instance=ExtResource("5_hvuqc")]
 position = Vector2(1056, 326)
-player = NodePath("../../Player")
-move_duration = 3.0
-sight_distance = 120.0
-sight_angle = 30.0
-can_move = true
+movement = null
+num_segments = 10
+starting_direction = 1
+can_move = false
+can_idle = false
 
 [node name="Key" parent="." index="7"]
 position = Vector2(482, 179)

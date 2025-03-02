@@ -2,23 +2,28 @@
 
 [ext_resource type="Script" path="res://Scripts/Objects/MovableSquare/MovableSquare.gd" id="1_tsh1h"]
 [ext_resource type="PackedScene" uid="uid://yn8mnupom0tf" path="res://Scripts/Components/Gravity/gravity_component.tscn" id="2_6yelg"]
+[ext_resource type="PackedScene" uid="uid://t4ij3l5v76t" path="res://Scripts/Components/HitBox/HitBox.tscn" id="3_8ubtu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cd5u5"]
 size = Vector2(45, 41.6667)
 
+<<<<<<< Updated upstream
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tb7ca"]
 size = Vector2(37, 21)
 
 [node name="MovableSquare" type="CharacterBody2D" node_paths=PackedStringArray("gravity", "collision", "hitbox", "hitbox_shape")]
 position = Vector2(-1, -1)
 collision_layer = 33
+=======
+[node name="MovableSquare" type="CharacterBody2D" node_paths=PackedStringArray("gravity", "collision", "hitbox")]
+collision_layer = 32
+>>>>>>> Stashed changes
 collision_mask = 31
 floor_stop_on_slope = false
 script = ExtResource("1_tsh1h")
 gravity = NodePath("GravityComponent")
 collision = NodePath("SquareCollision")
-hitbox = NodePath("SquareHitbox")
-hitbox_shape = NodePath("SquareHitbox/HitboxCollision")
+hitbox = NodePath("HitBox")
 metadata/_edit_group_ = true
 
 [node name="GravityComponent" parent="." instance=ExtResource("2_6yelg")]
@@ -29,22 +34,24 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -12.0
+offset_left = -13.0
 offset_top = -11.0
-offset_right = 14.0
-offset_bottom = 13.0
+offset_right = 13.0
+offset_bottom = 11.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.27797, 0.140373, 0, 0.811765)
 
 [node name="SquareCollision" type="CollisionShape2D" parent="."]
+<<<<<<< Updated upstream
 position = Vector2(1, 0.5)
+=======
+>>>>>>> Stashed changes
 scale = Vector2(0.6, 0.6)
 shape = SubResource("RectangleShape2D_cd5u5")
 
-[node name="SquareHitbox" type="Area2D" parent="."]
-
-[node name="HitboxCollision" type="CollisionShape2D" parent="SquareHitbox"]
-position = Vector2(0.5, 0.5)
-shape = SubResource("RectangleShape2D_tb7ca")
-debug_color = Color(0.799279, 0.275712, 0.795823, 0.42)
+[node name="HitBox" parent="." instance=ExtResource("3_8ubtu")]
+collision_layer = 32
+collision_mask = 31
+x = 45.0
+y = 28.0

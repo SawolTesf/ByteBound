@@ -48,6 +48,8 @@ animations = [{
 }]
 
 [node name="BluePressurePlate" type="Area2D"]
+collision_layer = 16
+collision_mask = 2
 script = ExtResource("1_g8cu4")
 metadata/_edit_group_ = true
 
