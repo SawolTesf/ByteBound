@@ -5,19 +5,10 @@
 [ext_resource type="PackedScene" uid="uid://t4ij3l5v76t" path="res://Scripts/Components/HitBox/HitBox.tscn" id="3_8ubtu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cd5u5"]
-size = Vector2(45, 41.6667)
+size = Vector2(42.5, 40)
 
-<<<<<<< Updated upstream
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tb7ca"]
-size = Vector2(37, 21)
-
-[node name="MovableSquare" type="CharacterBody2D" node_paths=PackedStringArray("gravity", "collision", "hitbox", "hitbox_shape")]
-position = Vector2(-1, -1)
-collision_layer = 33
-=======
 [node name="MovableSquare" type="CharacterBody2D" node_paths=PackedStringArray("gravity", "collision", "hitbox")]
 collision_layer = 32
->>>>>>> Stashed changes
 collision_mask = 31
 floor_stop_on_slope = false
 script = ExtResource("1_tsh1h")
@@ -43,10 +34,7 @@ grow_vertical = 2
 color = Color(0.27797, 0.140373, 0, 0.811765)
 
 [node name="SquareCollision" type="CollisionShape2D" parent="."]
-<<<<<<< Updated upstream
-position = Vector2(1, 0.5)
-=======
->>>>>>> Stashed changes
+position = Vector2(0.25, -4.29153e-07)
 scale = Vector2(0.6, 0.6)
 shape = SubResource("RectangleShape2D_cd5u5")
 

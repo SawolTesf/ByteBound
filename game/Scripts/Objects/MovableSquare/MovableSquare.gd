@@ -49,12 +49,8 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_body_entered(body: Node) -> void:
-<<<<<<< Updated upstream
-	if body is Player:
-=======
 	# If the player is in contact with the box, set the box to be pushed.
 	if body.is_in_group("Player"):
->>>>>>> Stashed changes
 		print("DEBUG: Player is in contact with the box")
 
 		direction = -sign(body.global_position.x - global_position.x) # should return -1 or 1
