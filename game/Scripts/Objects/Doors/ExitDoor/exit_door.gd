@@ -27,27 +27,27 @@ func _process(delta: float) -> void:
 	
 ## Called when the player collects a key, Chnage door state to unlocked
 func _on_key_collected() -> void:
-	print("Debug: Key Collected, Door is now unlocked.")
-	_door_sprite.play("Unlocked")
 	_door_locked = false
-
+	Debug.debug(self, "Key Collected Door is Now Unlocked %s" % _door_locked, false)
+	_door_sprite.play("Unlocked")
+	
 
 func _on_body_entered(body: Node2D) -> void:
 	# Check if the body is the player
 	if body.is_in_group("Player"):
 		# Check the state of the door
 		if _door_locked == false:
-			print("Debug: Player Entered Door, and Door is unlocked.")
+			Debug.debug(self, "Player Entered the door, Door is %s" % _door_locked, false)
 			_door_sprite.play("Open")
 			_door_sprite.animation_finished.emit()
 			_door_open = true
 		else:
-			print("Debug: Player Entered Door, but Door is locked.")
+			Debug.debug(self, "Player Entered Door, Door is %s" % _door_locked, false)
 
 
 func _on_body_exited(body: Node2D) -> void:
 	if body.is_in_group("Player"):
-		print("Player Left Door area")
+		Debug.debug(self, "Player Left the door Area", false)
 		if _door_open == true:
 			_door_open = false	
 			_door_sprite.play("Close")

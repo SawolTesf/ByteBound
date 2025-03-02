@@ -8,7 +8,7 @@ class_name Hitbox extends Area2D
 @export var collision_shape : CollisionShape2D
 var parent : PhysicsBody2D
 @export_subgroup("shape")
-@export_enum("Circle", "Rectangle", "Capsule") var shape_type : int
+@export_enum("Circle", "Rectangle", "Capsule") var shape_type : int = 1
 @export var x : float = 10
 @export var y : float  = 10
 
@@ -20,18 +20,21 @@ func _ready() -> void:
 	parent = get_parent()
 	setUpCollisionShape()
 
+	
 func createShape():
 	match(shape_type):
-		"Circle":
+		0:
 			return CircleShape2D.new()
-		"Rectangle":
+		1:
 			return RectangleShape2D.new()
-		"Capsule":
+		2:
 			return CapsuleShape2D.new()
 		_:
-			print("WARNING: no valid shape was given defaulting to Rect")
+			Debug.debug("No Shape was defined useing the default RectangleShape2D", false)
+			Debug.log("No Shape was defined useing the default RectangleShape2D", false)
 			return RectangleShape2D.new()
-	
+
+
 ## Used to initalize the collision shape and set the shape, size and color
 func setUpCollisionShape() -> void:
 	if not collision_shape:
@@ -41,4 +44,3 @@ func setUpCollisionShape() -> void:
 	collision_shape.shape = shape
 	
 	
-

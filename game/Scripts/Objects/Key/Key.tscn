@@ -26,5 +26,7 @@ debug_color = Color(0.95171, 0.185773, 0.310269, 0.42)
 [node name="HitBox" parent="." instance=ExtResource("4_hl6ni")]
 collision_layer = 128
 collision_mask = 3
+shape_type = null
 x = 32.0
 y = 18.0
+color = null

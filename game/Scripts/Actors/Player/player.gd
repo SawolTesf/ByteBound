@@ -61,16 +61,16 @@ func _unhandled_input(event: InputEvent) -> void:
 # Signals --------------------------------------------------------------------
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Hazards"): #for some reason hazards are not being detected?
-		print("DEBUG: Player collided with a hazard. Reloading scene.")
+		Debug.debug(self, "Player Collided with %s, from the hazards group" % body, false)
 		get_tree().call_deferred("reload_current_scene")
 
 func _on_key_collected() -> void:
 	has_key = true
-	print("DEBUG: Player collected a key.")
+	Debug.debug(self, "Player Collected a Key\nHas Key: %s" % has_key, false)
 
 
 func _on_player_detected() -> void:
-	print("DEBUG: Player Was spoted")
+	Debug.debug(self, "Player Was Spotted by the enemy", false)
 	SceneManager.reload_current_level()
 	
 # Timers ---------------------------------------------------------------------

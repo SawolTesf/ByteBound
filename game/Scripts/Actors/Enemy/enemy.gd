@@ -31,6 +31,7 @@ var idle_timer: Timer
 var is_idle: bool
 var direction: float
 
+
 # Built-Ins -----------------------------------------------------------------
 func _ready() -> void:
 	direction = starting_direction
@@ -77,9 +78,7 @@ func setup_idle_timer() -> void:
 ## if both move and idle are enabled, then go to idle when called
 ## if only move is eabled then flip directions and restart the timer
 func _on_move_timeout() -> void:
-	#print("Move Timer Ended")
 	if can_idle and can_move:
-		#print("move and idle are enabled")
 		is_idle = true
 		idle_timer.start()
 	elif can_move and not can_idle:
@@ -91,14 +90,11 @@ func _on_move_timeout() -> void:
 ## if only idle is enabled restart the timer
 ## regardless of options the direction will switch if this signal is called
 func _on_idle_timeout() -> void:
-	#print("Idle Timer Ended")
 	direction = -direction
 	# if only idle is enabled
 	if not can_move and can_idle:
-		#print("only idle is enabled restart the timer")
 		idle_timer.start() # restart the timer
 	# if both move and idle are enabled
 	if can_idle and can_move:
-		#print("idle and move enabled start moving again")
 		is_idle = false # we want to move
 		move_timer.start() # we just finished idleing start moving

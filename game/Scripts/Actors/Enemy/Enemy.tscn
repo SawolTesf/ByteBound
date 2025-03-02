@@ -89,6 +89,7 @@ animations = [{
 size = Vector2(21, 20)
 
 [node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("animations", "gravity", "fov") groups=["Enemy"]]
+position = Vector2(2, 0)
 collision_layer = 4
 collision_mask = 35
 script = ExtResource("1_jji55")

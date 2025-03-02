@@ -17,7 +17,7 @@ var direction : float
 
 func _ready() -> void:
 	# Set the box to the Movable group
-	add_to_group("movable")
+	add_to_group("Movable")
 
 	# Make sure the node refrences exist.
 	assert(gravity != null, "Squares GravityComponent is null")

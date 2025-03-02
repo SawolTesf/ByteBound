@@ -41,5 +41,7 @@ shape = SubResource("RectangleShape2D_cd5u5")
 [node name="HitBox" parent="." instance=ExtResource("3_8ubtu")]
 collision_layer = 32
 collision_mask = 31
+shape_type = null
 x = 45.0
 y = 28.0
+color = null

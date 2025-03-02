@@ -12,7 +12,7 @@ func _ready() -> void:
 
 
 func _on_body_exited(body: Node2D) -> void:
-	print("Pressure Plate body exited")
+	Debug.debug(self, "%s Left the area of the pressure plate" % body.get_script().get_global_name(), false)
 	if body.is_in_group("Player"):
 		# Play the transition animation (button being pressed)
 		sprite.play("Deactivate")
@@ -22,7 +22,7 @@ func _on_body_exited(body: Node2D) -> void:
 		is_activated = false
 		signal_emiter()
 
-
+		
 func signal_emiter() -> void:
 	if type != Globals.ButtonType.DEFAULT and is_activated:
 		SignalHub.emit_pressure_plate_activated(type)

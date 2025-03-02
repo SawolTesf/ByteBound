@@ -1,4 +1,4 @@
-extends State
+class_name PlayerFall extends State
 
 @export_category("Transitions")
 @export_subgroup("States")
@@ -13,10 +13,10 @@ var _jump_buffer_timer: float
 var _coyote_timer: float
 
 func enter() -> void:
-	print("DEBUG/FALL: Player Entered the Fall State")
+	Debug.debug(self, "Player Entered the Fall State\nJumps Used: %d" % move_stats.jumps_used , false)
 	super.enter()
 	set_up_player_corrections()
-	print("DEBUG/FALL: ", move_stats.jumps_used)
+
 
 
 func exit() -> void:

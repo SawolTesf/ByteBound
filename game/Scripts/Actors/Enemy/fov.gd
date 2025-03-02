@@ -37,6 +37,7 @@ func create_ray_params(origin: Vector2, target: Vector2) -> PhysicsRayQueryParam
 	params.collide_with_areas = false
 	return params
 
+
 ## Updates the points Array with the points to use in the polygon
 func calcRayPoint() -> void:
 	var half_angle = deg_to_rad(sight_angle) / 2.0
@@ -81,6 +82,7 @@ func drawFOV() -> void:
 	if fov_display:
 		fov_display.polygon = final_points
 
+		
 # Used to draw gizmos to debug the arrays
 # func _draw() -> void:
 # 	# Draw rays
@@ -90,6 +92,7 @@ func drawFOV() -> void:
 # 	# Draw the FOV polygon outline (optional)
 # 	if points.size() > 1:
 # 		draw_polyline(points, Color(0, 1, 0), 2.0, true)
+
 
 func updateFOV() -> void:
 	points.clear()
@@ -102,7 +105,6 @@ func updateFOV() -> void:
 
 #Signals -------------------------------------------------------------------------------------------------
 func _on_fov_entered(body: Node2D) -> void:
-	print("DEBUG/FOV: body: ", body, " entered FoV")
 	if body.is_in_group("Player"):
 		SignalHub.player_detected.emit()
 
