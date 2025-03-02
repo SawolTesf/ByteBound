@@ -1,4 +1,4 @@
-extends State
+class_name PlayerIdle extends State
 ## IDLE STATE
 ##
 ## In the Idle state the player is doing one thing nothing. [br]
@@ -18,9 +18,8 @@ extends State
 ## Upon entering the idle state all velocity the actor should come to a complete stop.
 func enter() -> void:
 	super()
-	print("DEBUG/IDLE: Player Entered the Idle State")
+	Debug.debug(self, "Player Entered the idle State", false)
 	if parent.is_on_floor():
-		print("DEBUG/IDLE: Resetting Jump Count player is on floor ")
 		move_stats.jumps_used = 0
 	parent.velocity = Vector2.ZERO
 
@@ -44,7 +43,8 @@ func process_input(_event: InputEvent) -> State:
 			return move_state
 			
 	return null
-	
+
+
 func process_physics(delta: float) -> State:
 	# Check if the actor is not on the floor to see if they are falling.
 	# Since an idle player should never move this should be the only check needed

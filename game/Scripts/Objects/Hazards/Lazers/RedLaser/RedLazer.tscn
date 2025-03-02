@@ -93,6 +93,8 @@ animations = [{
 }]
 
 [node name="RedLazer" type="Area2D"]
+collision_layer = 8
+collision_mask = 2
 script = ExtResource("1_fw848")
 metadata/_edit_group_ = true
 

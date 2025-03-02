@@ -52,21 +52,12 @@ position = Vector2(23, 32)
 
 [node name="Enemies" type="Node" parent="." index="5"]
 
-[node name="Enemy" parent="Enemies" index="0" node_paths=PackedStringArray("player") instance=ExtResource("6_glck4")]
-position = Vector2(721, 310)
-player = NodePath("../../Player")
-idle_duration = 4.0
-sight_distance = 150.0
-sight_angle = 20.0
-can_idle = true
-
-[node name="Enemy2" parent="Enemies" index="1" node_paths=PackedStringArray("player") instance=ExtResource("6_glck4")]
-position = Vector2(703, 118)
-player = NodePath("../../Player")
-can_idle = true
+[node name="Enemy" parent="Enemies" index="0" instance=ExtResource("6_glck4")]
+position = Vector2(392, 211)
+metadata/_edit_group_ = true
 
 [node name="Key" parent="." index="6"]
 position = Vector2(116, 301)
 
-[node name="MovableSquare" parent="." index="7" instance=ExtResource("10_dqnoi")]
-position = Vector2(332, 202)
+[node name="MovableSquare" parent="." index="8" instance=ExtResource("10_dqnoi")]
+position = Vector2(324, 208)

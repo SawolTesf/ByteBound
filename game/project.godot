@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 SignalHub="*res://Autoloads/SignalHub.gd"
 SceneManager="*res://Autoloads/SceneManager.gd"
 Globals="*res://Autoloads/Globals.gd"
+Debug="*res://Autoloads/Debug.gd"
 
 [display]
 
@@ -90,6 +91,10 @@ interact={
 2d_physics/layer_2="Player"
 2d_physics/layer_3="Enemies"
 2d_physics/layer_4="Hazards"
+2d_physics/layer_5="Buttons"
+2d_physics/layer_6="Movables"
+2d_physics/layer_7="Throwables"
+2d_physics/layer_8="Collectables"
 
 [rendering]
 

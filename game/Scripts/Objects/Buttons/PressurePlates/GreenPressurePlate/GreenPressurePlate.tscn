@@ -48,6 +48,8 @@ animations = [{
 }]
 
 [node name="GreenPressurePlate" type="Area2D"]
+collision_layer = 16
+collision_mask = 2
 script = ExtResource("1_s1op5")
 metadata/_edit_group_ = true
 

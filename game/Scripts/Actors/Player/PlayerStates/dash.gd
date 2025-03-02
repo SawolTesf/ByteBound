@@ -1,4 +1,4 @@
-extends State
+class_name PlayerDash extends State
 ## DASH STATE
 ##
 ## In the Dash state the player should be locked in to a direction for a set amount of time.
@@ -12,7 +12,7 @@ var direction: float
 
 func enter() -> void:
 	super()
-	print("Player Entered the Dash State")
+	Debug.debug(self, "Player Entered the Dash State", false)
 	get_direction()
 	move_stats.dash_timer = move_stats.dash_duration
 
@@ -29,6 +29,7 @@ func process_frame(delta: float) -> State:
 	move_stats.dash_timer -= delta
 	return null
 
+
 func process_physics(delta: float) -> State:
 	move_stats.handle_dash(parent, direction, delta)
 	parent.velocity.y = 0
@@ -40,6 +41,7 @@ func process_physics(delta: float) -> State:
 	if parent.velocity.y > 0 and !parent.is_on_floor():
 		return fall_state
 	return null
+
 
 func get_direction() -> void:
 	if get_left_input():

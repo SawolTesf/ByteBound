@@ -1,13 +1,13 @@
-extends CharacterBody2D
+class_name Key extends CharacterBody2D
 
 var grav_comp : GravityComponent
-var hitbox : Area2D
+var hitbox : Hitbox
 
 func _ready() -> void:
 	grav_comp = get_node("GravityComponent")
 	assert(grav_comp != null, "ERROR/Key: GravityComponent not set")
 
-	hitbox = get_node("Area2D")
+	hitbox = find_child("HitBox")
 	assert(hitbox != null, "ERROR/Key: Area2D not set")
 	hitbox.body_entered.connect(_on_body_entered)
 

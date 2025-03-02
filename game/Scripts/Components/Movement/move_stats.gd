@@ -80,12 +80,10 @@ func handle_gravity(body: CharacterBody2D, fast_fall: bool, delta: float) -> voi
 			body.velocity.y += gravity * delta
 
 func handle_jump(body: CharacterBody2D) -> void:
-	print("DEBUG: Handle jump called Jump count should increment")
 	if jumps_used == 0:
 		body.velocity.y = jump_height
 	else:
 		body.velocity.y = jump_height * multi_jump_height_multiplier
-
 	jumps_used += 1
 	
 func handle_dash(body: CharacterBody2D, direction: float, delta: float):
@@ -96,16 +94,6 @@ func handle_dash(body: CharacterBody2D, direction: float, delta: float):
 		var new_position: float = direction * get_speed(body) * dash_multipler
 		body.velocity.x = new_position
 		is_dash_ready = false
-		
-	#if enable_dash and not is_dash_ready:
-		#is_dashing = true
-		#dash_start_position = body.position.x
-		#body.velocity.x = direction * get_speed(body) * dash_multipler
-
-	#if is_dashing:
-		# Check if we've reached the max distance
-		#if abs(body.position.x - dash_start_position) >= dash_distance:
-			#is_dashing = false
 
 
 # Getters --------------------------------------------------------------------------------------------------------

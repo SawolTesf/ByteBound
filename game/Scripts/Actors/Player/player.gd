@@ -6,7 +6,6 @@ var input: InputComponent
 @export var camera : Camera2D
 @export var movement_stats: MoveStats
 var has_key: bool = false 
-var is_detected: bool
 
 var last_direction : int = 1
 
@@ -31,6 +30,7 @@ func _ready() -> void:
 	
 	# Set up the signals
 	SignalHub.key_collected.connect(_on_key_collected)
+	SignalHub.player_detected.connect(_on_player_detected)
 
 	
 func _physics_process(delta: float) -> void:
@@ -51,9 +51,7 @@ func _physics_process(delta: float) -> void:
 func _process(delta: float) -> void:
 	# this is the dash timer
 	dash_cooldown_check(delta)
-	# player has been spoted
-	if is_detected:
-		SceneManager.reload_current_level()
+
 	state_controller.process_frame(delta)
 
 
@@ -63,13 +61,18 @@ func _unhandled_input(event: InputEvent) -> void:
 # Signals --------------------------------------------------------------------
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Hazards"): #for some reason hazards are not being detected?
-		print("DEBUG: Player collided with a hazard. Reloading scene.")
+		Debug.debug(self, "Player Collided with %s, from the hazards group" % body, false)
 		get_tree().call_deferred("reload_current_scene")
 
 func _on_key_collected() -> void:
 	has_key = true
-	print("DEBUG: Player collected a key.")
+	Debug.debug(self, "Player Collected a Key\nHas Key: %s" % has_key, false)
 
+
+func _on_player_detected() -> void:
+	Debug.debug(self, "Player Was Spotted by the enemy", false)
+	SceneManager.reload_current_level()
+	
 # Timers ---------------------------------------------------------------------
 func dash_cooldown_check(delta: float):
 	if !movement_stats.is_dash_ready:

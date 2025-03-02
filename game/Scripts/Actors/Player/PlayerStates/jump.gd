@@ -1,4 +1,4 @@
-extends State
+class_name PlayerJump extends State
 ## JUMP STATE
 ##
 ## The jump state can only enter 2 states itself for multi jumping and falling
@@ -11,14 +11,12 @@ extends State
 
 func enter() -> void:
 	super.enter()
-	print("DEBUG/JUMP: Player Entered the Jump State ", move_stats.jumps_used)
+	Debug.debug(self, "Player Entered the Jump State\nJumps Used: %d" % move_stats.jumps_used, false)
 	# Immediatly make the player jump.
 	move_stats.handle_jump(parent)
 	parent.move_and_slide()
-		
-	# Every jump used should count against the max amount of jumps
-	print(move_stats.jumps_used)
 
+	
 func process_input(_event: InputEvent) -> State:
 	# IF MULTI JUMP IS ALLOWED
 	if move_stats.multi_jump:

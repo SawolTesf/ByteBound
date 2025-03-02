@@ -1,16 +1,15 @@
 class_name MovableSquare extends CharacterBody2D
 
 @export var acceleration : float = 10.0  # Increased from 5.0
-@export var push_force : float = 20.0  # Increased from 10.0 for faster movement
-@export var max_push_force: float = 30.0  # Increased from 18.0
+@export var push_force : float = 40.0  # Increased from 10.0 for faster movement
+@export var max_push_force: float = 80.0  # Increased from 18.0
 @export var friction: float = 2.0  # Keep as is
 @export var gravity_scale: float = 0.5  # New parameter to control falling speed (less than 1.0 for slower fall)
 
 # Refrences to the squares other nodes.
 @export var gravity : GravityComponent # allow the block to fall
 @export var collision : CollisionShape2D
-@export var hitbox : Area2D
-@export var hitbox_shape : CollisionShape2D
+@export var hitbox : Hitbox
 
 var push_box : bool = false # allows the box to be pushed
 var direction : float
@@ -18,13 +17,12 @@ var direction : float
 
 func _ready() -> void:
 	# Set the box to the Movable group
-	add_to_group("movable")
+	add_to_group("Movable")
 
 	# Make sure the node refrences exist.
 	assert(gravity != null, "Squares GravityComponent is null")
 	assert(collision != null, "Squares CollisionShape2D is null")
 	assert(hitbox != null, "Squares Area2D is null")
-	assert(hitbox_shape != null, "Squares Area2D CollisionShape2D is null")
 
 	# Set up the signals to detect when the player is in contact with the box.
 	hitbox.body_entered.connect(_on_body_entered)
@@ -52,13 +50,18 @@ func _physics_process(delta: float) -> void:
 
 func _on_body_entered(body: Node) -> void:
 	# If the player is in contact with the box, set the box to be pushed.
-	if body is Player:
+	if body.is_in_group("Player"):
 		print("DEBUG: Player is in contact with the box")
 
 		direction = -sign(body.global_position.x - global_position.x) # should return -1 or 1
 		print("DEBUG: direction is ", direction)
 		
 		push_box = true
+
+		# Calculate push force based on player's velocity (scales push by player speed)
+		var player_velocity = body.velocity.length()
+		push_force = clamp(player_velocity * 1.5, 10.0, max_push_force)
+		print("DEBUG: Calculated push_force: ", push_force)
 		
 
 func _on_body_exited(body: Node) -> void:

@@ -13,6 +13,7 @@ script = ExtResource("1_74oc5")
 [node name="Terrain" type="Node" parent="."]
 
 [node name="GroundLayer" type="TileMapLayer" parent="Terrain"]
+z_index = 1
 tile_set = ExtResource("5_bgltd")
 
 [node name="ExitDoor" parent="." instance=ExtResource("2_bov5a")]
