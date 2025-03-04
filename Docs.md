@@ -4,12 +4,12 @@
 ## Tools
 ### Debug
 The Debug autoload can be used to log info to the console or a log file.
-|--------------------------------|-----------------------------|
+
 | functions                      | description                 |
 |--------------------------------|-----------------------------|
 | debug(caller, "string", stack) | outputs info to the console |
 | log(caller, "string", stack)   | outputs info to a file      |
-|--------------------------------|-----------------------------|
+
 #### debug(caller : Object, message : String, show_stack : bool)
 debug prints output to the console. it takes in 3 parameters:
 - caller: the calling object, usually self
@@ -82,7 +82,7 @@ Debug.log(self, "%s: %d %v" % [string, number, vector], false) # complex format 
 ## Systems
 ### Scene Manager
 The scene manager is a way to load different scenes from an array. 
-|-----------------------|-----------------------------------|
+
 | Function              | Description                       |
 |-----------------------|-----------------------------------|
 | play()                | used to start the game at level 1 |
@@ -90,10 +90,9 @@ The scene manager is a way to load different scenes from an array.
 | reload()              | used to reload the current level  |
 | previous()            | used to load the previous level   |
 | next()                | used to load the next level       |
-|-----------------------|-----------------------------------|
 | open\_level\_select() | opens the level select menu       |
 | open\_main\_menu()    | opens the main menu               |
-|-----------------------|-----------------------------------|
+
 #### Example
 
 
@@ -144,14 +143,14 @@ The player is the main character.
 
 ## Components
 ### Move Stats
-|---------------------------------------------------|------------------|------|
+
 | functions                                         | description      | type |
 |---------------------------------------------------|------------------|------|
 | handle\_horizontal\_input(body, direction, delta) | Moves left/right | void |
 | handle\_dash(body, direction, delta)              | Uses a  Dash     | void |
 | void handle\_gravity(body, fast\_fall, delta)     | Applies Gravity  | void |
 | void handle\_jump(body)                           | Uses a Jump      | void |
-|---------------------------------------------------|------------------|------|
+
 Move Stats give CharacterBody2D's access to a variety of move stats and function.
 These functions allow the CharacterBody2D to move, jump, dash, and fall.
 Move stats is a resource making it easy to load and unload for save states.
@@ -246,7 +245,7 @@ Parameters:
 - body : CharacterBody2D, the body to make jump
 	
 ### Input
-|-------------|----------------------------------|------|
+
 | functions   | description                      | type |
 |-------------|----------------------------------|------|
 | get\_jump   | checks for jump input            | bool |
@@ -255,7 +254,7 @@ Parameters:
 | get\_right  | checks for right inputs          | bool |
 | get\_dash   | checks for dash inputs           | bool |
 | get\_crouch | checks for crouch inputs         | bool |
-|-------------|----------------------------------|------|
+
 Handles input from devices and translates them into bools that can be used through out the game to make move decisions.
 checks for horizontal axis input every frame and sets a float to keep track of the horizontal input access.
 
@@ -319,12 +318,12 @@ func _unhandled_input(event: InputEvent) -> void:
 
 	
 ### FoV
-|---------------------------------|-----------------|------|
+
 | function                        | description     | type |
 |---------------------------------|-----------------|------|
 | init(segments, angle, distance) | sets up the fov | void |
 | update()                        | Updates the FoV | void |
-|---------------------------------|-----------------|------|
+
 The Fov is is a component that you can instantiate on to another node to give it a Fov.
 The Fov is a Area2D with a CollisionPolygon2D. The Polygon is created by ray casting multiple rays.
 The end points of the rays are then taken and used  as the points in the polygon.
