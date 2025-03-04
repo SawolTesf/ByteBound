@@ -144,3 +144,49 @@ Laser are a simple type of hazards that are tied to the button. By activating th
   
 The sub-classes are for each type of laser and connect to the button color specific signals in the SignalHub.
 
+## 03/02/2025 (Jachin Minyard)
+### Debug
+Debug is a new autoload giving helpful debug and log formatting and output.
+#### debug(caller : Object, message : String, show_stack : bool)
+debug is used to print out info to the console.
+Takes in 3 Parameters:
+- caller, The object that the debug function is being called from (usually self)
+- message, A message to print out with the default info
+- show_stack, if true will add a stack trace to the output
+Outputs a message to the console with the following info:
+- Source, the file which the calling function is in
+- Function, the function calling debug
+- line, The line number of the debug call 
+- message, the message the programmer passed in.
+
+##### Examples 
+``` 
+Debug.debug(self, "Thing needs debugging", false) # No stack trace
+Debug.debug(self, "Thing needs debugging", true) # stack trace
+Debug.debug(self, "%s needs debugging" % thing_var, false) # using a format string
+Debug.debug(self, "%s, %d" %["number", 10]) # using multi vars in format string
+```
+
+#### log(caller : Object, message : String, show_stack : bool)
+log is used to store info into a log file for that class.
+The file used will be: 
+```
+# How to refrence in godot
+user://Logs/Source/class.log
+
+# Actual System location
+Windows: %APPDATA%\Godot\app_userdata\[project_name]
+macOS: ~/Library/Application Support/Godot/app_userdata/[project_name]
+Linux: ~/.local/share/godot/app_userdata/[project_name]
+```
+logs parameters and output is almost the same as debugs with the exception that log writes this to a file.
+The file contains a Date/time stamp, source, class, function, line, message, and the optional stack trace
+##### Examples 
+``` 
+Debug.debug(self, "Thing needs debugging", false) # No stack trace
+Debug.debug(self, "Thing needs debugging", true) # stack trace
+Debug.debug(self, "%s needs debugging" % thing_var, false) # using a format string
+Debug.debug(self, "%s, %d" %["number", 10]) # using multi vars in format string
+```
+
+###

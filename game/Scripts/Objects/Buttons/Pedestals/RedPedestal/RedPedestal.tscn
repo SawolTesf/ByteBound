@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bgcbd2ho8pv1d"]
+[gd_scene load_steps=10 format=3 uid="uid://bgcbd2ho8pv1d"]
 
 [ext_resource type="Script" path="res://Scripts/Objects/Buttons/Pedestals/RedPedestal/RedPedestal.gd" id="1_vd7mw"]
 [ext_resource type="Texture2D" uid="uid://b0fk3n7gwv588" path="res://Assets/Objects/Buttons/RedPedistal/RedPedistal3.png" id="2_gorsb"]
@@ -33,12 +33,23 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6bjwr"]
 size = Vector2(9, 13)
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_8idlc"]
+polygon = PackedVector2Array(-4, 8, -4, 7, -3.33333, 7, -3.33333, -3, 3.33333, -3, 3.33333, 7, 4, 7, 4, 8)
+
+[sub_resource type="Gradient" id="Gradient_ismgv"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lksvk"]
+gradient = SubResource("Gradient_ismgv")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.918803, 0.0982906)
+
 [node name="RedPedistal" type="Area2D"]
 z_index = -1
 scale = Vector2(1.5, 2)
 collision_mask = 3
 script = ExtResource("1_vd7mw")
-metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_nen4n")
@@ -47,3 +58,13 @@ animation = &"Activate"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 0.5)
 shape = SubResource("RectangleShape2D_6bjwr")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_8idlc")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, -5.25)
+scale = Vector2(1, 0.460938)
+color = Color(1, 0.528819, 0.348229, 1)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_lksvk")

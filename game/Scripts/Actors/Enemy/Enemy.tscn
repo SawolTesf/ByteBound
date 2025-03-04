@@ -1,13 +1,13 @@
-[gd_scene load_steps=20 format=3 uid="uid://bbnivbfgvtu3c"]
+[gd_scene load_steps=22 format=3 uid="uid://bbnivbfgvtu3c"]
 
 [ext_resource type="Script" path="res://Scripts/Actors/Enemy/enemy.gd" id="1_jji55"]
 [ext_resource type="Resource" uid="uid://cl15epbgotcko" path="res://Scripts/Actors/Enemy/base_enemy_move_stats.tres" id="2_cdpts"]
 [ext_resource type="Texture2D" uid="uid://c8gexo4j6yuai" path="res://Assets/Sprites/Enemy_Spritesheet.png" id="3_7k8h2"]
-[ext_resource type="Script" path="res://Scripts/Actors/Enemy/fov.gd" id="4_7c5os"]
 [ext_resource type="Script" path="res://Scripts/Components/StateMachine/StateMachine.gd" id="6_gqxtj"]
 [ext_resource type="PackedScene" uid="uid://blbw63k24k8n6" path="res://Scripts/Components/Animations/animation_component.tscn" id="7_1gcsm"]
 [ext_resource type="PackedScene" uid="uid://yn8mnupom0tf" path="res://Scripts/Components/Gravity/gravity_component.tscn" id="8_8076d"]
 [ext_resource type="Script" path="res://Scripts/Components/StateMachine/State.gd" id="8_fkowj"]
+[ext_resource type="PackedScene" uid="uid://cq5skp1ss73rt" path="res://Scripts/Components/Fov/FoV.tscn" id="8_w3277"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rl4mm"]
 atlas = ExtResource("3_7k8h2")
@@ -88,6 +88,16 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_us04s"]
 size = Vector2(21, 20)
 
+[sub_resource type="Gradient" id="Gradient_6vkbb"]
+offsets = PackedFloat32Array(0, 0.378788, 0.630303, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.581818, 0.581818, 0.581818, 1, 0.19697, 0.19697, 0.19697, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2sscj"]
+gradient = SubResource("Gradient_6vkbb")
+fill_from = Vector2(0, 0.504274)
+fill_to = Vector2(0, 0.0042735)
+repeat = 2
+
 [node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("animations", "gravity", "fov") groups=["Enemy"]]
 position = Vector2(2, 0)
 collision_layer = 4
@@ -96,7 +106,7 @@ script = ExtResource("1_jji55")
 animations = NodePath("AnimationComponent")
 gravity = NodePath("GravityComponent")
 movement = ExtResource("2_cdpts")
-fov = NodePath("Enemy FoV")
+fov = NodePath("FoV")
 can_move = true
 can_idle = true
 
@@ -109,22 +119,8 @@ frame = 3
 frame_progress = 0.24577
 
 [node name="EnemyBody" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("RectangleShape2D_us04s")
-
-[node name="Enemy FoV" type="Area2D" parent="." node_paths=PackedStringArray("fov_collision", "fov_display")]
-position = Vector2(3, -3)
-collision_layer = 4
-collision_mask = 99
-script = ExtResource("4_7c5os")
-fov_collision = NodePath("Enemy FoV Collider")
-fov_display = NodePath("Enemy FoV Indicator")
-
-[node name="Enemy FoV Collider" type="CollisionPolygon2D" parent="Enemy FoV"]
-build_mode = 1
-
-[node name="Enemy FoV Indicator" type="Polygon2D" parent="Enemy FoV"]
-modulate = Color(0.941176, 1, 0.00784314, 0.588235)
-show_behind_parent = true
 
 [node name="AnimationComponent" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("7_1gcsm")]
 sprite = NodePath("../EnemySprite")
@@ -141,3 +137,15 @@ script = ExtResource("8_fkowj")
 
 [node name="Chase" type="Node" parent="StateMachine"]
 script = ExtResource("8_fkowj")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(21, -3)
+scale = Vector2(0.65625, 0.234375)
+enabled = false
+color = Color(1, 0.027451, 1, 1)
+texture = SubResource("GradientTexture2D_2sscj")
+
+[node name="FoV" parent="." instance=ExtResource("8_w3277")]
+modulate = Color(0.756863, 0.0509804, 0.0784314, 0.521569)
+show_behind_parent = true
+collision_mask = 3

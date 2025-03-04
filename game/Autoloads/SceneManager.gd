@@ -61,15 +61,15 @@ func _defered_load_level(level) -> void:
 	get_tree().current_scene = current_level
 	
 	
-func reload_current_level() -> void:
+func reload() -> void:
 	load_level(level_paths[current_level_path])
 
 
-func next_level() -> void:
+func next() -> void:
 	current_level_path += 1
 	load_level(level_paths[current_level_path])
 
 
-func previous_level() -> void:
+func previous() -> void:
 	current_level_path -= 1
 	load_level(level_paths[current_level_path])

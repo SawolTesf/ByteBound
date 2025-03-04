@@ -72,6 +72,7 @@ func handle_horizontal_input(body: CharacterBody2D, direction: float, delta: flo
 		else:
 			body.velocity.x = 0
 
+			
 func handle_gravity(body: CharacterBody2D, fast_fall: bool, delta: float) -> void:
 	if not body.is_on_floor():
 		if fast_fall:
@@ -79,12 +80,14 @@ func handle_gravity(body: CharacterBody2D, fast_fall: bool, delta: float) -> voi
 		else:
 			body.velocity.y += gravity * delta
 
+			
 func handle_jump(body: CharacterBody2D) -> void:
 	if jumps_used == 0:
 		body.velocity.y = jump_height
 	else:
 		body.velocity.y = jump_height * multi_jump_height_multiplier
 	jumps_used += 1
+
 	
 func handle_dash(body: CharacterBody2D, direction: float, delta: float):
 	if enable_dash:

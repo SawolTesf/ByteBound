@@ -1,30 +1,34 @@
-class_name FOV extends Area2D
+class_name FoV extends Area2D
 ## calculates and draws the fov of the character
 ##
 ## Uses RayCast2D to gather points in space to draw the fov collision polygon with.
 ## Increase the num_of_segments to make the polygon smoother on surfaces
 
-var points: Array[Vector2] = [Vector2.ZERO] # hold points that make up the polygon
+
 @export var fov_collision: CollisionPolygon2D
 @export var fov_display: Polygon2D
+var parent: Node2D
 
-var num_of_segments: int = 5
+# used to create the fov
+var points: Array[Vector2] = [Vector2.ZERO] # hold points that make up the polygon
+var num_of_segments: int
 var sight_angle: float
 var sight_distance: float
-var parent: Enemy
+
 
 func _ready() -> void:
-	parent = get_parent()
-	assert(parent != null, "Parent not found")
-	assert(parent.get_class() == "CharacterBody2D", "Parent is not of type CharacterBody2D")
-	
-	sight_angle = parent.sight_angle
-	sight_distance = parent.sight_distance
-	num_of_segments = parent.num_segments
 	body_entered.connect(_on_fov_entered)
 
+	
+## Sets up the fov variables. these variables should be passed in from the parent
+func init(body : Node2D, segments : int, angle : float, distance : float) -> void:
+	self.parent = body
+	self.num_of_segments = segments
+	self.sight_angle = angle
+	self.sight_distance = distance
 
-# Handle RayCasting ---------------------------------------------------------------------------------------------------
+	
+# Handle RayCasting --------------------------------------------------------------------------------------------
 ## Create a PhysicsRayQueryParameters2D object to cast a ray from the origin to the target
 ## Pass this into intersect_ray() to get the first object it hits
 func create_ray_params(origin: Vector2, target: Vector2) -> PhysicsRayQueryParameters2D:
@@ -94,7 +98,7 @@ func drawFOV() -> void:
 # 		draw_polyline(points, Color(0, 1, 0), 2.0, true)
 
 
-func updateFOV() -> void:
+func update() -> void:
 	points.clear()
 	calcRayPoint()
 	castRays()
@@ -102,9 +106,6 @@ func updateFOV() -> void:
 	queue_redraw() # Redraw the gizmos
 
 
-
 #Signals -------------------------------------------------------------------------------------------------
 func _on_fov_entered(body: Node2D) -> void:
-	if body.is_in_group("Player"):
-		SignalHub.player_detected.emit()
-
+	SignalHub.fov_entered.emit(parent, body)

@@ -53,7 +53,5 @@ position = Vector2(-8, 144)
 [node name="Enemies" type="Node" parent="." index="6"]
 
 [node name="Enemy" parent="Enemies" index="0" instance=ExtResource("8_c3ue0")]
-position = Vector2(-72, 150)
-movement = null
+position = Vector2(-86, 150)
 can_move = false
-can_idle = false

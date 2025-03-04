@@ -5,7 +5,7 @@ class_name Enemy extends CharacterBody2D
 @export var animations: AnimationComponent
 @export var gravity: GravityComponent
 @export var movement: MoveStats
-@export var fov: FOV
+@export var fov: FoV
 
 @export_category("Timers")
 @export_subgroup("Length")
@@ -34,6 +34,9 @@ var direction: float
 
 # Built-Ins -----------------------------------------------------------------
 func _ready() -> void:
+	if fov:
+		fov.init(self, num_segments, sight_angle, sight_distance)
+	
 	direction = starting_direction
 	setup_idle_timer()
 	setup_move_timer()
@@ -44,7 +47,7 @@ func _ready() -> void:
 	
 
 func _physics_process(delta: float) -> void:
-	fov.updateFOV()
+	fov.update()
 	# Things that always need to be handled
 	gravity.handle_gravity(self, false, delta)
 	animations.handle_move_animation(direction)

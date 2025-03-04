@@ -51,17 +51,16 @@ func _physics_process(delta: float) -> void:
 func _on_body_entered(body: Node) -> void:
 	# If the player is in contact with the box, set the box to be pushed.
 	if body.is_in_group("Player"):
-		print("DEBUG: Player is in contact with the box")
-
 		direction = -sign(body.global_position.x - global_position.x) # should return -1 or 1
-		print("DEBUG: direction is ", direction)
-		
 		push_box = true
+		var message = "Player is in contact with the box\ndirection: %s\npush_box: %s\nvelocityX: %f" % [direction, push_box, velocity.x]
+		Debug.debug(self, message, false)
+
 
 		# Calculate push force based on player's velocity (scales push by player speed)
 		var player_velocity = body.velocity.length()
 		push_force = clamp(player_velocity * 1.5, 10.0, max_push_force)
-		print("DEBUG: Calculated push_force: ", push_force)
+		Debug.debug(self, "Calculated Push_force: %f" % push_force, false)
 		
 
 func _on_body_exited(body: Node) -> void:

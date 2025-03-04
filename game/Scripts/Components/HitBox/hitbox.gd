@@ -6,22 +6,20 @@ class_name Hitbox extends Area2D
 
 @export_category("CollisionShape")
 @export var collision_shape : CollisionShape2D
-var parent : PhysicsBody2D
+var parent : Node2D
 @export_subgroup("shape")
 @export_enum("Circle", "Rectangle", "Capsule") var shape_type : int = 1
 @export var x : float = 10
 @export var y : float  = 10
 
-@export_subgroup("Color")
-@export var color : Color
 
-
-func _ready() -> void:
-	parent = get_parent()
+func init(body : Node2D) -> void:
+	self.parent = body
 	setUpCollisionShape()
+	body_entered.connect(_on_body_entered)
 
-	
-func createShape():
+
+func _createShape():
 	match(shape_type):
 		0:
 			return CircleShape2D.new()
@@ -30,17 +28,21 @@ func createShape():
 		2:
 			return CapsuleShape2D.new()
 		_:
-			Debug.debug("No Shape was defined useing the default RectangleShape2D", false)
-			Debug.log("No Shape was defined useing the default RectangleShape2D", false)
+			Debug.debug(self, "No Shape was defined using the default RectangleShape2D", false)
+			Debug.log(self, "No Shape was defined using the default RectangleShape2D", true)
 			return RectangleShape2D.new()
 
 
-## Used to initalize the collision shape and set the shape, size and color
+## Used to initalif fov:ize the collision shape and set the shape, size and color
 func setUpCollisionShape() -> void:
 	if not collision_shape:
 		collision_shape = find_child("CollisionShape2D")
-	var shape = createShape()
+	assert(collision_shape != null, "Collision Shape not set")
+	var shape = _createShape()
 	shape.size = Vector2(x, y)
 	collision_shape.shape = shape
-	
-	
+
+
+func _on_body_entered(body : Node2D) -> void:
+	Debug.debug(self, "%s enterd %s hitbox\nemiting Signal" % [body, self], false)
+	SignalHub.hitbox_entered.emit(parent, body)

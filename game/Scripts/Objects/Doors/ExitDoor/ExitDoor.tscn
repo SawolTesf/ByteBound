@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b6io5qp6db3l"]
+[gd_scene load_steps=14 format=3 uid="uid://b6io5qp6db3l"]
 
 [ext_resource type="Script" path="res://Scripts/Objects/Doors/ExitDoor/exit_door.gd" id="1_hvh2g"]
 [ext_resource type="Texture2D" uid="uid://dqrcdrqke0cj" path="res://Assets/Objects/Doors/LockedDoor/TechDoorLocked.png" id="2_ley1g"]
@@ -77,10 +77,22 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="ExitDoor" type="Area2D"]
-position = Vector2(162, 124)
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_h2wyr"]
+polygon = PackedVector2Array(-8, 16, 8, 16, 8, -16, -8, -16)
+
+[sub_resource type="Gradient" id="Gradient_ku8xf"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4emdm"]
+gradient = SubResource("Gradient_ku8xf")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.854701, 0.149573)
+
+[node name="ExitDoor" type="Area2D" node_paths=PackedStringArray("light")]
+position = Vector2(1, 0)
 script = ExtResource("1_hvh2g")
-metadata/_edit_group_ = true
+light = NodePath("PointLight2D")
 
 [node name="DoorCollision" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 0)
@@ -89,3 +101,13 @@ shape = SubResource("RectangleShape2D_xjxe6")
 [node name="DoorSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_seeel")
 animation = &"Locked"
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_h2wyr")
+sdf_collision = false
+occluder_light_mask = 0
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(2.38419e-07, -1)
+scale = Vector2(0.1875, 0.125)
+texture = SubResource("GradientTexture2D_4emdm")
