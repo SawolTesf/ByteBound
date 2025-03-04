@@ -47,7 +47,9 @@ func calcRayPoint() -> void:
 	var half_angle = deg_to_rad(sight_angle) / 2.0
 	var angle_step = (2.0 * half_angle) / float(num_of_segments)
 
-	var facing = Vector2(parent.direction, 0)
+	var facing = Validate.check_velocity(parent)
+	if facing == Vector2.ZERO:
+		facing = Vector2.RIGHT
 	# Start from -half_angle and go to +half_angle
 	for i in range(num_of_segments + 1):
 		var angle = - half_angle + (angle_step * i)

@@ -5,7 +5,8 @@ var sprite: AnimatedSprite2D
 var input: InputComponent
 @export var camera : Camera2D
 @export var movement_stats: MoveStats
-var has_key: bool = false 
+var has_key: bool = false
+var was_spoted : bool = false
 
 var last_direction : int = 1
 
@@ -26,7 +27,7 @@ func _ready() -> void:
 	
 	# Set up the state machine
 	state_controller = get_node("StateMachine")
-	state_controller.init(self, sprite, input, movement_stats)
+	state_controller.init(self, sprite, movement_stats, input)
 	
 	# Set up the signals
 	SignalHub.key_collected.connect(_on_key_collected)
@@ -73,8 +74,8 @@ func _on_fov_entered(caller : Node2D, body : Node2D) -> void:
 
 ## Handle when the player enters a hit box
 func _on_hitbox_entered(caller : Node2D, body : Node2D) -> void:
-	Debug.debug(self, "Player received hitbox signal", false)
 	if body == self:
+		Debug.debug(self, "Player received hitbox signal from %s" % caller.name, false)
 		if caller is Key:
 			Debug.debug(self, "Player Entered the hitbox of the key", false)
 			has_key = true

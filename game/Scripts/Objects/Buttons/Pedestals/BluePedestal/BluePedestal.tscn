@@ -47,6 +47,7 @@ fill_to = Vector2(0.888889, 0.111111)
 
 [node name="BluePedestal" type="Area2D" node_paths=PackedStringArray("light")]
 scale = Vector2(1.5, 2)
+collision_layer = 17
 collision_mask = 3
 script = ExtResource("1_q303g")
 light = NodePath("PointLight2D")

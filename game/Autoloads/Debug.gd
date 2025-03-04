@@ -3,19 +3,21 @@ extends Node
 # add this to the gitignore
 var _log_file_path : String = "user://Logs/"
 
-## Prints a messages to the approprate logfile.
-## If show_stack is true also print the stack out
-func log(caller: Object, message: String, show_stack : bool) -> void:
+## Prints a message to a log file,
+## By default the stack trace is false,
+## By default the stack info displayed comes from stack[1]
+func log(caller: Object, message: String, 
+		show_stack : bool = false, starting_stack : int = 1) -> void:
 	# Log the time the message was written
 	var date = Time.get_date_string_from_system()
 	var time = Time.get_time_string_from_system()
 	var date_time = "Time: %s-%s" % [date, time]
 
 	# Pull Info to display use 2 to not get the Debug auto load
-	var function = _get_function_data(1)
+	var function = _get_function_data(starting_stack)
 	var c_name = _get_class_data(caller)
-	var source = _get_source_data(1)
-	var line = _get_line_data(1)
+	var source = _get_source_data(starting_stack)
+	var line = _get_line_data(starting_stack)
 
 	var file_path = _get_log_file_path(source, c_name)
 	
@@ -29,16 +31,15 @@ func log(caller: Object, message: String, show_stack : bool) -> void:
 	if show_stack:
 		_write_to_file(file_path, stack_to_string())
 
-
 ## Used to log a debug message to the console
 ## Contains some infromation about the function debug was called from
 ## Info includes the script name, and function name.
-func debug(caller : Object, message : String, show_stack: bool) -> void:
-
-	var source = _get_source_data(1)
-	var function = _get_function_data(1)
+func debug(caller : Object, message : String, 
+			show_stack: bool = false, starting_stack : int = 1) -> void:
+	var source = _get_source_data(starting_stack)
+	var function = _get_function_data(starting_stack)
 	var c_name = _get_class_data(caller)
-	var line = _get_line_data(1)
+	var line = _get_line_data(starting_stack)
 
 	print("-".repeat(70))
 	print("DEBUG: class: %s  source: %s  function: %s()/l:%d\n%s" % [c_name, source, function, line, message])

@@ -46,3 +46,5 @@ func setUpCollisionShape() -> void:
 func _on_body_entered(body : Node2D) -> void:
 	Debug.debug(self, "%s enterd %s hitbox\nemiting Signal" % [body, self], false)
 	SignalHub.hitbox_entered.emit(parent, body)
+
+

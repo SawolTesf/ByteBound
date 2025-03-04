@@ -1,36 +1,37 @@
 extends State
-## This is the enemys Idle State
-##
-## The enemy should stand still untill another state is swapped to.
 
-@export_category("States")
-@export var patrol : State
-@export var chase : State
-
-# Determins how long the enemy will stay in the idle state
+var patrol : State
+var idle : State
+@export var idle_time : float = 4
 var idle_timer : Timer
-@export var idle_time : float 
+var can_idle: bool
+var can_move : bool
 
 func _ready() -> void:
-	# Set up the timer only once
+	idle_timer = Timer.new()
 	idle_timer.wait_time = idle_time
+	idle_timer.one_shot = true
 	add_child(idle_timer)
+	idle_timer.timeout.connect(_idle_timer_timeout)
 
-## When entering the idle State
-## Set the enemy velocity to zero
-## Start the idle timer
-func enter() -> void:
+	if parent.has_method("can_idle"):
+		print("parent contains can_idle variable")
+		can_idle = parent.can_idle
+	if parent.has_method("can_move"):
+		print("parent contains can_move variable")
+		can_move = parent.can_move
+
+func enter():
+	Debug.debug(self, "Enemy entered idle state")
 	super()
-	print("DEBUG/IDLE: Enemy Entered the Idle State")
-	parent.velocity = Vector2.ZERO
-	idle_timer.start()
+	idle_timer.start() #upon enter start the timer when it times out you need to swap states
 
-func exit() -> void:
+func exit():
+	super()
 	idle_timer.stop()
-	super()
 
-## When the idle Timer runs out if the enemy can move go to the move state
-func _idle_timeout() -> State:
-	if parent.can_move:
+func _idle_timer_timeout():
+	if move_stats.can_move:
 		return patrol
-	return null
+	if !move_stats.can_move and move_stats.can_idle:
+		return idle

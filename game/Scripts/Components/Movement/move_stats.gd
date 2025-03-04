@@ -11,6 +11,8 @@ class_name MoveStats extends Resource
 @export var advanced_movement: bool ## if true, acceleration and decceleration will be used
 @export var multi_jump: bool
 @export var enable_dash: bool
+@export var can_move: bool
+@export var can_idle: bool
 
 @export_subgroup("Speed Stats")
 @export var ground_speed: float = 100

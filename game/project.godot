@@ -21,6 +21,7 @@ SignalHub="*res://Autoloads/SignalHub.gd"
 SceneManager="*res://Autoloads/SceneManager.gd"
 Globals="*res://Autoloads/Globals.gd"
 Debug="*res://Autoloads/Debug.gd"
+Validate="*res://Autoloads/Validation.gd"
 
 [display]
 

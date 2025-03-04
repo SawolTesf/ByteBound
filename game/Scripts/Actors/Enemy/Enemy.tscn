@@ -1,151 +1,129 @@
-[gd_scene load_steps=22 format=3 uid="uid://bbnivbfgvtu3c"]
+[gd_scene load_steps=15 format=3 uid="uid://bbnivbfgvtu3c"]
 
 [ext_resource type="Script" path="res://Scripts/Actors/Enemy/enemy.gd" id="1_jji55"]
-[ext_resource type="Resource" uid="uid://cl15epbgotcko" path="res://Scripts/Actors/Enemy/base_enemy_move_stats.tres" id="2_cdpts"]
+[ext_resource type="Resource" uid="uid://cl15epbgotcko" path="res://Scripts/Actors/Enemy/base_enemy_move_stats.tres" id="2_38fv0"]
 [ext_resource type="Texture2D" uid="uid://c8gexo4j6yuai" path="res://Assets/Sprites/Enemy_Spritesheet.png" id="3_7k8h2"]
 [ext_resource type="Script" path="res://Scripts/Components/StateMachine/StateMachine.gd" id="6_gqxtj"]
-[ext_resource type="PackedScene" uid="uid://blbw63k24k8n6" path="res://Scripts/Components/Animations/animation_component.tscn" id="7_1gcsm"]
-[ext_resource type="PackedScene" uid="uid://yn8mnupom0tf" path="res://Scripts/Components/Gravity/gravity_component.tscn" id="8_8076d"]
 [ext_resource type="Script" path="res://Scripts/Components/StateMachine/State.gd" id="8_fkowj"]
 [ext_resource type="PackedScene" uid="uid://cq5skp1ss73rt" path="res://Scripts/Components/Fov/FoV.tscn" id="8_w3277"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_rl4mm"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4hpyq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_84vsy"]
 atlas = ExtResource("3_7k8h2")
 region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_oxk5h"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_6thl4"]
 atlas = ExtResource("3_7k8h2")
 region = Rect2(16, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_v7nma"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_2786u"]
 atlas = ExtResource("3_7k8h2")
 region = Rect2(32, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6kk2b"]
-atlas = ExtResource("3_7k8h2")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_x5dyo"]
-atlas = ExtResource("3_7k8h2")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3x0c2"]
-atlas = ExtResource("3_7k8h2")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wpbd0"]
-atlas = ExtResource("3_7k8h2")
-region = Rect2(32, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1c82s"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_sisg0"]
 atlas = ExtResource("3_7k8h2")
 region = Rect2(48, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_mo0gk"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_iocwf"]
 atlas = ExtResource("3_7k8h2")
 region = Rect2(64, 0, 16, 16)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_em6ae"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_pnrbr"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_rl4mm")
+"texture": SubResource("AtlasTexture_84vsy")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_oxk5h")
+"texture": SubResource("AtlasTexture_6thl4")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_v7nma")
+"texture": SubResource("AtlasTexture_2786u")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6kk2b")
+"texture": SubResource("AtlasTexture_sisg0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iocwf")
 }],
 "loop": true,
 "name": &"Idle",
 "speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_x5dyo")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3x0c2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wpbd0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1c82s")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mo0gk")
-}],
-"loop": true,
-"name": &"Move",
-"speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_us04s"]
-size = Vector2(21, 20)
+[sub_resource type="GDScript" id="GDScript_rsdia"]
+script/source = "extends State
+@export var idle : State
+@export var patrol : State
+@export var idle_time : float = 4
+var idle_timer : Timer
+var can_idle: bool
+var can_move : bool
 
-[sub_resource type="Gradient" id="Gradient_6vkbb"]
-offsets = PackedFloat32Array(0, 0.378788, 0.630303, 1)
-colors = PackedColorArray(1, 1, 1, 1, 0.581818, 0.581818, 0.581818, 1, 0.19697, 0.19697, 0.19697, 1, 0, 0, 0, 1)
+func _ready() -> void:
+	idle_timer = Timer.new()
+	idle_timer.wait_time = idle_time
+	idle_timer.one_shot = true
+	add_child(idle_timer)
+	idle_timer.timeout.connect(_idle_timer_timeout)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_2sscj"]
-gradient = SubResource("Gradient_6vkbb")
-fill_from = Vector2(0, 0.504274)
-fill_to = Vector2(0, 0.0042735)
-repeat = 2
 
-[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("animations", "gravity", "fov") groups=["Enemy"]]
-position = Vector2(2, 0)
+
+func enter():
+	Debug.debug(self, \"Enemy entered idle state\")
+	super()
+	if parent.has_method(\"can_idle\"):
+		print(\"parent contains can_idle variable\")
+		can_idle = parent.can_idle
+	if parent.has_method(\"can_move\"):
+		print(\"parent contains can_move variable\")
+		can_move = parent.can_move
+	idle_timer.start() #upon enter start the timer when it times out you need to swap states
+
+func exit():
+	super()
+	idle_timer.stop()
+
+func _idle_timer_timeout():
+	if move_stats.can_move:
+		return patrol
+	if !move_stats.can_move and move_stats.can_idle:
+		return idle
+"
+
+[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("fov", "sprite", "state_machine")]
 collision_layer = 4
-collision_mask = 35
+collision_mask = 3
 script = ExtResource("1_jji55")
-animations = NodePath("AnimationComponent")
-gravity = NodePath("GravityComponent")
-movement = ExtResource("2_cdpts")
 fov = NodePath("FoV")
+sprite = NodePath("AnimatedSprite2D")
+state_machine = NodePath("StateMachine")
+move_stats = ExtResource("2_38fv0")
 can_move = true
-can_idle = true
 
-[node name="EnemySprite" type="AnimatedSprite2D" parent="."]
-position = Vector2(-0.5, 4.76837e-07)
-scale = Vector2(1.3125, 1.25)
-sprite_frames = SubResource("SpriteFrames_em6ae")
+[node name="FoV" parent="." instance=ExtResource("8_w3277")]
+modulate = Color(1, 0.461017, 0.392737, 0.415686)
+position = Vector2(2, -2.5)
+collision_layer = 4
+collision_mask = 243
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_4hpyq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_pnrbr")
 animation = &"Idle"
-frame = 3
-frame_progress = 0.24577
 
-[node name="EnemyBody" type="CollisionShape2D" parent="."]
-visible = false
-shape = SubResource("RectangleShape2D_us04s")
-
-[node name="AnimationComponent" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("7_1gcsm")]
-sprite = NodePath("../EnemySprite")
-
-[node name="GravityComponent" parent="." instance=ExtResource("8_8076d")]
-
-[node name="StateMachine" type="Node" parent="."]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("inital_state")]
 script = ExtResource("6_gqxtj")
+inital_state = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="StateMachine"]
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle", "patrol")]
+script = SubResource("GDScript_rsdia")
+idle = NodePath(".")
+patrol = NodePath("../Patrol")
+animation_name = "Idle"
 
 [node name="Patrol" type="Node" parent="StateMachine"]
 script = ExtResource("8_fkowj")
-
-[node name="Chase" type="Node" parent="StateMachine"]
-script = ExtResource("8_fkowj")
-
-[node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(21, -3)
-scale = Vector2(0.65625, 0.234375)
-enabled = false
-color = Color(1, 0.027451, 1, 1)
-texture = SubResource("GradientTexture2D_2sscj")
-
-[node name="FoV" parent="." instance=ExtResource("8_w3277")]
-modulate = Color(0.756863, 0.0509804, 0.0784314, 0.521569)
-show_behind_parent = true
-collision_mask = 3
