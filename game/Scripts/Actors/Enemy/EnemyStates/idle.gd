@@ -1,37 +1,53 @@
 extends State
 
-var patrol : State
-var idle : State
-@export var idle_time : float = 4
-var idle_timer : Timer
-var can_idle: bool
-var can_move : bool
-
-func _ready() -> void:
-	idle_timer = Timer.new()
-	idle_timer.wait_time = idle_time
-	idle_timer.one_shot = true
-	add_child(idle_timer)
-	idle_timer.timeout.connect(_idle_timer_timeout)
-
-	if parent.has_method("can_idle"):
-		print("parent contains can_idle variable")
-		can_idle = parent.can_idle
-	if parent.has_method("can_move"):
-		print("parent contains can_move variable")
-		can_move = parent.can_move
+@export var patrol : State
+@export var idle : State
+var direction: int
+var idle_timer : float = 0
+var goto_idle : bool = false
+var goto_patrol : bool = false
+var swap_dir: bool = false
 
 func enter():
-	Debug.debug(self, "Enemy entered idle state")
 	super()
-	idle_timer.start() #upon enter start the timer when it times out you need to swap states
+	Debug.debug(self, "Enemy entered idle state")
+	idle_timer = move_stats.idle_time
+	parent.velocity = Vector2.ZERO
+	parent.velocity.x = move_stats.starting_dir * -1
 
+
+func process_frame(delta : float) -> State:
+	update_timer(delta)
+	if goto_idle:
+		return idle
+	if goto_patrol:
+		return patrol
+	return null
+
+func process_physics(delta : float):
+	parent.move_and_slide()
+
+	
 func exit():
 	super()
-	idle_timer.stop()
+	idle_timer = 0
+	goto_idle = false
+	goto_patrol = false
 
-func _idle_timer_timeout():
+	
+func update_timer(delta : float) -> void:
+	idle_timer -= delta
+	if idle_timer >= 0:
+		return
+	
+	# if moving is not allowd go back to the idle state
+	if !move_stats.can_move:
+		move_stats.starting_dir *= -1
+		swap_dir = true
+		goto_idle = true
+	# if moving is allowed go to the move state
 	if move_stats.can_move:
-		return patrol
-	if !move_stats.can_move and move_stats.can_idle:
-		return idle
+		goto_patrol = true
+
+
+	

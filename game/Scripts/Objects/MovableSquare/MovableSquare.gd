@@ -42,29 +42,26 @@ func _physics_process(delta: float) -> void:
 		# If the player is not in contact with the box, apply friction to the box.
 		velocity.x = lerp(velocity.x, 0.0, friction * delta)
 
-	# Cap horizontal velocity to prevent excessive speed
-	velocity.x = clamp(velocity.x, -max_push_force, max_push_force)
-
 	move_and_slide()
 
 
 func _on_body_entered(body: Node) -> void:
+	Debug.debug(self, "%s hit the moving square" % body.name)
 	# If the player is in contact with the box, set the box to be pushed.
-	if body.is_in_group("Player"):
+	if body.name == "Player":
 		direction = -sign(body.global_position.x - global_position.x) # should return -1 or 1
 		push_box = true
-		var message = "Player is in contact with the box\ndirection: %s\npush_box: %s\nvelocityX: %f" % [direction, push_box, velocity.x]
+		var params = [direction, push_box, velocity.x]
+		var message = "Player is in contact with the box\ndirection: %s\npush_box: %s\nvelocityX: %f" % params
 		Debug.debug(self, message, false)
-
-
 		# Calculate push force based on player's velocity (scales push by player speed)
 		var player_velocity = body.velocity.length()
-		push_force = clamp(player_velocity * 1.5, 10.0, max_push_force)
-		Debug.debug(self, "Calculated Push_force: %f" % push_force, false)
-		
+		push_force = clamp(player_velocity * 1.5, 30.0, max_push_force)
+		Debug.debug(self, "Calculated Push_force: %f" % push_force, false)		
 
+		
 func _on_body_exited(body: Node) -> void:
 	# If the player is no longer in contact with the box, set the box to not be pushed.
-	if body is Player:
+	if body.name == "Player":
 		print("DEBUG: Player is no longer in contact with the box")
 		push_box = false

@@ -43,4 +43,8 @@ environment = SubResource("Environment_2s6sk")
 [node name="ColorRect" type="ColorRect" parent="."]
 z_index = -5
 custom_minimum_size = Vector2(1000, 1000)
-color = Color(0.237539, 0.237539, 0.237539, 1)
+offset_left = -1078.0
+offset_top = -122.0
+offset_right = 2227.0
+offset_bottom = 878.0
+color = Color(0.355314, 0.355314, 0.355314, 1)

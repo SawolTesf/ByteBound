@@ -11,7 +11,7 @@ class_name PlayerJump extends State
 
 func enter() -> void:
 	super.enter()
-	Debug.debug(self, "Player Entered the Jump State\nJumps Used: %d" % move_stats.jumps_used, false)
+	#Debug.debug(self, "Player Entered the Jump State\nJumps Used: %d" % move_stats.jumps_used, false)
 	# Immediatly make the player jump.
 	move_stats.handle_jump(parent)
 	parent.move_and_slide()

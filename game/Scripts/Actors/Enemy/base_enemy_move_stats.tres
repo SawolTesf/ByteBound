@@ -3,12 +3,16 @@
 [ext_resource type="Script" path="res://Scripts/Components/Movement/move_stats.gd" id="1_bp7pb"]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_bp7pb")
+can_move = false
+can_idle = false
+idle_time = 4.0
+move_time = 4.0
+starting_dir = 1
 advanced_movement = false
 multi_jump = false
 enable_dash = false
-can_move = false
-can_idle = false
 ground_speed = 100.0
 air_speed = 50.0
 ground_acceleration = 80.0

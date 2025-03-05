@@ -18,7 +18,7 @@ class_name PlayerIdle extends State
 ## Upon entering the idle state all velocity the actor should come to a complete stop.
 func enter() -> void:
 	super()
-	Debug.debug(self, "Player Entered the idle State", false)
+	#Debug.debug(self, "Player Entered the idle State", false)
 	if parent.is_on_floor():
 		move_stats.jumps_used = 0
 	parent.velocity = Vector2.ZERO

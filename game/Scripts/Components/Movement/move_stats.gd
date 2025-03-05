@@ -5,14 +5,21 @@ class_name MoveStats extends Resource
 ## Can act as a kinda template allowing different actors to have different types of movement
 ## Acts as a sort of structure that all states can access to determine what state should be move to 
 ## Since this is a custom resource things like Timers can not be added as children
+@export_category("Enemy Movement types")
+@export_subgroup("Move types")
+@export var can_move: bool = false
+@export var can_idle: bool = false
+
+@export_subgroup("Timers")
+@export var idle_time : float = 4
+@export var move_time : float = 4
+@export var starting_dir : int = 1
 
 @export_category("Movement Stats")
 @export_subgroup("Movment type")
 @export var advanced_movement: bool ## if true, acceleration and decceleration will be used
 @export var multi_jump: bool
 @export var enable_dash: bool
-@export var can_move: bool
-@export var can_idle: bool
 
 @export_subgroup("Speed Stats")
 @export var ground_speed: float = 100

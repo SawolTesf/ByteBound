@@ -43,22 +43,20 @@ func create_ray_params(origin: Vector2, target: Vector2) -> PhysicsRayQueryParam
 
 
 ## Updates the points Array with the points to use in the polygon
-func calcRayPoint() -> void:
+func calcRayPoint(direction : float = 0) -> void:
 	var half_angle = deg_to_rad(sight_angle) / 2.0
 	var angle_step = (2.0 * half_angle) / float(num_of_segments)
 
-	var facing = Validate.check_velocity(parent)
-	if facing == Vector2.ZERO:
-		facing = Vector2.RIGHT
+	var facing = Vector2(direction, 0)
 	# Start from -half_angle and go to +half_angle
 	for i in range(num_of_segments + 1):
 		var angle = - half_angle + (angle_step * i)
 		
 		# Rotate the ray by the entity's facing direction plus the current angle
-		var direction = facing.rotated(angle)
+		var d = facing.rotated(angle)
 		
 		# Calculate the endpoint
-		var endpoint = direction * sight_distance
+		var endpoint = d * sight_distance
 		points.append(endpoint)
 	
 
@@ -100,9 +98,9 @@ func drawFOV() -> void:
 # 		draw_polyline(points, Color(0, 1, 0), 2.0, true)
 
 
-func update() -> void:
+func update(direction : float) -> void:
 	points.clear()
-	calcRayPoint()
+	calcRayPoint(direction)
 	castRays()
 	drawFOV()
 	queue_redraw() # Redraw the gizmos
@@ -110,4 +108,6 @@ func update() -> void:
 
 #Signals -------------------------------------------------------------------------------------------------
 func _on_fov_entered(body: Node2D) -> void:
-	SignalHub.fov_entered.emit(parent, body)
+	if body.name ==  "Player":
+		SceneManager.reload()
+
