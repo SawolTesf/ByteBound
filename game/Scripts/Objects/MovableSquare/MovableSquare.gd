@@ -3,7 +3,7 @@ class_name MovableSquare extends CharacterBody2D
 @export var acceleration : float = 10.0  # Increased from 5.0
 @export var push_force : float = 40.0  # Increased from 10.0 for faster movement
 @export var max_push_force: float = 80.0  # Increased from 18.0
-@export var friction: float = 2.0  # Keep as is
+@export var friction: float = 6.0  # Keep as is
 @export var gravity_scale: float = 0.5  # New parameter to control falling speed (less than 1.0 for slower fall)
 
 # Refrences to the squares other nodes.

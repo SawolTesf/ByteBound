@@ -55,7 +55,7 @@ func _process(delta: float) -> void:
 	dash_cooldown_check(delta)
 
 	state_controller.process_frame(delta)
-
+		
 
 func _unhandled_input(event: InputEvent) -> void:
 	state_controller.process_input(event)
