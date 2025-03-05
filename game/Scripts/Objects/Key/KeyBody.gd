@@ -12,6 +12,8 @@ func _ready() -> void:
 	hitbox.body_entered.connect(_on_body_entered)
 
 	
+
+	
 func _physics_process(delta : float) -> void:	
 	grav_comp.handle_gravity(self, false, delta)
 	move_and_slide()
@@ -20,5 +22,6 @@ func _physics_process(delta : float) -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
 		SignalHub.emit_key_collected()
+		
 		print("Key collected!")
 		queue_free()

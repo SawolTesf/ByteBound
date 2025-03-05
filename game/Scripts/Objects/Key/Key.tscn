@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://biddtthbbkyfa"]
+[gd_scene load_steps=8 format=3 uid="uid://biddtthbbkyfa"]
 
 [ext_resource type="Script" path="res://Scripts/Objects/Key/Key.gd" id="1"]
 [ext_resource type="Script" path="res://Scripts/Objects/Key/KeyBody.gd" id="1_p7i6w"]
 [ext_resource type="Texture2D" uid="uid://dqmdkvic37urm" path="res://Assets/Objects/KeyCard.png" id="2_f65xj"]
 [ext_resource type="PackedScene" uid="uid://yn8mnupom0tf" path="res://Scripts/Components/Gravity/gravity_component.tscn" id="3_chiga"]
+[ext_resource type="AudioStream" uid="uid://cgmykoh4xbha2" path="res://Audio/CardCollect.wav" id="5_64mnv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qbgmn"]
 size = Vector2(29, 16)
@@ -32,5 +33,9 @@ script = ExtResource("1")
 position = Vector2(7.5, 4)
 shape = SubResource("RectangleShape2D_ns1r6")
 debug_color = Color(0.500944, 0.568203, 0.348835, 0.42)
+
+[node name="CardCollected" type="AudioStreamPlayer2D" parent="Area2D"]
+stream = ExtResource("5_64mnv")
+volume_db = -5.0
 
 [node name="GravityComponent" parent="." instance=ExtResource("3_chiga")]

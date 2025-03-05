@@ -109,4 +109,5 @@ animation = &"Active"
 
 [node name="LazerSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("14_kjuyv")
+volume_db = -7.25
 autoplay = true

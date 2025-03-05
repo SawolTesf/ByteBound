@@ -108,3 +108,4 @@ animation = &"Active"
 
 [node name="LazerSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("14_v7f58")
+volume_db = -7.25
