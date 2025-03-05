@@ -8,16 +8,15 @@ var level_03 : String = "res://Scenes/Levels/level_03.tscn"
 var level_04 : String = "res://Scenes/Levels/level_04.tscn"
 
 # array to hold all the level paths
-var level_paths : Array[String] = [level_04, level_03, level_00, level_01, level_02 ]
+var level_paths : Array[String] = [level_00,level_01,level_02,level_03,level_04]
 
 var current_level_path: int = 0 # Start on the first level.
 var current_level = null
 
-# link to main menu
-var mainMenuPath : String = "res://UI/MainMenu/MainMenuControlNode.tscn"
 
-# link to level select
+var mainMenuPath : String = "res://UI/MainMenu/MainMenuControlNode.tscn"
 var levelSelectPath : String = "res://UI/Level-Select/LevelSelectMenu.tscn"
+var winMenuPath : String = "res://UI/GameOver/GameOver.tscn"
 
 
 func _ready() -> void:
@@ -31,6 +30,9 @@ func play() -> void: #function to start game at level 1 when clicking play
 func selectLevel(levelNum) -> void:
 	current_level_path = levelNum
 	load_level(level_paths[levelNum])
+
+func open_win_menu():
+	load_level(winMenuPath)
 
 func open_level_select(): #function to navigate to the level select scene
 	load_level(levelSelectPath)
@@ -61,15 +63,22 @@ func _defered_load_level(level) -> void:
 	get_tree().current_scene = current_level
 	
 	
-func reload_current_level() -> void:
+func reload() -> void:
 	load_level(level_paths[current_level_path])
 
 
-func next_level() -> void:
+func next() -> void:
 	current_level_path += 1
+	var message : String = "Current Level Index: %d\nNumber of Levels: %d"
+	var params : Array = [current_level_path, level_paths.size()]
+	Debug.debug(self, message % params)
+	if current_level_path >= level_paths.size():
+		#loading past the last level open the win screen
+		open_win_menu()
+		return
 	load_level(level_paths[current_level_path])
 
 
-func previous_level() -> void:
+func previous() -> void:
 	current_level_path -= 1
 	load_level(level_paths[current_level_path])

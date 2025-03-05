@@ -5,7 +5,8 @@ var sprite: AnimatedSprite2D
 var input: InputComponent
 @export var camera : Camera2D
 @export var movement_stats: MoveStats
-var has_key: bool = false 
+var has_key: bool = false
+var was_spoted : bool = false
 
 var last_direction : int = 1
 
@@ -26,11 +27,12 @@ func _ready() -> void:
 	
 	# Set up the state machine
 	state_controller = get_node("StateMachine")
-	state_controller.init(self, sprite, input, movement_stats)
+	state_controller.init(self, sprite, movement_stats, input)
 	
 	# Set up the signals
 	SignalHub.key_collected.connect(_on_key_collected)
-	SignalHub.player_detected.connect(_on_player_detected)
+	SignalHub.fov_entered.connect(_on_fov_entered)
+	SignalHub.hitbox_entered.connect(_on_hitbox_entered)
 
 	
 func _physics_process(delta: float) -> void:
@@ -59,20 +61,30 @@ func _unhandled_input(event: InputEvent) -> void:
 	state_controller.process_input(event)
 
 # Signals --------------------------------------------------------------------
-func _on_body_entered(body: Node2D) -> void:
-	if body.is_in_group("Hazards"): #for some reason hazards are not being detected?
-		Debug.debug(self, "Player Collided with %s, from the hazards group" % body, false)
-		get_tree().call_deferred("reload_current_scene")
-
 func _on_key_collected() -> void:
 	has_key = true
 	Debug.debug(self, "Player Collected a Key\nHas Key: %s" % has_key, false)
 
 
-func _on_player_detected() -> void:
-	Debug.debug(self, "Player Was Spotted by the enemy", false)
-	SceneManager.reload_current_level()
-	
+func _on_fov_entered(caller : Node2D, body : Node2D) -> void:
+	if self == body:
+		if caller is Enemy:
+			Debug.debug(self, "Player Was Spotted by the enemy", false)
+			SceneManager.reload()
+
+## Handle when the player enters a hit box
+func _on_hitbox_entered(caller : Node2D, body : Node2D) -> void:
+	if body == self:
+		Debug.debug(self, "Player received hitbox signal from %s" % caller.name, false)
+		if caller is Key:
+			Debug.debug(self, "Player Entered the hitbox of the key", false)
+			has_key = true
+			SignalHub.key_collected.emit()
+		
+		if caller is Enemy: 
+			Debug.debug(self, "Player Entered the hit box of the enemy", false)
+			pass
+
 # Timers ---------------------------------------------------------------------
 func dash_cooldown_check(delta: float):
 	if !movement_stats.is_dash_ready:

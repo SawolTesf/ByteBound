@@ -14,6 +14,7 @@ class_name TriggerButton extends Area2D
 var is_activated: bool = false
 # if activated by a pedestal this will be true, Keeps pressure plates from reactivating the lazer
 var sprite: AnimatedSprite2D
+@export var light: PointLight2D
 
 # if no type is assigned in the subclass make the button a default
 var type: Globals.ButtonType = Globals.ButtonType.DEFAULT
@@ -22,7 +23,8 @@ func _ready() -> void:
 	add_to_group("Buttons")
 
 	# Get the animated sprite node and check its not null
-	sprite = get_node("AnimatedSprite2D")
+	sprite = find_child("AnimatedSprite2D")
+	light = find_child("PointLight2D")
 	assert(sprite != null, "Button Sprite not found")
 
 	# connect the signals
@@ -41,7 +43,8 @@ func _on_body_entered(body: Node2D) -> void:
 		if not is_activated:
 			# Play the transition animation (button being pressed)
 			sprite.play("Activate")
-
+			light.enabled = false
+			
 			# Set before the signal is emitted
 			# Makes sure that on entering the activated signal is emitted
 			is_activated = true

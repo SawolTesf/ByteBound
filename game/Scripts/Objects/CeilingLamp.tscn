@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://buvaccom5m643"]
+
+[sub_resource type="Gradient" id="Gradient_be06k"]
+offsets = PackedFloat32Array(0.0363636, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_tjl17"]
+gradient = SubResource("Gradient_be06k")
+fill = 1
+fill_from = Vector2(0.534188, 1)
+fill_to = Vector2(0.504274, 0.0940171)
+
+[node name="Light" type="RigidBody2D"]
+gravity_scale = 0.0
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2(-2, 8)
+scale = Vector2(0.851064, 1)
+color = Color(0.0180318, 0.0806397, 0.0414783, 1)
+polygon = PackedVector2Array(8.225, -17, -4.85, -17, -17.775, 0, 21, 0)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-17, 8, -6, -9, 5, -9, 16, 8)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(-0.75, 29.5)
+scale = Vector2(0.617187, 0.828125)
+energy = 2.0
+texture = SubResource("GradientTexture2D_tjl17")

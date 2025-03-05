@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dveonqmfkatdx"]
+[gd_scene load_steps=7 format=3 uid="uid://dveonqmfkatdx"]
 
 [ext_resource type="Script" path="res://Scripts/Objects/MovableSquare/MovableSquare.gd" id="1_tsh1h"]
 [ext_resource type="PackedScene" uid="uid://yn8mnupom0tf" path="res://Scripts/Components/Gravity/gravity_component.tscn" id="2_6yelg"]
@@ -7,9 +7,15 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cd5u5"]
 size = Vector2(42.5, 40)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uorvl"]
+size = Vector2(32, 22)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_63hv8"]
+polygon = PackedVector2Array(-13, 11, -13, -11, 13, -11, 13, 11)
+
 [node name="MovableSquare" type="CharacterBody2D" node_paths=PackedStringArray("gravity", "collision", "hitbox")]
 collision_layer = 32
-collision_mask = 31
+collision_mask = 3
 floor_stop_on_slope = false
 script = ExtResource("1_tsh1h")
 gravity = NodePath("GravityComponent")
@@ -40,8 +46,15 @@ shape = SubResource("RectangleShape2D_cd5u5")
 
 [node name="HitBox" parent="." instance=ExtResource("3_8ubtu")]
 collision_layer = 32
-collision_mask = 31
-shape_type = null
+collision_mask = 27
 x = 45.0
 y = 28.0
-color = null
+
+[node name="CollisionShape2D" parent="HitBox" index="0"]
+shape = SubResource("RectangleShape2D_uorvl")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_63hv8")
+sdf_collision = false
+
+[editable path="HitBox"]

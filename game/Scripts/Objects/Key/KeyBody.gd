@@ -9,16 +9,16 @@ func _ready() -> void:
 
 	hitbox = find_child("HitBox")
 	assert(hitbox != null, "ERROR/Key: Area2D not set")
-	hitbox.body_entered.connect(_on_body_entered)
-
+	hitbox.init(self)
 	
+	SignalHub.key_collected.connect(_on_key_collected)
+
+
 func _physics_process(delta : float) -> void:	
 	grav_comp.handle_gravity(self, false, delta)
 	move_and_slide()
 
 
-func _on_body_entered(body: Node2D) -> void:
-	if body.is_in_group("Player"):
-		SignalHub.emit_key_collected()
-		print("Key collected!")
-		queue_free()
+## What Happens when this object is collected?
+func _on_key_collected() -> void:
+	self.queue_free()

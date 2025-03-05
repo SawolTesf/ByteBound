@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bbgh8q32oohdc"]
+[gd_scene load_steps=18 format=3 uid="uid://bbgh8q32oohdc"]
 
 [ext_resource type="Script" path="res://Scripts/Objects/Hazards/Lazers/BlueLazer/BlueLazer.gd" id="1_mbbxv"]
 [ext_resource type="Texture2D" uid="uid://vmy6aoisv121" path="res://Assets/Objects/Barriers/BlueBeam/Active/BlueBeamActive1.png" id="1_p3p15"]
@@ -92,6 +92,15 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Gradient" id="Gradient_y31ld"]
+colors = PackedColorArray(0, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7vws4"]
+gradient = SubResource("Gradient_y31ld")
+fill_from = Vector2(0.504274, 0)
+fill_to = Vector2(0.952991, 0)
+repeat = 2
+
 [node name="BlueLazer" type="Area2D"]
 collision_layer = 8
 collision_mask = 2
@@ -106,3 +115,10 @@ shape = SubResource("RectangleShape2D_qmpiu")
 position = Vector2(1, 2)
 sprite_frames = SubResource("SpriteFrames_fplhy")
 animation = &"Active"
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(2, 1.5)
+scale = Vector2(0.28125, 0.765625)
+color = Color(0.054902, 1, 1, 1)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_7vws4")

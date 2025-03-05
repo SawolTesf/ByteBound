@@ -4,6 +4,7 @@ var _door_sprite : AnimatedSprite2D
 var _door_locked : bool = true
 var _door_open : bool = false
 var _level_complete : bool = false
+@export var light : PointLight2D
 
 
 func _ready() -> void:
@@ -17,17 +18,21 @@ func _ready() -> void:
 	_door_sprite = get_node("DoorSprite")
 	assert(_door_sprite != null, "DoorSprite not found")
 	_door_sprite.play("Locked")
+	light.color = Color.ORANGE
 	_door_sprite.animation_finished.connect(_on_animation_finished)
 
 
 func _process(delta: float) -> void:
 	if !_door_sprite.is_playing() and _level_complete:
 		_level_complete = false
-		SceneManager.next_level()
+		if SceneManager.current_level_path == SceneManager.level_paths.size():
+				SceneManager.open_win_menu()
+		SceneManager.next()
 	
 ## Called when the player collects a key, Chnage door state to unlocked
 func _on_key_collected() -> void:
 	_door_locked = false
+	light.color = Color.LAWN_GREEN
 	Debug.debug(self, "Key Collected Door is Now Unlocked %s" % _door_locked, false)
 	_door_sprite.play("Unlocked")
 	
@@ -38,6 +43,7 @@ func _on_body_entered(body: Node2D) -> void:
 		# Check the state of the door
 		if _door_locked == false:
 			Debug.debug(self, "Player Entered the door, Door is %s" % _door_locked, false)
+			light.enabled = false
 			_door_sprite.play("Open")
 			_door_sprite.animation_finished.emit()
 			_door_open = true

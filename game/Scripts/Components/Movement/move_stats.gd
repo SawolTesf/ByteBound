@@ -5,6 +5,15 @@ class_name MoveStats extends Resource
 ## Can act as a kinda template allowing different actors to have different types of movement
 ## Acts as a sort of structure that all states can access to determine what state should be move to 
 ## Since this is a custom resource things like Timers can not be added as children
+@export_category("Enemy Movement types")
+@export_subgroup("Move types")
+@export var can_move: bool = false
+@export var can_idle: bool = false
+
+@export_subgroup("Timers")
+@export var idle_time : float = 4
+@export var move_time : float = 4
+@export var starting_dir : int = 1
 
 @export_category("Movement Stats")
 @export_subgroup("Movment type")
@@ -72,6 +81,7 @@ func handle_horizontal_input(body: CharacterBody2D, direction: float, delta: flo
 		else:
 			body.velocity.x = 0
 
+			
 func handle_gravity(body: CharacterBody2D, fast_fall: bool, delta: float) -> void:
 	if not body.is_on_floor():
 		if fast_fall:
@@ -79,12 +89,14 @@ func handle_gravity(body: CharacterBody2D, fast_fall: bool, delta: float) -> voi
 		else:
 			body.velocity.y += gravity * delta
 
+			
 func handle_jump(body: CharacterBody2D) -> void:
 	if jumps_used == 0:
 		body.velocity.y = jump_height
 	else:
 		body.velocity.y = jump_height * multi_jump_height_multiplier
 	jumps_used += 1
+
 	
 func handle_dash(body: CharacterBody2D, direction: float, delta: float):
 	if enable_dash:

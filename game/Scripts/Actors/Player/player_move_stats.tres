@@ -4,6 +4,11 @@
 
 [resource]
 script = ExtResource("1_3bx64")
+can_move = false
+can_idle = false
+idle_time = 4.0
+move_time = 4.0
+starting_dir = 1
 advanced_movement = false
 multi_jump = true
 enable_dash = true

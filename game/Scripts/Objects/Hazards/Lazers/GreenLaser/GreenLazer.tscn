@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://da24un2f3vxpg"]
+[gd_scene load_steps=18 format=3 uid="uid://da24un2f3vxpg"]
 
 [ext_resource type="Script" path="res://Scripts/Objects/Hazards/Lazers/GreenLaser/GreenLazer.gd" id="1_2eoge"]
 [ext_resource type="Texture2D" uid="uid://b0cj1ib8pslf0" path="res://Assets/Objects/Barriers/GreenBeam/Disabled/GreenBeamDisabled7.png" id="1_i5abx"]
@@ -92,6 +92,15 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Gradient" id="Gradient_6p4sg"]
+offsets = PackedFloat32Array(0.118182, 0.872727)
+colors = PackedColorArray(0, 0.823529, 0.286275, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vvwv7"]
+gradient = SubResource("Gradient_6p4sg")
+fill_from = Vector2(0.5, 0)
+repeat = 2
+
 [node name="GreenLazer" type="Area2D"]
 collision_layer = 8
 collision_mask = 2
@@ -105,3 +114,10 @@ shape = SubResource("RectangleShape2D_sbn3p")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_f7qy1")
 animation = &"Active"
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(1.5, -0.5)
+scale = Vector2(0.328125, 0.734375)
+color = Color(0, 1, 0.388235, 1)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_vvwv7")

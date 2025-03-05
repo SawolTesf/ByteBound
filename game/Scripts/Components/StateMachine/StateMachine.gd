@@ -4,7 +4,7 @@ class_name StateMachine extends Node
 var _current_state: State
 
 func init(parent: CharacterBody2D, sprite: AnimatedSprite2D,
-			input: InputComponent, move_stats: MoveStats) -> void:
+	move_stats: MoveStats, input: InputComponent = null) -> void:
 	for child : State in get_children():
 		child.parent = parent
 		child.sprite = sprite

@@ -15,18 +15,20 @@ func _on_red_pedistal_activated() -> void:
 	if is_active:
 		is_active = false
 		sprite.play("Disabled")
+		#light.enabled = false
 		print("DEBUG: The red lazer has been deactivated")
 
 func _on_red_pressure_plate_activated() -> void:
 	if is_active and !perma_open:   
 		is_active = false
 		sprite.play("Disabled")
+		#light.enabled = false
 		print("DEBUG: The red lazer has been deactivated")
 
 func _on_red_pressure_plate_deactivated() -> void:
 	if !is_active and !perma_open:
 		is_active = true
 		sprite.play("Activate")
+		#light.enabled = true
 		just_activated = true
-		#sprite.animation_finished.emit()
 		print("DEBUG: The red lazer has been activated")
