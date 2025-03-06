@@ -1,4 +1,4 @@
-extends CanvasLayer
+extends Control
 @onready var new_game_button: Button = %MainMenu
 @onready var quit_button: Button = %Quit
 
