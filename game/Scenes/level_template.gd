@@ -4,5 +4,5 @@ var bgMusic : AudioStreamPlayer2D
 
 func _ready() -> void:
 	bgMusic = get_node("BackgroundMusic")
-  get_tree().paused = false
+	get_tree().paused = false
 	#bgMusic.play()
