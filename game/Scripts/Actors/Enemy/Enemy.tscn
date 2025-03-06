@@ -25,13 +25,13 @@ region = Rect2(16, 0, 16, 16)
 atlas = ExtResource("3_7k8h2")
 region = Rect2(32, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_sisg0"]
-atlas = ExtResource("3_7k8h2")
-region = Rect2(48, 0, 16, 16)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_iocwf"]
 atlas = ExtResource("3_7k8h2")
 region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sisg0"]
+atlas = ExtResource("3_7k8h2")
+region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pnrbr"]
 animations = [{
@@ -44,12 +44,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_2786u")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_sisg0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_iocwf")
 }],
 "loop": true,
 "name": &"Idle",
@@ -60,16 +54,10 @@ animations = [{
 "texture": SubResource("AtlasTexture_84vsy")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6thl4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2786u")
+"texture": SubResource("AtlasTexture_iocwf")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_sisg0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_iocwf")
 }],
 "loop": true,
 "name": &"Move",
@@ -105,7 +93,7 @@ shape = SubResource("RectangleShape2D_4hpyq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_pnrbr")
-animation = &"Move"
+animation = &"Idle"
 
 [node name="StateMachine" parent="." node_paths=PackedStringArray("inital_state") instance=ExtResource("5_qi620")]
 inital_state = NodePath("Idle")
