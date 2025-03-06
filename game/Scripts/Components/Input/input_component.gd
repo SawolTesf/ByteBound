@@ -31,3 +31,6 @@ func get_dash() -> bool:
 
 func get_crouch() -> bool:
 	return Input.is_action_pressed("crouch")
+
+func get_paused() -> bool:
+	return Input.is_action_just_pressed("ui_cancel")

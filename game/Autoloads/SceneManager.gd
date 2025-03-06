@@ -36,12 +36,14 @@ func open_win_menu():
 
 func open_level_select(): #function to navigate to the level select scene
 	load_level(levelSelectPath)
-	
+
+
 func open_main_menu(): #function to navigate to main menu scene
 	load_level(mainMenuPath)
 	
 
 func load_level(level) -> void:
+	reset_pause()
 	_defered_load_level.call_deferred(level)
 
 
@@ -82,3 +84,8 @@ func next() -> void:
 func previous() -> void:
 	current_level_path -= 1
 	load_level(level_paths[current_level_path])
+
+
+func reset_pause():
+	if get_tree().paused:
+		get_tree().paused = false
