@@ -95,6 +95,13 @@ theme_override_colors/font_outline_color = Color(0.6, 0, 0, 1)
 theme_override_constants/outline_size = 10
 text = "Level 4"
 
+[node name="Level5" type="Button" parent="Panel/HBoxContainer/VBoxContainer/ButtonContainer/levelContainer"]
+layout_mode = 2
+theme = ExtResource("2_hf7g0")
+theme_override_colors/font_outline_color = Color(5.77569e-07, 0.357889, 0.371175, 1)
+theme_override_constants/outline_size = 10
+text = "Level 5"
+
 [node name="VBox" type="VBoxContainer" parent="Panel/HBoxContainer/VBoxContainer/ButtonContainer"]
 layout_mode = 2
 size_flags_vertical = 0

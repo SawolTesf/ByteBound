@@ -6,7 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://biddtthbbkyfa" path="res://Scripts/Objects/Key/Key.tscn" id="4_7o18d"]
 [ext_resource type="TileSet" uid="uid://tcqie33gwp1w" path="res://Assets/Terrain/TileSets/ShipTiles.tres" id="5_bgltd"]
 [ext_resource type="PackedScene" uid="uid://dducu000804tv" path="res://UI/Game-Overlay/GameOverlay.tscn" id="6_ppcfl"]
+[ext_resource type="PackedScene" uid="uid://dds57a87tgua8" path="res://UI/PauseMenu/Pause.tscn" id="7_24df4"]
 [ext_resource type="AudioStream" uid="uid://bjbliqrsglpmp" path="res://Audio/True 8-Bit Music/Streets/Streets Full Track.wav" id="7_o51ty"]
+
 
 [sub_resource type="Environment" id="Environment_2s6sk"]
 background_mode = 3
@@ -52,5 +54,7 @@ offset_right = 2227.0
 offset_bottom = 878.0
 color = Color(0.355314, 0.355314, 0.355314, 1)
 
+[node name="PauseMenu" parent="." instance=ExtResource("7_24df4")]
+physics_interpolation_mode = 1
 [node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_o51ty")
