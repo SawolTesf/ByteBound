@@ -28,13 +28,13 @@ func _physics_process(delta: float):
 		freeze = true
 
 func _input(event):
-	if Input.is_action_just_pressed("interact") and in_range:
+	if InteractInput.is_just_pressed() and in_range:
 		if !grabbed and player and player.canGrab:
 			grab_object()
 		elif grabbed:
 			release_object(false)  # Just drop
 
-	if Input.is_action_just_pressed("throw") and grabbed:
+	if ThrowInput.is_just_pressed() and grabbed:
 		release_object(true)  # Throw
 
 func _on_body_entered(body):
@@ -55,22 +55,10 @@ func grab_object():
 	
 	# Disable gravity and collisions while held
 	freeze = true
-	
-	# Reparent to hand if you want (optional)
-	# var old_transform = global_transform
-	# get_parent().remove_child(self)
-	# hand_node.add_child(self)
-	# global_transform = old_transform
 
 func release_object(should_throw):
 	# Re-enable physics
 	freeze = false
-	
-	# Return to original parent if reparented (optional)
-	# var old_transform = global_transform
-	# hand_node.remove_child(self)
-	# get_tree().current_scene.add_child(self)
-	# global_transform = old_transform
 	
 	# Apply appropriate force
 	if should_throw:

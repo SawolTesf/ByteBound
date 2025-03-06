@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://dm8a6mjvdewow"]
+[gd_scene load_steps=21 format=4 uid="uid://dm8a6mjvdewow"]
 
 [ext_resource type="PackedScene" uid="uid://dj33b6ynfouwy" path="res://Scenes/Level_Template.tscn" id="1_0sa7l"]
 [ext_resource type="PackedScene" uid="uid://bbgh8q32oohdc" path="res://Scripts/Objects/Hazards/Lazers/BlueLazer/BlueLazer.tscn" id="2_nwcw5"]
@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://bbnivbfgvtu3c" path="res://Scripts/Actors/Enemy/Enemy.tscn" id="8_c3ue0"]
 [ext_resource type="Script" path="res://Scripts/Components/Movement/move_stats.gd" id="9_tjvev"]
 [ext_resource type="PackedScene" uid="uid://36pkp13b1yer" path="res://Scripts/Objects/Platforms/Oneway/OneWayPlatform.tscn" id="10_pt83m"]
+[ext_resource type="PackedScene" uid="uid://b5awsjbb8w6pi" path="res://Scripts/Objects/ThrowableObjects/ThrowableObject.tscn" id="11_t5yoi"]
+[ext_resource type="Script" path="res://Scripts/Objects/ThrowableObjects/ThrowableObject.gd" id="12_u0tpk"]
 
 [sub_resource type="Resource" id="Resource_f1h5d"]
 resource_local_to_scene = true
@@ -184,3 +186,7 @@ scale = Vector2(3, 1)
 [node name="OneWayPlatform3" parent="Platforms" index="2" instance=ExtResource("10_pt83m")]
 position = Vector2(56, 179)
 scale = Vector2(1.5, 1)
+
+[node name="ThrowableObject" parent="." index="14" instance=ExtResource("11_t5yoi")]
+position = Vector2(84, 322)
+script = ExtResource("12_u0tpk")
