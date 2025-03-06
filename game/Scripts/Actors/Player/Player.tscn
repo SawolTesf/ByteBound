@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://bw0ew7stacm2"]
+[gd_scene load_steps=30 format=3 uid="uid://bw0ew7stacm2"]
 
 [ext_resource type="Texture2D" uid="uid://cx6grcbdlauol" path="res://Assets/Sprites/RobotPlayer.png" id="1_no2yp"]
 [ext_resource type="Script" path="res://Scripts/Actors/Player/player.gd" id="1_wkyp0"]
@@ -160,8 +160,8 @@ debug_color = Color(0.86713, 0.322044, 0.392222, 0.42)
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="." groups=["Player"]]
 sprite_frames = SubResource("SpriteFrames_mxm4r")
-animation = &"Idle"
-frame_progress = 0.965333
+animation = &"Fall"
+frame_progress = 0.927161
 
 [node name="Hitbox" type="Area2D" parent="." groups=["Player"]]
 collision_layer = 2

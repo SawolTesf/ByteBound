@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bbgh8q32oohdc"]
+[gd_scene load_steps=20 format=3 uid="uid://bbgh8q32oohdc"]
 
 [ext_resource type="Script" path="res://Scripts/Objects/Hazards/Lazers/BlueLazer/BlueLazer.gd" id="1_mbbxv"]
 [ext_resource type="Texture2D" uid="uid://vmy6aoisv121" path="res://Assets/Objects/Barriers/BlueBeam/Active/BlueBeamActive1.png" id="1_p3p15"]
@@ -13,7 +13,8 @@
 [ext_resource type="Texture2D" uid="uid://b8jbylyc7200n" path="res://Assets/Objects/Barriers/BlueBeam/Disabled/BlueBeamDisabled5.png" id="10_8wnym"]
 [ext_resource type="Texture2D" uid="uid://dv8yudvlu0p5h" path="res://Assets/Objects/Barriers/BlueBeam/Disabled/BlueBeamDisabled6.png" id="11_opqyu"]
 [ext_resource type="Texture2D" uid="uid://ff2itiuymitg" path="res://Assets/Objects/Barriers/BlueBeam/Disabled/BlueBeamDisabled7.png" id="12_fxngp"]
-[ext_resource type="AudioStream" uid="uid://dtun8ph7ir3p3" path="res://Audio/LaserField.wav" id="14_kjuyv"]
+[ext_resource type="AudioStream" uid="uid://dtun8ph7ir3p3" path="res://Audio/LaserField.wav" id="14_h6d8g"]
+[ext_resource type="AudioStream" uid="uid://dd8l0to6jlph1" path="res://Audio/LaserHit.wav" id="15_71jv8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qmpiu"]
 size = Vector2(7, 49)
@@ -124,3 +125,10 @@ scale = Vector2(0.28125, 0.765625)
 color = Color(0.054902, 1, 1, 1)
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_7vws4")
+
+[node name="LazerSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("14_h6d8g")
+volume_db = -7.25
+
+[node name="HitSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("15_71jv8")
