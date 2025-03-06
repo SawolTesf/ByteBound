@@ -3,17 +3,21 @@ class_name PlayerJump extends State
 ##
 ## The jump state can only enter 2 states itself for multi jumping and falling
 
+
 @export_category("Transitions")
 @export var fall_state: State
 @export var jump_state: State
 @export var dash_state: State
 
+@onready var jumpSound
 
 func enter() -> void:
 	super.enter()
 	#Debug.debug(self, "Player Entered the Jump State\nJumps Used: %d" % move_stats.jumps_used, false)
 	# Immediatly make the player jump.
 	move_stats.handle_jump(parent)
+	jumpSound = get_node("JumpAudio")
+	jumpSound.play()
 	parent.move_and_slide()
 
 	
