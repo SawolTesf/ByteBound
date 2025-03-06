@@ -1,0 +1,196 @@
+[gd_scene load_steps=19 format=4 uid="uid://8elis6novije"]
+
+[ext_resource type="PackedScene" uid="uid://dj33b6ynfouwy" path="res://Scenes/Level_Template.tscn" id="1_o5jq7"]
+[ext_resource type="PackedScene" uid="uid://da24un2f3vxpg" path="res://Scripts/Objects/Hazards/Lazers/GreenLaser/GreenLazer.tscn" id="2_3f8h3"]
+[ext_resource type="PackedScene" uid="uid://dxugnw28lgh3r" path="res://Scripts/Objects/Buttons/Pedestals/BluePedestal/BluePedestal.tscn" id="2_p0nuj"]
+[ext_resource type="PackedScene" uid="uid://1qa8vshk26o3" path="res://Scripts/Objects/Hazards/Lazers/RedLaser/RedLazer.tscn" id="2_w7oxu"]
+[ext_resource type="PackedScene" uid="uid://bbgh8q32oohdc" path="res://Scripts/Objects/Hazards/Lazers/BlueLazer/BlueLazer.tscn" id="3_fb50h"]
+[ext_resource type="PackedScene" uid="uid://bbnivbfgvtu3c" path="res://Scripts/Actors/Enemy/Enemy.tscn" id="4_3ijp6"]
+[ext_resource type="Script" path="res://Scripts/Components/Movement/move_stats.gd" id="5_mosd4"]
+[ext_resource type="PackedScene" uid="uid://bgcbd2ho8pv1d" path="res://Scripts/Objects/Buttons/Pedestals/RedPedestal/RedPedestal.tscn" id="7_1pbmr"]
+[ext_resource type="PackedScene" uid="uid://dveonqmfkatdx" path="res://Scripts/Objects/MovableSquare/MovableSquare.tscn" id="8_8p6gn"]
+[ext_resource type="PackedScene" uid="uid://btec7li76t31c" path="res://Scripts/Objects/Buttons/Pedestals/GreenPedestal/GreenPedestal.tscn" id="9_8yh6r"]
+
+[sub_resource type="Resource" id="Resource_26dc5"]
+resource_local_to_scene = true
+script = ExtResource("5_mosd4")
+can_move = false
+can_idle = false
+idle_time = 4.0
+move_time = 4.0
+starting_dir = 1
+advanced_movement = false
+multi_jump = false
+enable_dash = false
+ground_speed = 100.0
+air_speed = 50.0
+ground_acceleration = 80.0
+air_acceleration = 20.0
+ground_decceleration = 50.0
+air_decceleratoin = 80.0
+gravity = 980.0
+fast_fall_gravity = 1500.0
+jump_height = -400.0
+max_jumps = 1
+multi_jump_height_multiplier = 0.8
+coyote_jump_time = 0.5
+jump_buffer_time = 0.2
+dash_multipler = 2.0
+dash_duration = 2.0
+dash_cooldown = 4.0
+dash_distance = 100.0
+
+[sub_resource type="Resource" id="Resource_vurua"]
+resource_local_to_scene = true
+script = ExtResource("5_mosd4")
+can_move = false
+can_idle = false
+idle_time = 4.0
+move_time = 4.0
+starting_dir = 1
+advanced_movement = false
+multi_jump = false
+enable_dash = false
+ground_speed = 100.0
+air_speed = 50.0
+ground_acceleration = 80.0
+air_acceleration = 20.0
+ground_decceleration = 50.0
+air_decceleratoin = 80.0
+gravity = 980.0
+fast_fall_gravity = 1500.0
+jump_height = -400.0
+max_jumps = 1
+multi_jump_height_multiplier = 0.8
+coyote_jump_time = 0.5
+jump_buffer_time = 0.2
+dash_multipler = 2.0
+dash_duration = 2.0
+dash_cooldown = 4.0
+dash_distance = 100.0
+
+[sub_resource type="Resource" id="Resource_7bcta"]
+resource_local_to_scene = true
+script = ExtResource("5_mosd4")
+can_move = false
+can_idle = false
+idle_time = 4.0
+move_time = 4.0
+starting_dir = 1
+advanced_movement = false
+multi_jump = false
+enable_dash = false
+ground_speed = 100.0
+air_speed = 50.0
+ground_acceleration = 80.0
+air_acceleration = 20.0
+ground_decceleration = 50.0
+air_decceleratoin = 80.0
+gravity = 980.0
+fast_fall_gravity = 1500.0
+jump_height = -400.0
+max_jumps = 1
+multi_jump_height_multiplier = 0.8
+coyote_jump_time = 0.5
+jump_buffer_time = 0.2
+dash_multipler = 2.0
+dash_duration = 2.0
+dash_cooldown = 4.0
+dash_distance = 100.0
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_vlcaa"]
+polygon = PackedVector2Array(-16, 352, -16, -48, 912, -48, 912, 352, 896, 352, 896, -32, 0, -32, 0, 320, 896, 320, 896, 352)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_1dl1u"]
+polygon = PackedVector2Array(288, 240, 288, 224, 896, 224, 896, 240)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_cnlpq"]
+polygon = PackedVector2Array(816, 160, 816, 144, 832, 144, 832, 160)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_wuq23"]
+polygon = PackedVector2Array(192, 80, 176, 80, 176, 64, 192, 64, 208, 80)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_y240n"]
+polygon = PackedVector2Array(480, 112, 528, 112, 512, 128, 496, 128)
+
+[node name="Level02" instance=ExtResource("1_o5jq7")]
+
+[node name="Lasers" type="Node" parent="." index="0"]
+
+[node name="GreenLazer" parent="Lasers" index="0" instance=ExtResource("2_3f8h3")]
+position = Vector2(517, 280)
+scale = Vector2(1, 1.68)
+
+[node name="RedLazer" parent="Lasers" index="1" instance=ExtResource("2_w7oxu")]
+position = Vector2(405, 282)
+scale = Vector2(1, 1.68)
+
+[node name="BlueLazer" parent="Lasers" index="2" instance=ExtResource("3_fb50h")]
+position = Vector2(293, 277)
+scale = Vector2(0.85, 1.65)
+
+[node name="GroundLayer" parent="Terrain" index="0"]
+top_level = true
+position = Vector2(-2, 0)
+tile_map_data = PackedByteArray("AAD//wEAAQAGAAIAAAD//wIAAQAGAAIAAAD//wMAAQAGAAIAAAD//wQAAQAGAAIAAAD//wUAAQAGAAIAAAD//wYAAQAGAAIAAAD//wcAAQAGAAIAAAD//wgAAQAGAAIAAAD//wkAAQAGAAIAAAD//woAAQAGAAIAAAD//wsAAQAGAAIAAAD//wwAAQAGAAIAAAD//w0AAQAGAAIAAAD//w4AAQAGAAIAAAD//w8AAQAGAAIAAAD//xAAAQAGAAIAAAD//xEAAQAGAAIAAAD//xIAAQAGAAIAAAD//xMAAQAGAAIAAAD//xQAAQAAAAEAAAD//xUAAQAAAAMAAAAAAAMAAQADAAAAAAAAABQAAQABAAEAAAAAABUAAQABAAMAAAABAAMAAQAEAAAAAAABABQAAQABAAEAAAABABUAAQABAAMAAAACAAMAAQAEAAAAAAACABQAAQABAAEAAAACABUAAQABAAMAAAADABQAAQABAAEAAAADABUAAQABAAMAAAAEABQAAQABAAEAAAAEABUAAQABAAMAAAAFABQAAQABAAEAAAAFABUAAQABAAMAAAAGABQAAQABAAEAAAAGABUAAQABAAMAAAAHABQAAQABAAEAAAAHABUAAQABAAMAAAAIABQAAQABAAEAAAAIABUAAQABAAMAAAAJABQAAQABAAEAAAAJABUAAQABAAMAAAAKABQAAQABAAEAAAAKABUAAQABAAMAAAALABQAAQABAAEAAAALABUAAQABAAMAAAAMABQAAQABAAEAAAAMABUAAQABAAMAAAANABQAAQABAAEAAAANABUAAQABAAMAAAAOABQAAQABAAEAAAAOABUAAQABAAMAAAAPABQAAQABAAEAAAAPABUAAQABAAMAAAAQABQAAQACAAEAAAAQABUAAQACAAMAAAARABQAAQAEAAEAAAARABUAAQAEAAIAAAASAA4AAQADAAQAAAASABQAAQADAAUAAAASABUAAQABAAMAAAATAA4AAQABAAQAAAATABQAAQABAAUAAAATABUAAQABAAMAAAAUAA4AAQABAAQAAAAUABQAAQABAAUAAAAUABUAAQABAAMAAAAVAA4AAQABAAQAAAAVABQAAQABAAUAAAAVABUAAQABAAMAAAAWAA4AAQABAAQAAAAWABQAAQABAAUAAAAWABUAAQABAAMAAAAXAA4AAQABAAQAAAAXABQAAQABAAUAAAAXABUAAQABAAMAAAAYAA4AAQABAAQAAAAYABQAAQABAAUAAAAYABUAAQABAAMAAAAZAAUAAQAGAAAAAAAZAA4AAQAEAAQAAAAZABQAAQAEAAUAAAAZABUAAQABAAMAAAAaAAUAAQAHAAAAAAAaAA4AAQABAAQAAAAaABQAAQABAAUAAAAaABUAAQABAAMAAAAbAAUAAQAIAAAAAAAbAA4AAQABAAQAAAAbABQAAQABAAUAAAAbABUAAQABAAMAAAAcAA4AAQABAAQAAAAcABQAAQABAAUAAAAcABUAAQABAAMAAAAdAA4AAQABAAQAAAAdABQAAQABAAUAAAAdABUAAQABAAMAAAAeAAcAAQAAAAcAAAAeAA4AAQABAAQAAAAeABQAAQABAAUAAAAeABUAAQABAAMAAAAfAAcAAQAAAAAAAAAfAA4AAQABAAQAAAAfABQAAQABAAUAAAAfABUAAQABAAMAAAAgAAcAAQABAAcAAAAgAA4AAQAHAAcAAAAgABQAAQAHAAgAAAAgABUAAQABAAMAAAAhAA4AAQABAAQAAAAhABQAAQABAAUAAAAhABUAAQABAAMAAAAiAA4AAQABAAQAAAAiABQAAQABAAUAAAAiABUAAQABAAMAAAAjAA4AAQABAAQAAAAjABQAAQABAAUAAAAjABUAAQABAAMAAAAkAAkAAQAGAAAAAAAkAA4AAQABAAQAAAAkABQAAQABAAUAAAAkABUAAQABAAMAAAAlAAkAAQAHAAAAAAAlAA4AAQABAAQAAAAlABQAAQABAAUAAAAlABUAAQABAAMAAAAmAAkAAQAIAAAAAAAmAA4AAQABAAQAAAAmABQAAQABAAUAAAAmABUAAQABAAMAAAAnAA4AAQABAAQAAAAnABQAAQABAAUAAAAnABUAAQABAAMAAAAoAA4AAQABAAQAAAAoABQAAQABAAUAAAAoABUAAQABAAMAAAApAA4AAQABAAQAAAApABQAAQABAAUAAAApABUAAQABAAMAAAAqAA4AAQABAAQAAAAqABQAAQABAAUAAAAqABUAAQABAAMAAAArAAgAAQACAAAAAAArAA4AAQABAAQAAAArABQAAQABAAUAAAArABUAAQABAAMAAAAsAAgAAQADAAAAAAAsAA4AAQABAAQAAAAsABIAAQAHAAIAAAAsABQAAQABAAUAAAAsABUAAQABAAMAAAAtAA4AAQABAAQAAAAtABIAAQAJAAIAAAAtABQAAQABAAUAAAAtABUAAQABAAMAAAAuAA4AAQABAAQAAAAuABQAAQABAAUAAAAuABUAAQABAAMAAAAvAA4AAQABAAQAAAAvABQAAQABAAUAAAAvABUAAQABAAMAAAAwAA4AAQABAAQAAAAwABQAAQABAAUAAAAwABUAAQABAAMAAAAxAA4AAQABAAQAAAAxABQAAQABAAUAAAAxABUAAQABAAMAAAAyAA4AAQABAAQAAAAyABQAAQABAAUAAAAyABUAAQABAAMAAAAzAAkAAQAAAAAAAAAzAA4AAQABAAQAAAAzABQAAQABAAUAAAAzABUAAQABAAMAAAA0AAkAAQADAAAAAAA0AA4AAQABAAQAAAA0ABQAAQABAAUAAAA0ABUAAQABAAMAAAA1AAkAAQAEAAAAAAA1AA4AAQABAAQAAAA1ABQAAQABAAUAAAA1ABUAAQABAAMAAAA2AAkAAQAFAAAAAAA2AA4AAQABAAQAAAA2ABQAAQABAAUAAAA2ABUAAQABAAMAAAA3AAkAAQAGAAAAAAA3AA4AAQABAAQAAAA3ABQAAQABAAUAAAA3ABUAAQABAAMAAAA4AAEAAQAGAAIAAAA4AAIAAQAGAAIAAAA4AAMAAQAGAAIAAAA4AAQAAQAGAAIAAAA4AAUAAQAGAAIAAAA4AAYAAQAGAAIAAAA4AAcAAQAGAAIAAAA4AAgAAQAGAAIAAAA4AAkAAQAGAAIAAAA4AAoAAQAGAAIAAAA4AAsAAQAGAAIAAAA4AAwAAQAGAAIAAAA4AA0AAQAGAAIAAAA4AA4AAQAFAAMAAAA4AA8AAQAGAAIAAAA4ABAAAQAGAAIAAAA4ABEAAQAGAAIAAAA4ABIAAQAGAAIAAAA4ABMAAQAGAAIAAAA4ABQAAQACAAEAAAA4ABUAAQACAAMAAAAGAAQAAQACAAAAAAAHAAQAAQADAAAAAAARAAUAAQACAAAAAAASAAUAAQADAAAAAAALAAQAAQAEAAIAAAAMAAQAAQABAAYAAAANAAUAAQAFAAAAAAD///3/AQAAAAEAAAD///7/AQAGAAIAAAAAAP3/AQAEAAMAAAABAP3/AQAEAAMAAAACAP3/AQAEAAMAAAADAP3/AQAEAAMAAAAEAP3/AQAEAAMAAAAFAP3/AQAEAAMAAAAGAP3/AQAEAAMAAAAHAP3/AQAEAAMAAAAIAP3/AQAEAAMAAAAJAP3/AQAEAAMAAAAKAP3/AQAEAAMAAAALAP3/AQAEAAMAAAAMAP3/AQAEAAMAAAANAP3/AQAEAAMAAAAOAP3/AQAEAAMAAAAPAP3/AQAEAAMAAAAQAP3/AQAEAAMAAAARAP3/AQAEAAMAAAASAP3/AQAEAAMAAAATAP3/AQAEAAMAAAAUAP3/AQAEAAMAAAAVAP3/AQAEAAMAAAAWAP3/AQAEAAMAAAAXAP3/AQAEAAMAAAAYAP3/AQAEAAMAAAAZAP3/AQAEAAMAAAAaAP3/AQAEAAMAAAAbAP3/AQAEAAMAAAAcAP3/AQAEAAMAAAAdAP3/AQAEAAMAAAAeAP3/AQAEAAMAAAAfAP3/AQAEAAMAAAAgAP3/AQAEAAMAAAAhAP3/AQAEAAMAAAAiAP3/AQAEAAMAAAAjAP3/AQAEAAMAAAAkAP3/AQAEAAMAAAAlAP3/AQAEAAMAAAAmAP3/AQAEAAMAAAAnAP3/AQAEAAMAAAAoAP3/AQAEAAMAAAApAP3/AQAEAAMAAAAqAP3/AQAEAAMAAAArAP3/AQAEAAMAAAAsAP3/AQAEAAMAAAAtAP3/AQAEAAMAAAAuAP3/AQAEAAMAAAAvAP3/AQAEAAMAAAAwAP3/AQAEAAMAAAAxAP3/AQAEAAMAAAAyAP3/AQAEAAMAAAAzAP3/AQAEAAMAAAA0AP3/AQAEAAMAAAA1AP3/AQAEAAMAAAA2AP3/AQAEAAMAAAA3AP3/AQAEAAMAAAA4AP3/AQACAAEAAAA4AP7/AQAGAAIAAAD//wAAAQAGAAIAAAD/////AQAGAAIAAAA4AP//AQAGAAIAAAA4AAAAAQAGAAIAAAA=")
+
+[node name="ExitDoor" parent="." index="2"]
+position = Vector2(859, 288)
+
+[node name="Player" parent="." index="3"]
+position = Vector2(40, 300)
+
+[node name="Buttons" type="Node" parent="." index="4"]
+
+[node name="BluePedestal" parent="Buttons" index="0" instance=ExtResource("2_p0nuj")]
+z_index = -1
+position = Vector2(423, 64)
+
+[node name="GreenPedestal" parent="Buttons" index="1" instance=ExtResource("9_8yh6r")]
+z_index = -1
+position = Vector2(860, 128)
+
+[node name="RedPedistal" parent="Buttons" index="2" instance=ExtResource("7_1pbmr")]
+position = Vector2(23, 32)
+
+[node name="Enemies" type="Node" parent="." index="5"]
+
+[node name="Enemy" parent="Enemies" index="0" instance=ExtResource("4_3ijp6")]
+position = Vector2(610, 213)
+movement = SubResource("Resource_26dc5")
+idle_duration = 0.5
+move_duration = 3.0
+
+[node name="Enemy2" parent="Enemies" index="1" instance=ExtResource("4_3ijp6")]
+position = Vector2(718, 310)
+movement = SubResource("Resource_vurua")
+can_move = false
+
+[node name="Enemy3" parent="Enemies" index="2" instance=ExtResource("4_3ijp6")]
+position = Vector2(704, 118)
+movement = SubResource("Resource_7bcta")
+sight_distance = 80.0
+can_move = false
+
+[node name="Key" parent="." index="6"]
+position = Vector2(718, 278)
+
+[node name="MovableSquare" parent="." index="8" instance=ExtResource("8_8p6gn")]
+position = Vector2(423, 193)
+
+[node name="LightOccluders" type="Node" parent="." index="11"]
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="LightOccluders" index="0"]
+occluder = SubResource("OccluderPolygon2D_vlcaa")
+
+[node name="LightOccluder2D2" type="LightOccluder2D" parent="LightOccluders" index="1"]
+occluder = SubResource("OccluderPolygon2D_1dl1u")
+
+[node name="LightOccluder2D3" type="LightOccluder2D" parent="LightOccluders" index="2"]
+occluder = SubResource("OccluderPolygon2D_cnlpq")
+
+[node name="LightOccluder2D4" type="LightOccluder2D" parent="LightOccluders" index="3"]
+occluder = SubResource("OccluderPolygon2D_wuq23")
+
+[node name="LightOccluder2D5" type="LightOccluder2D" parent="LightOccluders" index="4"]
+occluder = SubResource("OccluderPolygon2D_y240n")

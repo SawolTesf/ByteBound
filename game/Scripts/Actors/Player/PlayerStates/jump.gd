@@ -1,4 +1,4 @@
-extends State
+class_name PlayerJump extends State
 ## JUMP STATE
 ##
 ## The jump state can only enter 2 states itself for multi jumping and falling
@@ -13,15 +13,15 @@ extends State
 
 func enter() -> void:
 	super.enter()
+	#Debug.debug(self, "Player Entered the Jump State\nJumps Used: %d" % move_stats.jumps_used, false)
 	# Immediatly make the player jump.
 	move_stats.handle_jump(parent)
 	jumpSound = get_node("JumpAudio")
 	jumpSound.play()
 	parent.move_and_slide()
-	# Every jump used should count against the max amount of jumps
-	print(move_stats.jumps_used)
 
-func process_input(event: InputEvent) -> State:
+	
+func process_input(_event: InputEvent) -> State:
 	# IF MULTI JUMP IS ALLOWED
 	if move_stats.multi_jump:
 		if move_stats.max_jumps > move_stats.jumps_used:

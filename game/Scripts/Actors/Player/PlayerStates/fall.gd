@@ -1,4 +1,4 @@
-extends State
+class_name PlayerFall extends State
 
 @export_category("Transitions")
 @export_subgroup("States")
@@ -13,8 +13,10 @@ var _jump_buffer_timer: float
 var _coyote_timer: float
 
 func enter() -> void:
+	Debug.debug(self, "Player Entered the Fall State\nJumps Used: %d" % move_stats.jumps_used , false)
 	super.enter()
 	set_up_player_corrections()
+
 
 
 func exit() -> void:
@@ -27,7 +29,7 @@ func process_frame(delta: float) -> State:
 
 func process_input(event: InputEvent) -> State:
 	# Handle multi Jumps
-	if move_stats.multi_jump and !parent.is_on_floor():
+	if move_stats.multi_jump and !parent.is_on_floor() and !parent.is_on_wall():
 		if move_stats.max_jumps > move_stats.jumps_used:
 			if get_jump_input():
 				return jump_state
@@ -37,6 +39,7 @@ func process_input(event: InputEvent) -> State:
 	
 	# Handle Coyote Time
 	if get_jump_input() and _coyote_timer > 0:
+		print("DEBUG: Fallstate used coyote jump.")
 		return jump_state
 	
 	# Handle the jump buffering

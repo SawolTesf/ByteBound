@@ -1,28 +1,27 @@
 [gd_scene load_steps=8 format=3 uid="uid://biddtthbbkyfa"]
 
-[ext_resource type="Script" path="res://Scripts/Objects/Key/Key.gd" id="1"]
 [ext_resource type="Script" path="res://Scripts/Objects/Key/KeyBody.gd" id="1_p7i6w"]
 [ext_resource type="Texture2D" uid="uid://dqmdkvic37urm" path="res://Assets/Objects/KeyCard.png" id="2_f65xj"]
 [ext_resource type="PackedScene" uid="uid://yn8mnupom0tf" path="res://Scripts/Components/Gravity/gravity_component.tscn" id="3_chiga"]
 [ext_resource type="AudioStream" uid="uid://cgmykoh4xbha2" path="res://Audio/CardCollect.wav" id="5_64mnv"]
+[ext_resource type="PackedScene" uid="uid://t4ij3l5v76t" path="res://Scripts/Components/HitBox/HitBox.tscn" id="4_hl6ni"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qbgmn"]
-size = Vector2(29, 16)
+size = Vector2(28, 16)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ns1r6"]
-size = Vector2(29, 16)
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_7c310"]
+polygon = PackedVector2Array(-13, -7, -12, -7, -12, -8, 12, -8, 12, -7, 13, -7, 13, 7, 12, 7, 12, 8, -12, 8, -12, 7, -13, 7)
 
 [node name="KeyBody" type="CharacterBody2D"]
 position = Vector2(-1, 0)
+collision_layer = 128
+collision_mask = 3
 script = ExtResource("1_p7i6w")
-metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(7.1825, 4.42)
 texture = ExtResource("2_f65xj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(7.5, 4)
 shape = SubResource("RectangleShape2D_qbgmn")
 debug_color = Color(0.95171, 0.185773, 0.310269, 0.42)
 
@@ -39,3 +38,12 @@ stream = ExtResource("5_64mnv")
 volume_db = -5.0
 
 [node name="GravityComponent" parent="." instance=ExtResource("3_chiga")]
+
+[node name="HitBox" parent="." instance=ExtResource("4_hl6ni")]
+collision_layer = 128
+collision_mask = 3
+x = 32.0
+y = 18.0
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_7c310")

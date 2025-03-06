@@ -6,22 +6,22 @@ extends Node
 ## it can just emit a signal and any node that is listening will react to it.
 
 #------------------------------------------------------------------------------------------------
-# Emit this signal when the key is collected
+# Emit this when a body entered a Hitbox 
+# Pass in the body that entered the Area2D
+signal hitbox_entered(caller : Node2D, body : Node2D)
+
+#------------------------------------------------------------------------------------------------
+# Emit this when something enters an fov. 
+# Connect things that you want to respond to entering the fov to this signal
+# Check if the body passed with the signal is the same as self
+signal fov_entered(body : Node2D)
+
+#------------------------------------------------------------------------------------------------
+# When the player collides with the keys hit box emit this signal
+# connect any objects that need to change state when the key is collected
+# for example the exit door needs to unlock when the key is collected
 signal key_collected
-func emit_key_collected():
-	key_collected.emit()
 
-#------------------------------------------------------------------------------------------------
-# Emit this signal when a player collides with a hazard.
-signal hazard_enterd
-func emit_hazard_entered():
-	hazard_enterd.emit()
-
-#------------------------------------------------------------------------------------------------
-# Emit this signal when a player is detected.
-signal player_detected
-func emit_player_detected():
-	player_detected.emit()
 
 #------------------------------------------------------------------------------------------------
 # Handle the Pedistal activation

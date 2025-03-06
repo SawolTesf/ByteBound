@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://b4hocxvkrbg3s"]
+[gd_scene load_steps=10 format=3 uid="uid://b4hocxvkrbg3s"]
 
 [ext_resource type="Script" path="res://Scripts/Objects/Buttons/PressurePlates/GreenPressurePlate/GreenPressurePlate.gd" id="1_s1op5"]
 [ext_resource type="Texture2D" uid="uid://b47e3wswv3mkg" path="res://Assets/Objects/Buttons/GreenPressurePlate/GreenPressurePlate3.png" id="2_mh3bu"]
@@ -47,9 +47,22 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="GreenPressurePlate" type="Area2D"]
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_mvgah"]
+polygon = PackedVector2Array(-4.00373, -0.0129018, -3.99268, -0.985174, -0.0152059, -2.07898, 3.98295, -0.967251, 4.0038, -0.0182631)
+
+[sub_resource type="Gradient" id="Gradient_gsdcq"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_eq610"]
+gradient = SubResource("Gradient_gsdcq")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="GreenPressurePlate" type="Area2D" node_paths=PackedStringArray("light")]
+collision_layer = 16
+collision_mask = 2
 script = ExtResource("1_s1op5")
-metadata/_edit_group_ = true
+light = NodePath("PointLight2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.226917, -2.14677)
@@ -64,3 +77,14 @@ animation = &"Idle"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 polygon = PackedVector2Array(3.15625, -2.875, 6.65625, -0.09375, -5.875, -0.0625, -3.125, -2.90625)
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_mvgah")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(-0.125551, -4.08389)
+scale = Vector2(0.334325, 0.152024)
+color = Color(0, 1, 0.509804, 1)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_eq610")
+metadata/_edit_group_ = true

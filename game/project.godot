@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="ByteBound"
-run/main_scene="res://Scenes/Levels/level_00.tscn"
+run/main_scene="res://UI/MainMenu/MainMenuControlNode.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -20,6 +20,8 @@ config/icon="res://icon.svg"
 SignalHub="*res://Autoloads/SignalHub.gd"
 SceneManager="*res://Autoloads/SceneManager.gd"
 Globals="*res://Autoloads/Globals.gd"
+Debug="*res://Autoloads/Debug.gd"
+Validate="*res://Autoloads/Validation.gd"
 
 [display]
 
@@ -90,6 +92,10 @@ interact={
 2d_physics/layer_2="Player"
 2d_physics/layer_3="Enemies"
 2d_physics/layer_4="Hazards"
+2d_physics/layer_5="Buttons"
+2d_physics/layer_6="Movables"
+2d_physics/layer_7="Throwables"
+2d_physics/layer_8="Collectables"
 
 [rendering]
 

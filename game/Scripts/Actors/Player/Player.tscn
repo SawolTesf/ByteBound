@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://bw0ew7stacm2"]
+[gd_scene load_steps=29 format=3 uid="uid://bw0ew7stacm2"]
 
 [ext_resource type="Texture2D" uid="uid://cx6grcbdlauol" path="res://Assets/Sprites/RobotPlayer.png" id="1_no2yp"]
 [ext_resource type="Script" path="res://Scripts/Actors/Player/player.gd" id="1_wkyp0"]
@@ -134,12 +134,24 @@ animations = [{
 radius = 8.0
 height = 20.0
 
-[node name="Player" type="CharacterBody2D" groups=["Player"]]
-position = Vector2(120, 84)
-collision_layer = 3
-collision_mask = 31
+[sub_resource type="Gradient" id="Gradient_175ce"]
+offsets = PackedFloat32Array(0, 0.912121)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_e0ay1"]
+gradient = SubResource("Gradient_175ce")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.893162, 0.0128205)
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("camera") groups=["Player"]]
+scale = Vector2(0.5, 0.5)
+collision_layer = 2
+collision_mask = 63
 script = ExtResource("1_wkyp0")
+camera = NodePath("CameraFollow")
 movement_stats = ExtResource("2_crh5y")
+metadata/_edit_group_ = true
 
 [node name="PlayerBody" type="CollisionShape2D" parent="." groups=["Player"]]
 position = Vector2(0, -0.75)
@@ -165,11 +177,12 @@ debug_color = Color(0, 0.6, 0.701961, 0.129412)
 script = ExtResource("3_kfjht")
 inital_state = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("move_state", "jump_state", "fall_state")]
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("move_state", "jump_state", "fall_state", "dash_state")]
 script = ExtResource("4_2w84y")
 move_state = NodePath("../Move")
 jump_state = NodePath("../Jump")
 fall_state = NodePath("../Fall")
+dash_state = NodePath("../Dash")
 animation_name = "Idle"
 
 [node name="Move" type="Node" parent="StateMachine" node_paths=PackedStringArray("jump_state", "fall_state", "idle_state", "dash_state")]
@@ -206,12 +219,21 @@ idle_state = NodePath("../Idle")
 fall_state = NodePath("../Fall")
 
 [node name="CameraFollow" type="Camera2D" parent="."]
-zoom = Vector2(1.5, 1.5)
+zoom = Vector2(1.2, 1.2)
 position_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
-drag_horizontal_offset = 0.69
-drag_vertical_offset = -0.79
-drag_left_margin = 0.38
+drag_horizontal_offset = 0.5
+drag_vertical_offset = -1.0
+drag_left_margin = 0.5
+drag_top_margin = 0.5
+drag_bottom_margin = 0.34
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(1, -9.53674e-07)
+scale = Vector2(1.65625, 1.5625)
+energy = 1.4
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_e0ay1")
 
 [connection signal="body_entered" from="Hitbox" to="." method="_on_body_entered"]

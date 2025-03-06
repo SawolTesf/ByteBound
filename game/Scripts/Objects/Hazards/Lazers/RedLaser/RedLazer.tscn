@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://1qa8vshk26o3"]
+[gd_scene load_steps=18 format=3 uid="uid://1qa8vshk26o3"]
 
 [ext_resource type="Texture2D" uid="uid://cpqxip1tajkrg" path="res://Assets/Objects/Barriers/RedBeam/Disabled/RedBeamDisabled7.png" id="1_ajpgw"]
 [ext_resource type="Script" path="res://Scripts/Objects/Hazards/Lazers/RedLaser/RedLazer.gd" id="1_fw848"]
@@ -93,7 +93,18 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Gradient" id="Gradient_se3ua"]
+offsets = PackedFloat32Array(0, 0.957576)
+colors = PackedColorArray(1, 0.490196, 0.298039, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_v4ri4"]
+gradient = SubResource("Gradient_se3ua")
+fill_from = Vector2(0.5, 0)
+repeat = 2
+
 [node name="RedLazer" type="Area2D"]
+collision_layer = 8
+collision_mask = 2
 script = ExtResource("1_fw848")
 metadata/_edit_group_ = true
 
@@ -106,6 +117,7 @@ position = Vector2(0, -1)
 sprite_frames = SubResource("SpriteFrames_7vefe")
 animation = &"Active"
 
-[node name="LazerSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("14_v7f58")
-volume_db = -7.25
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(1.5, -1)
+scale = Vector2(0.359375, 0.75)
+texture = SubResource("GradientTexture2D_v4ri4")

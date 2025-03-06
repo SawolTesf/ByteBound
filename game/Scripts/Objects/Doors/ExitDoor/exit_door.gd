@@ -3,6 +3,8 @@ class_name ExitDoor extends Area2D
 var _door_sprite : AnimatedSprite2D
 var _door_locked : bool = true
 var _door_open : bool = false
+var _level_complete : bool = false
+@export var light : PointLight2D
 
 
 func _ready() -> void:
@@ -16,38 +18,48 @@ func _ready() -> void:
 	_door_sprite = get_node("DoorSprite")
 	assert(_door_sprite != null, "DoorSprite not found")
 	_door_sprite.play("Locked")
+	light.color = Color.ORANGE
 	_door_sprite.animation_finished.connect(_on_animation_finished)
 
+
+func _process(delta: float) -> void:
+	if !_door_sprite.is_playing() and _level_complete:
+		_level_complete = false
+		if SceneManager.current_level_path == SceneManager.level_paths.size():
+				SceneManager.open_win_menu()
+		SceneManager.next()
 	
 ## Called when the player collects a key, Chnage door state to unlocked
 func _on_key_collected() -> void:
-	print("Debug: Key Collected, Door is now unlocked.")
-	_door_sprite.play("Unlocked")
 	_door_locked = false
-
+	light.color = Color.LAWN_GREEN
+	Debug.debug(self, "Key Collected Door is Now Unlocked %s" % _door_locked, false)
+	_door_sprite.play("Unlocked")
+	
 
 func _on_body_entered(body: Node2D) -> void:
 	# Check if the body is the player
 	if body.is_in_group("Player"):
 		# Check the state of the door
 		if _door_locked == false:
-			print("Debug: Player Entered Door, and Door is unlocked.")
-			_door_open = true
+			Debug.debug(self, "Player Entered the door, Door is %s" % _door_locked, false)
+			light.enabled = false
 			_door_sprite.play("Open")
-			_door_sprite.emit_signal("animation_finished", "Open")
+			_door_sprite.animation_finished.emit()
+			_door_open = true
 		else:
-			print("Debug: Player Entered Door, but Door is locked.")
+			Debug.debug(self, "Player Entered Door, Door is %s" % _door_locked, false)
 
 
 func _on_body_exited(body: Node2D) -> void:
 	if body.is_in_group("Player"):
-		print("Player Left Door area")
+		Debug.debug(self, "Player Left the door Area", false)
 		if _door_open == true:
 			_door_open = false	
 			_door_sprite.play("Close")
 
 
-func _on_animation_finished(anim_name: String) -> void:
+func _on_animation_finished() -> void:
 	# Make sure the door is opend and the animation is done playing 
-	if _door_open == true and anim_name == "Open":
-		SceneManager.next_level()
+	if _door_sprite.animation == "Open":
+		_level_complete = true
