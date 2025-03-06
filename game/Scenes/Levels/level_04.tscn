@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://dpvi06276d1ki"]
+[gd_scene load_steps=16 format=4 uid="uid://dm8a6mjvdewow"]
 
 [ext_resource type="PackedScene" uid="uid://dj33b6ynfouwy" path="res://Scenes/Level_Template.tscn" id="1_0sa7l"]
 [ext_resource type="PackedScene" uid="uid://bbgh8q32oohdc" path="res://Scripts/Objects/Hazards/Lazers/BlueLazer/BlueLazer.tscn" id="2_nwcw5"]

@@ -7,7 +7,7 @@ var input: InputComponent
 @export var movement_stats: MoveStats
 var has_key: bool = false
 var was_spoted : bool = false
-
+var canGrab : bool = true
 var last_direction : int = 1
 
 const PUSH_FORCE: float = 15.0

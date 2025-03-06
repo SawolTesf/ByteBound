@@ -110,4 +110,3 @@ func update(direction : float) -> void:
 func _on_fov_entered(body: Node2D) -> void:
 	if body.name ==  "Player":
 		SceneManager.reload()
-

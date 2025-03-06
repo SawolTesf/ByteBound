@@ -224,6 +224,9 @@ drag_left_margin = 0.5
 drag_top_margin = 0.5
 drag_bottom_margin = 0.34
 
+[node name="Hand" type="Node2D" parent="."]
+position = Vector2(12, -2)
+
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(1, -9.53674e-07)
 scale = Vector2(1.65625, 1.5625)
