@@ -36,7 +36,7 @@ func signal_emiter() -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
-	Debug.debug(self, "%s Entered the buttons Area2D" % body.get_script().get_global_name(), false)
+	Debug.debug(self, "%s Entered the buttons Area2D" % body.name, false)
 	if body.is_in_group("Player"):
 		# Only emit the signal if the button is not already activated
 		# Keeps the signal from emiting more then once per entering.

@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://b4hocxvkrbg3s"]
+[gd_scene load_steps=11 format=3 uid="uid://b4hocxvkrbg3s"]
 
 [ext_resource type="Script" path="res://Scripts/Objects/Buttons/PressurePlates/GreenPressurePlate/GreenPressurePlate.gd" id="1_s1op5"]
 [ext_resource type="Texture2D" uid="uid://b47e3wswv3mkg" path="res://Assets/Objects/Buttons/GreenPressurePlate/GreenPressurePlate3.png" id="2_mh3bu"]
 [ext_resource type="Texture2D" uid="uid://d0k7ksd063j8v" path="res://Assets/Objects/Buttons/GreenPressurePlate/GreenPressurePlate2.png" id="3_vbwya"]
 [ext_resource type="Texture2D" uid="uid://dy1ltab3jslyw" path="res://Assets/Objects/Buttons/GreenPressurePlate/GreenPressurePlate1.png" id="4_njx3d"]
+[ext_resource type="AudioStream" uid="uid://dl2mkmn401o8r" path="res://Audio/Interactable_Plate.wav" id="5_es7ia"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8kjdl"]
 size = Vector2(5.61231, 2.66585)
@@ -88,3 +89,6 @@ color = Color(0, 1, 0.509804, 1)
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_eq610")
 metadata/_edit_group_ = true
+
+[node name="PlatePressed" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_es7ia")

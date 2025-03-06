@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/UI/WinScreen/winScene.gd" id="1_uns16"]
 [ext_resource type="Theme" uid="uid://cjrb4f2yj7vjw" path="res://UI/MainMenu/MainMenuTheme.tres" id="2_i6lk6"]
 
-[node name="MainMenu" type="Control"]
+[node name="Game_Won" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
