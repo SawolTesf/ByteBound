@@ -12,7 +12,10 @@ class_name PlayerMove extends State
 @export var idle_state: State
 @export var dash_state: State
 
+
+
 func enter() -> void:
+	
 	super.enter()
 #	Debug.debug(self, "Player Entered Move State", false)
 	if parent.is_on_floor():

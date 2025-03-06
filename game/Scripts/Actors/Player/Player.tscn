@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://bw0ew7stacm2"]
+[gd_scene load_steps=30 format=3 uid="uid://bw0ew7stacm2"]
 
 [ext_resource type="Texture2D" uid="uid://cx6grcbdlauol" path="res://Assets/Sprites/RobotPlayer.png" id="1_no2yp"]
 [ext_resource type="Script" path="res://Scripts/Actors/Player/player.gd" id="1_wkyp0"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://Scripts/Actors/Player/PlayerStates/dash.gd" id="7_i2536"]
 [ext_resource type="Script" path="res://Scripts/Actors/Player/PlayerStates/fall.gd" id="7_y3686"]
 [ext_resource type="PackedScene" uid="uid://ba0doa040rdwp" path="res://Scripts/Components/Input/input_component.tscn" id="9_yvic6"]
+[ext_resource type="AudioStream" uid="uid://kbuq1jxcu6qj" path="res://Audio/PlayerJump.wav" id="11_7w3q5"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lwucn"]
 radius = 6.0
@@ -159,8 +160,8 @@ debug_color = Color(0.86713, 0.322044, 0.392222, 0.42)
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="." groups=["Player"]]
 sprite_frames = SubResource("SpriteFrames_mxm4r")
-animation = &"Idle"
-frame_progress = 0.965333
+animation = &"Fall"
+frame_progress = 0.927161
 
 [node name="Hitbox" type="Area2D" parent="." groups=["Player"]]
 collision_layer = 2
@@ -198,6 +199,10 @@ fall_state = NodePath("../Fall")
 jump_state = NodePath(".")
 dash_state = NodePath("../Dash")
 animation_name = "Jump"
+
+[node name="JumpAudio" type="AudioStreamPlayer2D" parent="StateMachine/Jump"]
+position = Vector2(120, 84)
+stream = ExtResource("11_7w3q5")
 
 [node name="Fall" type="Node" parent="StateMachine" node_paths=PackedStringArray("move_state", "idle_state", "jump_state", "dash_state")]
 script = ExtResource("7_y3686")
