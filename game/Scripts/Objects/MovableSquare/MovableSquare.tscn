@@ -6,10 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://t4ij3l5v76t" path="res://Scripts/Components/HitBox/HitBox.tscn" id="3_8ubtu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cd5u5"]
-size = Vector2(42.5, 40)
+size = Vector2(30, 26.6667)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uorvl"]
-size = Vector2(32, 22)
+size = Vector2(20, 18)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_63hv8"]
 polygon = PackedVector2Array(-13, 11, -13, -11, 13, -11, 13, 11)
@@ -45,7 +45,7 @@ grow_vertical = 2
 color = Color(0.27797, 0.140373, 0, 0.811765)
 
 [node name="SquareCollision" type="CollisionShape2D" parent="."]
-position = Vector2(0.25, -4.29153e-07)
+position = Vector2(-2.38419e-07, -2.38419e-07)
 scale = Vector2(0.6, 0.6)
 shape = SubResource("RectangleShape2D_cd5u5")
 

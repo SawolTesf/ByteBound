@@ -1,0 +1,114 @@
+[gd_scene load_steps=5 format=3 uid="uid://c0onw8yin5uk2"]
+
+[ext_resource type="Theme" uid="uid://cjrb4f2yj7vjw" path="res://UI/MainMenu/MainMenuTheme.tres" id="2_hf7g0"]
+[ext_resource type="FontFile" uid="uid://dxfjplnksrobt" path="res://Font/PressStart2P-Regular.ttf" id="3_jjslt"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_2pd8g"]
+font = ExtResource("3_jjslt")
+font_size = 60
+
+[sub_resource type="LabelSettings" id="LabelSettings_8kd84"]
+font = ExtResource("3_jjslt")
+
+[node name="SettingsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+modulate = Color(1, 1, 1, 0.458824)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+alignment = 1
+
+[node name="TitleContainer" type="MarginContainer" parent="Panel/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 160)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("2_hf7g0")
+
+[node name="Title" type="Label" parent="Panel/HBoxContainer/VBoxContainer/TitleContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 45
+text = "SETTINGS
+"
+label_settings = SubResource("LabelSettings_2pd8g")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="SliderCOntainer" type="MarginContainer" parent="Panel/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 220)
+layout_mode = 2
+
+[node name="levelContainer" type="GridContainer" parent="Panel/HBoxContainer/VBoxContainer/SliderCOntainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/h_separation = 48
+theme_override_constants/v_separation = 11
+columns = 3
+
+[node name="BG_SLIDER" type="HSlider" parent="Panel/HBoxContainer/VBoxContainer/SliderCOntainer/levelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/HBoxContainer/VBoxContainer/SliderCOntainer/levelContainer/BG_SLIDER"]
+layout_mode = 0
+offset_left = -20.0
+offset_top = 2.0
+offset_right = 124.0
+offset_bottom = 25.0
+text = "BG VOLUME"
+label_settings = SubResource("LabelSettings_8kd84")
+
+[node name="SFX_SLIDER" type="HSlider" parent="Panel/HBoxContainer/VBoxContainer/SliderCOntainer/levelContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/HBoxContainer/VBoxContainer/SliderCOntainer/levelContainer/SFX_SLIDER"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "SFX VOLUME"
+label_settings = SubResource("LabelSettings_8kd84")
+
+[node name="VBox" type="VBoxContainer" parent="Panel/HBoxContainer/VBoxContainer/SliderCOntainer"]
+layout_mode = 2
+size_flags_vertical = 0
+alignment = 1
+
+[node name="GoBack" type="Button" parent="Panel"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 127.0
+offset_top = 286.0
+offset_right = 513.0
+offset_bottom = 344.0
+theme = ExtResource("2_hf7g0")
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 0.775167, 0.29, 1)
+theme_override_constants/outline_size = 10
+text = "Go Back
+"
