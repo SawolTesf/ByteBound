@@ -33,11 +33,9 @@ var idle_timer: Timer
 var is_idle: bool
 var direction: float
 
-var enemyDetect: AudioStreamPlayer2D
 
 # Built-Ins -----------------------------------------------------------------
 func _ready() -> void:
-	enemyDetect = get_node("EnemyDetect")
 	direction = starting_direction
 	setup_idle_timer()
 	setup_move_timer()
