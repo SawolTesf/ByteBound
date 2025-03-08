@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://bw0ew7stacm2"]
+[gd_scene load_steps=31 format=3 uid="uid://bw0ew7stacm2"]
 
 [ext_resource type="Texture2D" uid="uid://cx6grcbdlauol" path="res://Assets/Sprites/RobotPlayer.png" id="1_no2yp"]
 [ext_resource type="Script" path="res://Scripts/Actors/Player/player.gd" id="1_wkyp0"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://Scripts/Actors/Player/PlayerStates/fall.gd" id="7_y3686"]
 [ext_resource type="PackedScene" uid="uid://ba0doa040rdwp" path="res://Scripts/Components/Input/input_component.tscn" id="9_yvic6"]
 [ext_resource type="AudioStream" uid="uid://kbuq1jxcu6qj" path="res://Audio/PlayerJump.wav" id="11_7w3q5"]
+[ext_resource type="AudioStream" uid="uid://cgmykoh4xbha2" path="res://Audio/CardCollect.wav" id="12_gboun"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lwucn"]
 radius = 6.0
@@ -235,5 +236,10 @@ scale = Vector2(1.65625, 1.5625)
 energy = 1.4
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_e0ay1")
+
+[node name="Audio" type="Node" parent="."]
+
+[node name="CardCollect" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("12_gboun")
 
 [connection signal="body_entered" from="Hitbox" to="." method="_on_body_entered"]

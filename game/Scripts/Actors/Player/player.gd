@@ -13,6 +13,8 @@ var last_direction : int = 1
 const PUSH_FORCE: float = 15.0
 const MIN_PUSH_FORCE: float = 1.0
 
+var collectAudio: AudioStreamPlayer2D
+
 # Builtins --------------------------------------------------------------------
 func _ready() -> void:
 	# Make sure the player is in the player group
@@ -33,6 +35,8 @@ func _ready() -> void:
 	SignalHub.key_collected.connect(_on_key_collected)
 	SignalHub.fov_entered.connect(_on_fov_entered)
 	SignalHub.hitbox_entered.connect(_on_hitbox_entered)
+
+	collectAudio = get_node("Audio/CardCollect")
 
 	
 func _physics_process(delta: float) -> void:
@@ -78,6 +82,7 @@ func _on_hitbox_entered(caller : Node2D, body : Node2D) -> void:
 		Debug.debug(self, "Player received hitbox signal from %s" % caller.name, false)
 		if caller is Key:
 			Debug.debug(self, "Player Entered the hitbox of the key", false)
+			collectAudio.play()
 			has_key = true
 			SignalHub.key_collected.emit()
 		

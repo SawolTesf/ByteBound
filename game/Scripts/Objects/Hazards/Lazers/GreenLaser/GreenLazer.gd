@@ -1,5 +1,7 @@
 class_name GreenLazer extends Lazer
 
+var lazerSound : AudioStreamPlayer2D
+
 func _ready() -> void:
 	super._ready()
 	sprite.play("Active")
@@ -9,6 +11,9 @@ func _ready() -> void:
 	SignalHub.green_pressure_plate_activated.connect(_on_green_pressure_plate_activated)
 	SignalHub.green_pressure_plate_deactivated.connect(_on_green_pressure_plate_deactivated)
 
+	# Setup the audio
+	lazerSound = get_node("LazerSound")
+	lazerSound.play()
 
 func _on_green_pedistal_activated() -> void:
 	perma_open = true
@@ -17,6 +22,9 @@ func _on_green_pedistal_activated() -> void:
 		perma_open = true # if opened by pedistal keep the lazer off
 		sprite.play("Disabled")
 		#light.enabled = false
+
+		lazerSound.stop()
+		hitSound.stop()
 		print("DEBUG GreenLazer/Pedestal: The green lazer has been deactivated")
 
 
@@ -25,6 +33,9 @@ func _on_green_pressure_plate_activated() -> void:
 		is_active = false
 		sprite.play("Disabled")
 		#light.enabled = false
+
+		lazerSound.stop()
+		hitSound.stop()
 		print("DEBUG GreenLazer/PressurePlate: The green lazer has been deactivated")
 
 
@@ -34,5 +45,6 @@ func _on_green_pressure_plate_deactivated() -> void:
 		sprite.play("Activate")
 		#light.enabled = true
 		just_activated = true
-		
+
+		lazerSound.stop()		
 		print("DEBUG GreenLazer/PressurePlate: The green lazer has been activated")
