@@ -7,6 +7,5 @@ func _ready() -> void:
 	new_game_button.pressed.connect(SceneManager.open_main_menu)
 	quit_button.pressed.connect(quit_game)
 
-
 func quit_game():
 	get_tree().quit()

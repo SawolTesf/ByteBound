@@ -5,6 +5,8 @@ extends Node
 ## Helps to decouple nodes. Instead of a node needing refrences to other nodes,
 ## it can just emit a signal and any node that is listening will react to it.
 
+
+signal pause_game
 #------------------------------------------------------------------------------------------------
 # Emit this when a body entered a Hitbox 
 # Pass in the body that entered the Area2D

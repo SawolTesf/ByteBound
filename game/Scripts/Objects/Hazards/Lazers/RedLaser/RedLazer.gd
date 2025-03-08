@@ -20,7 +20,7 @@ func _on_red_pedistal_activated() -> void:
 	if is_active:
 		is_active = false
 		sprite.play("Disabled")
-		#light.enabled = false
+		light.enabled = false
 
 		lazerSound.stop()
 		hitSound.stop()
@@ -30,7 +30,7 @@ func _on_red_pressure_plate_activated() -> void:
 	if is_active and !perma_open:   
 		is_active = false
 		sprite.play("Disabled")
-		#light.enabled = false
+		light.enabled = false
 
 		lazerSound.stop()
 		hitSound.stop()
@@ -40,7 +40,7 @@ func _on_red_pressure_plate_deactivated() -> void:
 	if !is_active and !perma_open:
 		is_active = true
 		sprite.play("Activate")
-		#light.enabled = true
+		light.enabled = true
 		just_activated = true
 
 		lazerSound.play()
