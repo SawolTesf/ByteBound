@@ -34,11 +34,18 @@ func _process(_delta: float) -> void:
 	if !sprite.is_playing() and just_activated:
 		sprite.play("Active")
 		just_activated = false
+	update_sound()
+
+func update_sound():
+	if is_active and !lazerSound.playing:
+		lazerSound.play()
+	elif !is_active:
+		lazerSound.stop()
 
 		
 func _on_body_entered(body : Node) -> void:
 	Debug.debug(self, "%s Entered the Laser" % body.get_script().get_global_name(), false)
 	if body.is_in_group("Player"):
-		hitSound.play()
 		if is_active:
+			hitSound.play()
 			SceneManager.reload()

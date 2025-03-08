@@ -33,6 +33,9 @@ var idle_timer: Timer
 var is_idle: bool
 var direction: float
 
+
+
+
 # Built-Ins -----------------------------------------------------------------
 func _ready() -> void:
 	direction = starting_direction
