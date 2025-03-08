@@ -1,7 +1,5 @@
 class_name RedLazer extends Lazer
 
-var lazerSound : AudioStreamPlayer2D
-
 func _ready() -> void:
 	super._ready()
 	type = Globals.LazerType.RED

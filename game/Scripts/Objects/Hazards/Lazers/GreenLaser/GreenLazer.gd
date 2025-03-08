@@ -1,7 +1,5 @@
 class_name GreenLazer extends Lazer
 
-var lazerSound : AudioStreamPlayer2D
-
 func _ready() -> void:
 	super._ready()
 	sprite.play("Active")
@@ -10,10 +8,6 @@ func _ready() -> void:
 	SignalHub.green_pedistal_activated.connect(_on_green_pedistal_activated)
 	SignalHub.green_pressure_plate_activated.connect(_on_green_pressure_plate_activated)
 	SignalHub.green_pressure_plate_deactivated.connect(_on_green_pressure_plate_deactivated)
-
-	# Setup the audio
-	lazerSound = get_node("LazerSound")
-	lazerSound.play()
 
 func _on_green_pedistal_activated() -> void:
 	perma_open = true

@@ -9,6 +9,7 @@ var type : Globals.LazerType = Globals.LazerType.DEFAULT
 # set true when the player leaves pressure plate, set false one the Active animation is playing
 var just_activated : bool = false 
 var hitSound : AudioStreamPlayer2D
+var lazerSound : AudioStreamPlayer2D
 
 func _ready() -> void:
 	sprite = find_child("AnimatedSprite2D")
@@ -19,7 +20,10 @@ func _ready() -> void:
 	sprite.play("Active") # Start the lazers off as active
 	light.enabled = true
 
+	# Setup the audio
 	hitSound = get_node("HitSound")
+	lazerSound = get_node("LazerSound")
+	lazerSound.play()
 	
 	# Set up the signals to detect player collision and animations
 	body_entered.connect(_on_body_entered)
@@ -30,6 +34,17 @@ func _process(_delta: float) -> void:
 	if !sprite.is_playing() and just_activated:
 		sprite.play("Active")
 		just_activated = false
+	update_sound()
+
+func update_sound():
+	if is_active and !lazerSound.playing:
+		lazerSound.play()
+	elif !is_active:
+		lazerSound.stop()
+
+	if !is_active:
+		lazerSound.stop()
+  
 
 		
 func _on_body_entered(body : Node) -> void:
@@ -37,5 +52,4 @@ func _on_body_entered(body : Node) -> void:
 	if body.is_in_group("Player"):
 		if is_active:
 			hitSound.play()
-		if is_active:
 			SceneManager.reload()

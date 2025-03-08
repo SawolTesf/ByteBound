@@ -1,7 +1,5 @@
 class_name BlueLazer extends Lazer
 
-var lazerSound : AudioStreamPlayer2D
-
 func _ready() -> void:
 	super._ready()
 	type = Globals.LazerType.BLUE
@@ -10,10 +8,6 @@ func _ready() -> void:
 	SignalHub.blue_pedistal_activated.connect(_on_blue_pedistal_activated)
 	SignalHub.blue_pressure_plate_activated.connect(_on_blue_pressure_plate_activated)
 	SignalHub.blue_pressure_plate_deactivated.connect(_on_blue_pressure_plate_deactivated)
-
-	# Setup the audio
-	lazerSound = get_node("LazerSound")
-	lazerSound.play()
 
 func _on_blue_pedistal_activated() -> void:
 	perma_open = true
