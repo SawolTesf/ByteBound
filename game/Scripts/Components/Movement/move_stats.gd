@@ -118,3 +118,6 @@ func get_acceleration(body: CharacterBody2D) -> float:
 
 func get_decceleration(body: CharacterBody2D) -> float:
 	return ground_decceleration if body.is_on_floor() else air_decceleratoin
+
+func get_direction(body: CharacterBody2D) -> float:
+	return 1 if body.velocity.x > 0 else -1

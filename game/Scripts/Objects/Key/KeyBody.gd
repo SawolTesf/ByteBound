@@ -11,14 +11,16 @@ func _ready() -> void:
 	hitbox = find_child("HitBox")
 	assert(hitbox != null, "ERROR/Key: Area2D not set")
 	hitbox.init(self)
+	grav_comp.init(self)
 	
 	SignalHub.key_collected.connect(_on_key_collected)
 
 	collectSound = get_node("CollectSound")
 
 
+
 func _physics_process(delta : float) -> void:	
-	grav_comp.handle_gravity(self, false, delta)
+	grav_comp.physics_update(delta)
 	move_and_slide()
 
 

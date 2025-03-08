@@ -36,7 +36,10 @@ func get_paused() -> bool:
 	return Input.is_action_just_pressed("ui_cancel")
 
 func get_interact() -> bool:
-	return Input.is_action_just_pressed("interact")
+	var rv = Input.is_action_pressed("interact")
+	if rv:
+		print("Interact was pressed something should happen")
+	return rv
 
 func get_throw() -> bool:
 	return Input.is_action_just_pressed("throw")

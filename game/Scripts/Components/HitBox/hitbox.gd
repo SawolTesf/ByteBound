@@ -17,6 +17,7 @@ func init(body : Node2D) -> void:
 	self.parent = body
 	setUpCollisionShape()
 	body_entered.connect(_on_body_entered)
+	body_exited.connect(_on_body_exited)
 
 
 func _createShape():
@@ -39,7 +40,13 @@ func setUpCollisionShape() -> void:
 		collision_shape = find_child("CollisionShape2D")
 	assert(collision_shape != null, "Collision Shape not set")
 	var shape = _createShape()
-	shape.size = Vector2(x, y)
+	match(shape_type):
+		0:
+			shape.radius = x
+		1:
+			shape.size = Vector2(x, y)
+		_: 
+			Debug.debug(self, "What Shape?")
 	collision_shape.shape = shape
 
 
@@ -47,4 +54,6 @@ func _on_body_entered(body : Node2D) -> void:
 	Debug.debug(self, "%s enterd %s hitbox\nemiting Signal" % [body, self], false)
 	SignalHub.hitbox_entered.emit(parent, body)
 
-
+func _on_body_exited(body : Node2D) -> void:
+	Debug.debug(self, "%s exited %s hitbox\nemiting Signal" % [body, self], false)
+	SignalHub.hitbox_exited.emit(parent, body)

@@ -33,11 +33,8 @@ var idle_timer: Timer
 var is_idle: bool
 var direction: float
 
-var enemyDetect: AudioStreamPlayer2D
-
 # Built-Ins -----------------------------------------------------------------
 func _ready() -> void:
-	enemyDetect = get_node("EnemyDetect")
 	direction = starting_direction
 	setup_idle_timer()
 	setup_move_timer()
@@ -47,13 +44,14 @@ func _ready() -> void:
 		idle_timer.start()
 
 	fov.init(self, num_segments, sight_angle, sight_distance)
+	gravity.init(self)
 	
 
 func _physics_process(delta: float) -> void:
 	# Run fov and sight check
 	fov.update(direction)
 	# Things that always need to be handled
-	gravity.handle_gravity(self, false, delta)
+	gravity.physics_update(delta)
 	animations.handle_move_animation(direction)
 	
 	if (can_move and can_idle) or can_move:
