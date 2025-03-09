@@ -24,7 +24,7 @@ signal fov_exited(body : Node2D)
 # connect any objects that need to change state when the key is collected
 # for example the exit door needs to unlock when the key is collected
 signal key_collected
-
+signal movable_box_hit(box : CharacterBody2D)
 
 #------------------------------------------------------------------------------------------------
 # Handle the Pedistal activation

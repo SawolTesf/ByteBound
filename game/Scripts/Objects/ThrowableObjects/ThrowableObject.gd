@@ -11,8 +11,8 @@ var in_range : bool = false
 func _ready():
 	Validate.check_reference(self, "hitbox", "HitBox")
 	Validate.check_reference(self, "collision", "CollisionShape2D")
-
-	player = get_tree().get_first_node_in_group("Player")
+	if not player:
+		player = get_tree().get_first_node_in_group("Player")
 	assert(player != null, "player is null")
 
 	hitbox.init(self)

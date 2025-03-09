@@ -1,5 +1,10 @@
 extends Node
-
+# List of tutorial Levels
+var move_tutorial = "res://Scenes/Levels/Tutorials/move_tutorial.tscn"
+var jump_tutorial = "res://Scenes/Levels/Tutorials/jump_tutorial.tscn"
+var dash_tutorial = "res://Scenes/Levels/Tutorials/dash_tutorial.tscn"
+var box_tutorial = "res://Scenes/Levels/Tutorials/box_tutorial.tscn"
+var throw_tutorial = "res://Scenes/Levels/Tutorials/throw_tutorial.tscn"
 # List of the levels in the game
 var level_00 : String = "res://Scenes/Levels/level_00.tscn"
 var level_01 : String = "res://Scenes/Levels/level_01.tscn"
@@ -8,7 +13,9 @@ var level_03 : String = "res://Scenes/Levels/level_03.tscn"
 var level_04 : String = "res://Scenes/Levels/level_04.tscn"
 
 # array to hold all the level paths
-var level_paths : Array[String] = [level_00,level_01,level_02,level_03,level_04]
+var level_paths : Array[String] = [
+	move_tutorial, jump_tutorial, dash_tutorial, box_tutorial,
+	throw_tutorial, level_00,level_01, level_02, level_03,level_04]
 
 var current_level_path: int = 0 # Start on the first level.
 var current_level = null

@@ -49,12 +49,12 @@ func _physics_process(delta: float) -> void:
 	state_controller.process_physics(delta)
 	sprite.flip_h = dir < 0
 
-	# #Uncomment to enable pushing ridged bodys
-	# for i in get_slide_collision_count():
-	# 	var c = get_slide_collision(i)
-	# 	if c.get_collider() is RigidBody2D and c.get_collider().has_method("apply_central_impulse"):
-	# 		var push_force = (PUSH_FORCE * velocity.length() / movement_stats.get_speed(self)) + MIN_PUSH_FORCE
-	# 		c.get_collider().apply_central_impulse(-c.get_normal() * push_force)
+	#Uncomment to enable pushing ridged bodys
+	for i in get_slide_collision_count():
+		var c = get_slide_collision(i)
+		if c.get_collider() is RigidBody2D and c.get_collider().has_method("apply_central_impulse"):
+			var push_force = (PUSH_FORCE * velocity.length() / movement_stats.get_speed(self)) + MIN_PUSH_FORCE
+			c.get_collider().apply_central_impulse(-c.get_normal() * push_force)
 
 	
 

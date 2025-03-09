@@ -46,22 +46,23 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_body_entered(body: Node) -> void:
-	Debug.debug(self, "%s hit the moving square" % body.name)
+	#Debug.debug(self, "%s hit the moving square" % body.name)
 	# If the player is in contact with the box, set the box to be pushed.
 	if body.name == "Player":
+		SignalHub.movable_box_hit.emit(self)
 		direction = -sign(body.global_position.x - global_position.x) # should return -1 or 1
 		push_box = true
-		var params = [direction, push_box, velocity.x]
-		var message = "Player is in contact with the box\ndirection: %s\npush_box: %s\nvelocityX: %f" % params
-		Debug.debug(self, message, false)
+		#var params = [direction, push_box, velocity.x]
+		#var message = "Player is in contact with the box\ndirection: %s\npush_box: %s\nvelocityX: %f" % params
+		#Debug.debug(self, message, false)
 		# Calculate push force based on player's velocity (scales push by player speed)
 		var player_velocity = body.velocity.length()
 		push_force = clamp(player_velocity * 1.5, 30.0, max_push_force)
-		Debug.debug(self, "Calculated Push_force: %f" % push_force, false)		
+		#Debug.debug(self, "Calculated Push_force: %f" % push_force, false)		
 
 		
 func _on_body_exited(body: Node) -> void:
 	# If the player is no longer in contact with the box, set the box to not be pushed.
 	if body.name == "Player":
-		print("DEBUG: Player is no longer in contact with the box")
+		#print("DEBUG: Player is no longer in contact with the box")
 		push_box = false
