@@ -238,21 +238,6 @@ position = Vector2(10, -2)
 script = ExtResource("12_48m5d")
 body = NodePath("..")
 
-[node name="ColorRect" type="ColorRect" parent="Hand"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -2.0
-offset_top = -1.0
-offset_right = 2.0
-offset_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-color = Color(1, 0, 1, 1)
-
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(0, 5.68434e-14)
 scale = Vector2(1.65625, 1.5625)

@@ -11,16 +11,20 @@ var in_range : bool = false
 func _ready():
 	Validate.check_reference(self, "hitbox", "HitBox")
 	Validate.check_reference(self, "collision", "CollisionShape2D")
+
 	player = get_tree().get_first_node_in_group("Player")
 	assert(player != null, "player is null")
+
 	hitbox.init(self)
 
+# looks at the players input to see if they want to interact or throw
 func _input(event : InputEvent):
 	if player.input.get_interact():
 		if !is_picked_up and in_range:
 			pickup()
 		elif is_picked_up:
 			drop()
+			
 	if player.input.get_throw():
 		if is_picked_up:
 			throw()
@@ -46,7 +50,12 @@ func pickup():
 	call_deferred("reparent", player.hand)
 	await get_tree().process_frame
 
+	global_position = player.hand.global_position
 
+
+# Handles resetting the flags on drop
+# Places back in the tree.
+# re enables physics and collision
 func drop():
 	Debug.debug(self, "Drop function called")
 	player.hands_free = true
@@ -54,8 +63,12 @@ func drop():
 	collision.disabled = false
 	call_deferred("reparent", player.get_parent())
 	await get_tree().process_frame
-	self.freeze = true
+	self.freeze = false
 
+	
+# Handles resetting the flags on throw
+# Places object back in tree and applies a force to it.
+# re enables the physics and collision
 func throw():
 	Debug.debug(self, "throw function called")
 	player.hands_free = true

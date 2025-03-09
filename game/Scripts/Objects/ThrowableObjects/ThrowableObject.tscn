@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://t4ij3l5v76t" path="res://Scripts/Components/HitBox/HitBox.tscn" id="3_shsdt"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_h8ma4"]
+bounce = 0.2
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pfaeh"]
 
