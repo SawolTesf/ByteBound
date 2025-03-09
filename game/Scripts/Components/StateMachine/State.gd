@@ -59,5 +59,11 @@ func get_fastfall_input() -> bool:
 func get_dash_input() -> bool:
 	return input.get_dash()
 
+func get_grab_input() -> bool:
+	return input.get_interact()
+
+func get_throw_input() -> bool:
+	return input.get_throw()
+
 func check_dash_conditions() -> bool:
 	return get_dash_input() and move_stats.is_dash_ready and move_stats.enable_dash

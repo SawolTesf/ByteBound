@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://bw0ew7stacm2"]
+[gd_scene load_steps=31 format=3 uid="uid://bw0ew7stacm2"]
 
 [ext_resource type="Texture2D" uid="uid://cx6grcbdlauol" path="res://Assets/Sprites/RobotPlayer.png" id="1_no2yp"]
 [ext_resource type="Script" path="res://Scripts/Actors/Player/player.gd" id="1_wkyp0"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://Scripts/Actors/Player/PlayerStates/fall.gd" id="7_y3686"]
 [ext_resource type="PackedScene" uid="uid://ba0doa040rdwp" path="res://Scripts/Components/Input/input_component.tscn" id="9_yvic6"]
 [ext_resource type="AudioStream" uid="uid://kbuq1jxcu6qj" path="res://Audio/PlayerJump.wav" id="11_7w3q5"]
+[ext_resource type="Script" path="res://Scripts/Actors/Player/hand.gd" id="12_48m5d"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lwucn"]
 radius = 6.0
@@ -144,14 +145,17 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.863248, 0.0726496)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("camera") groups=["Player"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("state_controller", "sprite", "input", "hand", "camera") groups=["Player"]]
 scale = Vector2(0.5, 0.5)
 collision_layer = 2
-collision_mask = 63
+collision_mask = 127
 script = ExtResource("1_wkyp0")
+state_controller = NodePath("StateMachine")
+sprite = NodePath("PlayerSprite")
+input = NodePath("InputComponent")
+hand = NodePath("Hand")
 camera = NodePath("CameraFollow")
 movement_stats = ExtResource("2_crh5y")
-metadata/_edit_group_ = true
 
 [node name="PlayerBody" type="CollisionShape2D" parent="." groups=["Player"]]
 position = Vector2(0, -0.75)
@@ -165,7 +169,7 @@ frame_progress = 0.927161
 
 [node name="Hitbox" type="Area2D" parent="." groups=["Player"]]
 collision_layer = 2
-collision_mask = 31
+collision_mask = 127
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" groups=["Player"]]
 shape = SubResource("CapsuleShape2D_ai5n8")
@@ -201,7 +205,6 @@ dash_state = NodePath("../Dash")
 animation_name = "Jump"
 
 [node name="JumpAudio" type="AudioStreamPlayer2D" parent="StateMachine/Jump"]
-position = Vector2(120, 84)
 stream = ExtResource("11_7w3q5")
 
 [node name="Fall" type="Node" parent="StateMachine" node_paths=PackedStringArray("move_state", "idle_state", "jump_state", "dash_state")]
@@ -229,8 +232,14 @@ drag_left_margin = 0.5
 drag_top_margin = 0.5
 drag_bottom_margin = 0.34
 
+[node name="Hand" type="Node2D" parent="." node_paths=PackedStringArray("body")]
+z_index = 2
+position = Vector2(10, -2)
+script = ExtResource("12_48m5d")
+body = NodePath("..")
+
 [node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(1, -9.53674e-07)
+position = Vector2(0, 5.68434e-14)
 scale = Vector2(1.65625, 1.5625)
 energy = 1.4
 shadow_enabled = true

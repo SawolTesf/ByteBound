@@ -113,4 +113,3 @@ func _on_fov_entered(body: Node2D) -> void:
 	if body.name ==  "Player":
 		detect.play()
 		SceneManager.reload()
-

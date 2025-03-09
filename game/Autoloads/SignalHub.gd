@@ -6,17 +6,18 @@ extends Node
 ## it can just emit a signal and any node that is listening will react to it.
 
 
-signal pause_game
 #------------------------------------------------------------------------------------------------
 # Emit this when a body entered a Hitbox 
 # Pass in the body that entered the Area2D
 signal hitbox_entered(caller : Node2D, body : Node2D)
+signal hitbox_exited(caller : Node2D, body : Node2D)
 
 #------------------------------------------------------------------------------------------------
 # Emit this when something enters an fov. 
 # Connect things that you want to respond to entering the fov to this signal
 # Check if the body passed with the signal is the same as self
 signal fov_entered(body : Node2D)
+signal fov_exited(body : Node2D)
 
 #------------------------------------------------------------------------------------------------
 # When the player collides with the keys hit box emit this signal

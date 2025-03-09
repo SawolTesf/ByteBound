@@ -34,6 +34,8 @@ var is_idle: bool
 var direction: float
 
 
+
+
 # Built-Ins -----------------------------------------------------------------
 func _ready() -> void:
 	direction = starting_direction
@@ -45,13 +47,14 @@ func _ready() -> void:
 		idle_timer.start()
 
 	fov.init(self, num_segments, sight_angle, sight_distance)
+	gravity.init(self)
 	
 
 func _physics_process(delta: float) -> void:
 	# Run fov and sight check
 	fov.update(direction)
 	# Things that always need to be handled
-	gravity.handle_gravity(self, false, delta)
+	gravity.physics_update(delta)
 	animations.handle_move_animation(direction)
 	
 	if (can_move and can_idle) or can_move:

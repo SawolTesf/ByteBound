@@ -34,3 +34,16 @@ func get_crouch() -> bool:
 
 func get_paused() -> bool:
 	return Input.is_action_just_pressed("ui_cancel")
+
+func get_interact() -> bool:
+	var rv = Input.is_action_pressed("interact")
+	if rv:
+		print("Interact was pressed something should happen")
+	return rv
+
+func get_throw() -> bool:
+	var rv = Input.is_action_just_pressed("throw")
+	if rv:
+		print("trow was press if object held it should be thrown")
+	return rv
+
