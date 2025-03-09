@@ -1,11 +1,11 @@
 class_name Key extends CharacterBody2D
 
-var grav_comp : GravityComponent
+@export var grav_comp : GravityComponent
 var hitbox : Hitbox
 var collectSound : AudioStreamPlayer2D
 
 func _ready() -> void:
-	grav_comp = get_node("GravityComponent")
+	Validate.check_reference(self, "grav_comp", "GravityComponent")
 	assert(grav_comp != null, "ERROR/Key: GravityComponent not set")
 
 	hitbox = find_child("HitBox")

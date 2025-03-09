@@ -42,4 +42,8 @@ func get_interact() -> bool:
 	return rv
 
 func get_throw() -> bool:
-	return Input.is_action_just_pressed("throw")
+	var rv = Input.is_action_just_pressed("throw")
+	if rv:
+		print("trow was press if object held it should be thrown")
+	return rv
+

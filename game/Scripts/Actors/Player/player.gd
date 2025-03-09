@@ -6,7 +6,6 @@ class_name Player extends CharacterBody2D
 @export var hand : Node
 @export var camera : Camera2D
 @export var movement_stats: MoveStats
-var throwable: throwables
 
 var has_key: bool = false
 var was_spoted : bool = false
@@ -15,7 +14,7 @@ var was_spoted : bool = false
 var throwable_in_range : bool = false
 var hands_free : bool = true
 
-var last_direction : int = 1
+var dir : int # Constantly updated based on input
 
 const PUSH_FORCE: float = 15.0
 const MIN_PUSH_FORCE: float = 1.0
@@ -30,10 +29,11 @@ func _ready() -> void:
 	Validate.check_reference(self, "sprite", "PlayerSprite")
 	Validate.check_reference(self, "input", "InputComponent")
 	Validate.check_reference(self, "state_controller", "StateMachine")
+	Validate.check_reference(self, "hand", "Hand")
 	
 	# Initalize required nodes
 	state_controller.init(self, sprite, movement_stats, input)
-	
+	hand.init(self)
 	# Set up the signals
 	SignalHub.key_collected.connect(_on_key_collected)
 	
@@ -47,12 +47,9 @@ func _ready() -> void:
 	
 func _physics_process(delta: float) -> void:
 	state_controller.process_physics(delta)
+	sprite.flip_h = dir < 0
 
-	if velocity.x != 0:
-		last_direction = sign(velocity.x)
-	sprite.flip_h = last_direction < 0
-
-	## Uncomment to enable pushing ridged bodys
+	# #Uncomment to enable pushing ridged bodys
 	# for i in get_slide_collision_count():
 	# 	var c = get_slide_collision(i)
 	# 	if c.get_collider() is RigidBody2D and c.get_collider().has_method("apply_central_impulse"):
@@ -66,13 +63,11 @@ func _process(delta: float) -> void:
 	dash_cooldown_check(delta)
 	state_controller.process_frame(delta)
 
+		
 
 func _input(event : InputEvent) -> void:
-	if input.get_interact() and throwable and throwable_in_range:
-		if !throwable.is_picked_up:
-			throwable.pickup(self)
-		elif throwable.is_picked_up:
-			throwable.drop(self)
+	hand.update_direction(input)
+	update_dir()
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -93,9 +88,6 @@ func _on_fov_entered(caller : Node2D, body : Node2D) -> void:
 			SceneManager.reload()
 
 			
-
-
-		
 ## Determine which hitbox the player hit
 func _on_hitbox_entered(caller : Node2D, body : Node2D) -> void:
 	if body == self:
@@ -104,20 +96,19 @@ func _on_hitbox_entered(caller : Node2D, body : Node2D) -> void:
 			Debug.debug(self, "Player Entered the hitbox of the key", false)
 			has_key = true
 			SignalHub.key_collected.emit()
-		
-		if caller is throwables:
-			throwable_in_range = true # flag the player as in range
-			throwable = caller # set the refrence to the throwables component parent
-			var params = [self.name, throwable,  throwable_in_range, hands_free]
-			Debug.debug(self, "Player entered the hit box of a throwable object\n%s in range of %s? %s\nPlayers hands are free? %s" % params)
+
+		if caller is Throwable:
+			throwable_in_range = true
+			caller.in_range = true
+			Debug.debug(self, "Player Entered the hitbox of the throwable %s" % caller.in_range, false)
 				
 
 func _on_hitbox_exited(caller : Node2D, body : Node2D):
 	if body == self:
-		if caller is throwables:
+		if caller is Throwable:
+			caller.in_range = false
 			throwable_in_range = false
-			var params = [self.name, throwable,  throwable_in_range]
-			Debug.debug(self, "Player exited the hit box of a throwable object\n%s in range of %s? %s" % params)
+			Debug.debug(self, "Player Exited the hitbox of the throwable %s" % caller.in_range, false)
 
 # Timers ---------------------------------------------------------------------
 func dash_cooldown_check(delta: float):
@@ -125,3 +116,10 @@ func dash_cooldown_check(delta: float):
 		movement_stats.dash_cooldown_timer -= delta
 		if movement_stats.dash_cooldown_timer <= 0:
 			movement_stats.is_dash_ready = true
+
+# helpers
+func update_dir():
+	if input.get_left():
+		dir = -1
+	if input.get_right():
+		dir = 1

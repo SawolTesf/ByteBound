@@ -2,17 +2,19 @@
 
 [ext_resource type="Texture2D" uid="uid://hmdkfr13ipvd" path="res://Assets/Objects/ThrowableObjects/ThrowableObject.png" id="1_2cyfx"]
 [ext_resource type="Script" path="res://Scripts/Objects/ThrowableObjects/ThrowableObject.gd" id="2_n3j1o"]
-[ext_resource type="PackedScene" uid="uid://by4tnp2uyrd1m" path="res://Scripts/Components/Throwable/Throwable.tscn" id="3_7bg35"]
-[ext_resource type="PackedScene" uid="uid://yn8mnupom0tf" path="res://Scripts/Components/Gravity/gravity_component.tscn" id="4_egbf1"]
+[ext_resource type="PackedScene" uid="uid://t4ij3l5v76t" path="res://Scripts/Components/HitBox/HitBox.tscn" id="3_shsdt"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_h8ma4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pfaeh"]
 
-[node name="ThrowableObject" type="CharacterBody2D" node_paths=PackedStringArray("throwable", "gravity")]
+[node name="ThrowableObject" type="RigidBody2D" node_paths=PackedStringArray("hitbox", "collision")]
 collision_layer = 64
-collision_mask = 3
+collision_mask = 67
+physics_material_override = SubResource("PhysicsMaterial_h8ma4")
 script = ExtResource("2_n3j1o")
-throwable = NodePath("Throwable")
-gravity = NodePath("GravityComponent")
+hitbox = NodePath("HitBox")
+collision = NodePath("CollisionShape2D")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -22,14 +24,10 @@ texture = ExtResource("1_2cyfx")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_pfaeh")
 
-[node name="Throwable" parent="." instance=ExtResource("3_7bg35")]
-
-[node name="HitBox" parent="Throwable" index="0"]
+[node name="HitBox" parent="." instance=ExtResource("3_shsdt")]
 collision_layer = 64
 collision_mask = 3
-x = 15.0
+shape_type = 0
+x = 20.0
 
-[node name="GravityComponent" parent="." instance=ExtResource("4_egbf1")]
-
-[editable path="Throwable"]
-[editable path="Throwable/HitBox"]
+[editable path="HitBox"]
