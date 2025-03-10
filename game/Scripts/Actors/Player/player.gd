@@ -100,6 +100,7 @@ func _on_hitbox_entered(caller : Node2D, body : Node2D) -> void:
 		if caller is Throwable:
 			throwable_in_range = true
 			caller.in_range = true
+			caller.player = self
 			Debug.debug(self, "Player Entered the hitbox of the throwable %s" % caller.in_range, false)
 				
 
