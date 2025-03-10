@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=4 uid="uid://cnvqs74bujyhb"]
+[gd_scene load_steps=8 format=4 uid="uid://cnvqs74bujyhb"]
 
 [ext_resource type="PackedScene" uid="uid://dj33b6ynfouwy" path="res://Scenes/Level_Template.tscn" id="1_el2di"]
 [ext_resource type="PackedScene" uid="uid://36pkp13b1yer" path="res://Scripts/Objects/Platforms/Oneway/OneWayPlatform.tscn" id="2_xnktr"]
 [ext_resource type="PackedScene" uid="uid://b5awsjbb8w6pi" path="res://Scripts/Objects/ThrowableObjects/ThrowableObject.tscn" id="3_l8gwj"]
 [ext_resource type="PackedScene" uid="uid://bbnivbfgvtu3c" path="res://Scripts/Actors/Enemy/Enemy.tscn" id="4_j1gdk"]
 [ext_resource type="Script" path="res://Scripts/Components/Movement/move_stats.gd" id="5_81st2"]
+[ext_resource type="PackedScene" uid="uid://dveonqmfkatdx" path="res://Scripts/Objects/MovableSquare/MovableSquare.tscn" id="6_d5meh"]
 
 [sub_resource type="Resource" id="Resource_fh7g2"]
 resource_local_to_scene = true
@@ -78,6 +79,14 @@ position = Vector2(272, 248)
 [node name="Enemy" parent="." index="14" instance=ExtResource("4_j1gdk")]
 position = Vector2(912, 48)
 movement = SubResource("Resource_fh7g2")
+
+[node name="MovableSquare" parent="." index="15" instance=ExtResource("6_d5meh")]
+position = Vector2(768, 256)
+acceleration = null
+push_force = null
+max_push_force = null
+friction = null
+gravity_scale = null
 
 [editable path="ThrowableObject"]
 [editable path="ThrowableObject/HitBox"]
