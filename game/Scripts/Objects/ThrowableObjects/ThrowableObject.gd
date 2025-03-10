@@ -11,6 +11,7 @@ var in_range : bool = false
 func _ready():
 	Validate.check_reference(self, "hitbox", "HitBox")
 	Validate.check_reference(self, "collision", "CollisionShape2D")
+
 	hitbox.init(self)
 	
 

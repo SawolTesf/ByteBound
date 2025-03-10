@@ -8,7 +8,7 @@ script = ExtResource("1_aii0v")
 [node name="Time" type="Panel" parent="."]
 self_modulate = Color(1, 1, 1, 0.282353)
 custom_minimum_size = Vector2(100, 30)
-offset_right = 192.0
+offset_right = 152.0
 offset_bottom = 42.0
 
 [node name="Label" type="Label" parent="Time"]
