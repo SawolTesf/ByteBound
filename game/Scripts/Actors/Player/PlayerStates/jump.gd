@@ -9,15 +9,12 @@ class_name PlayerJump extends State
 @export var jump_state: State
 @export var dash_state: State
 
-@onready var jumpSound
-
 func enter() -> void:
 	super.enter()
 	#Debug.debug(self, "Player Entered the Jump State\nJumps Used: %d" % move_stats.jumps_used, false)
 	# Immediatly make the player jump.
 	move_stats.handle_jump(parent)
-	jumpSound = get_node("JumpAudio")
-	jumpSound.play()
+	AudioController.play_jump()
 	parent.move_and_slide()
 
 	

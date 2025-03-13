@@ -2,7 +2,7 @@ class_name Key extends CharacterBody2D
 
 @export var grav_comp : GravityComponent
 var hitbox : Hitbox
-var collectSound : AudioStreamPlayer2D
+#var collectSound : AudioStreamPlayer2D
 
 func _ready() -> void:
 	Validate.check_reference(self, "grav_comp", "GravityComponent")
@@ -15,7 +15,7 @@ func _ready() -> void:
 	
 	SignalHub.key_collected.connect(_on_key_collected)
 
-	collectSound = get_node("CollectSound")
+	#collectSound = get_node("CollectSound")
 
 
 
@@ -26,5 +26,5 @@ func _physics_process(delta : float) -> void:
 
 ## What Happens when this object is collected?
 func _on_key_collected() -> void:
-	collectSound.play()
+	#collectSound.play()
 	self.queue_free()
