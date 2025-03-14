@@ -8,7 +8,7 @@ class_name FoV extends Area2D
 @export var fov_collision: CollisionPolygon2D
 @export var fov_display: Polygon2D
 var parent: Node2D
-var detect: AudioStreamPlayer2D
+#var detect: AudioStreamPlayer2D
 
 # used to create the fov
 var points: Array[Vector2] = [Vector2.ZERO] # hold points that make up the polygon
@@ -19,7 +19,7 @@ var sight_distance: float
 
 func _ready() -> void:
 	body_entered.connect(_on_fov_entered)
-	detect = get_node("PlayerDetect")
+	#detect = get_node("PlayerDetect")
 
 	
 ## Sets up the fov variables. these variables should be passed in from the parent
@@ -111,5 +111,6 @@ func update(direction : float) -> void:
 #Signals -------------------------------------------------------------------------------------------------
 func _on_fov_entered(body: Node2D) -> void:
 	if body.name ==  "Player":
-		detect.play()
+		#detect.play()
+		AudioController.play_enemy_detect()
 		SceneManager.reload()

@@ -1,9 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://bbnivbfgvtu3c"]
+[gd_scene load_steps=17 format=3 uid="uid://bbnivbfgvtu3c"]
 
 [ext_resource type="Script" path="res://Scripts/Actors/Enemy/enemy.gd" id="1_jji55"]
 [ext_resource type="Resource" uid="uid://cl15epbgotcko" path="res://Scripts/Actors/Enemy/base_enemy_move_stats.tres" id="2_38fv0"]
 [ext_resource type="Texture2D" uid="uid://c8gexo4j6yuai" path="res://Assets/Sprites/Enemy_Spritesheet.png" id="3_7k8h2"]
-[ext_resource type="AudioStream" uid="uid://cppxm8tnt0k5b" path="res://Audio/EnemyDetect.wav" id="4_fqvfu"]
 [ext_resource type="PackedScene" uid="uid://be3m0wqdotsaq" path="res://Scripts/Components/StateMachine/StateMachine.tscn" id="5_qi620"]
 [ext_resource type="Script" path="res://Scripts/Actors/Enemy/EnemyStates/idle.gd" id="6_encld"]
 [ext_resource type="Script" path="res://Scripts/Actors/Enemy/EnemyStates/patrol.gd" id="6_la3kd"]
@@ -84,9 +83,6 @@ modulate = Color(1, 0.461017, 0.392737, 0.415686)
 position = Vector2(2, -2.5)
 collision_layer = 4
 collision_mask = 103
-
-[node name="PlayerDetect" type="AudioStreamPlayer2D" parent="FoV"]
-stream = ExtResource("4_fqvfu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_4hpyq")
