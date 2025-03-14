@@ -5,12 +5,9 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	"""
 	if not mute:
 		play_music()
-	"""
-	pass
-	
+
 # Play BG Music
 func play_music():
 	if not mute:
@@ -47,7 +44,3 @@ func play_plate_stepped():
 func play_enemy_detect():
 	if not mute:
 		$EnemyDetect.play()
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
