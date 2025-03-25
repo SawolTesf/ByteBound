@@ -18,6 +18,6 @@ func _ready() -> void:
 
 ## Emits a signal based on the type of pedestals
 func signal_emiter() -> void:
-	AudioController.play_button_pressed()
+	AudioController.play_sound("ButtonInteract")
 	if type != Globals.ButtonType.DEFAULT:
 		SignalHub.emit_pedistal_activated(type)

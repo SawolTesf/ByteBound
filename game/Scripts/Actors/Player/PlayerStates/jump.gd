@@ -14,7 +14,7 @@ func enter() -> void:
 	#Debug.debug(self, "Player Entered the Jump State\nJumps Used: %d" % move_stats.jumps_used, false)
 	# Immediatly make the player jump.
 	move_stats.handle_jump(parent)
-	AudioController.play_jump()
+	AudioController.play_sound("PlayerJump")
 	parent.move_and_slide()
 
 	
