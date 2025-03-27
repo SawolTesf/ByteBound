@@ -115,6 +115,9 @@ polygon = PackedVector2Array(480, 112, 528, 112, 512, 128, 496, 128)
 
 [node name="Level02" instance=ExtResource("1_o5jq7")]
 
+[node name="ExitDoor" parent="." index="0"]
+position = Vector2(859, 288)
+
 [node name="PauseMenu" parent="UI" index="0"]
 visible = false
 
@@ -151,9 +154,6 @@ can_move = false
 
 [node name="Key" parent="Collectables" index="0"]
 position = Vector2(718, 278)
-
-[node name="ExitDoor" parent="." index="5"]
-position = Vector2(859, 288)
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="LightOccluders" index="0"]
 occluder = SubResource("OccluderPolygon2D_vlcaa")

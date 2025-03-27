@@ -18,6 +18,12 @@ tonemap_exposure = 0.2
 [node name="LevelTemplate" type="Node2D"]
 script = ExtResource("1_74oc5")
 
+[node name="ExitDoor" parent="." instance=ExtResource("2_bov5a")]
+position = Vector2(499, 58)
+scale = Vector2(2, 2)
+collision_layer = 16
+collision_mask = 2
+
 [node name="UI" type="Node" parent="."]
 
 [node name="PauseMenu" parent="UI" instance=ExtResource("7_24df4")]
@@ -60,11 +66,5 @@ scale = Vector2(1.5, 1.5)
 
 [node name="Key" parent="Collectables" instance=ExtResource("4_7o18d")]
 position = Vector2(287, 89)
-
-[node name="ExitDoor" parent="." instance=ExtResource("2_bov5a")]
-position = Vector2(499, 58)
-scale = Vector2(2, 2)
-collision_layer = 16
-collision_mask = 2
 
 [node name="LightOccluders" type="Node" parent="."]

@@ -9,7 +9,7 @@
 size = Vector2(42.5, 43.3333)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uorvl"]
-size = Vector2(48, 24)
+size = Vector2(32, 24)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_63hv8"]
 polygon = PackedVector2Array(-13, 11, -13, -11, 13, -11, 13, 11)
@@ -66,7 +66,6 @@ y = 28.0
 shape = SubResource("RectangleShape2D_uorvl")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
-visible = false
 occluder = SubResource("OccluderPolygon2D_63hv8")
 sdf_collision = false
 
