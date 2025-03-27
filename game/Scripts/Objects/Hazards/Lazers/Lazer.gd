@@ -21,7 +21,6 @@ func _ready() -> void:
 	light.enabled = true
 
 	AudioController.play_sound("LaserField")
-	#hitSound = get_node("HitSound")
 	
 	# Set up the signals to detect player collision and animations
 	body_entered.connect(_on_body_entered)
@@ -41,7 +40,7 @@ func update_sound():
 	elif !is_active:
 		lazerSound.stop()
 	"""
-	if is_active:
+	if is_active and !AudioController.is_playing("LaserField"):
 		AudioController.play_sound("LaserField")
 	else:
 		AudioController.stop_sound("LaserField")

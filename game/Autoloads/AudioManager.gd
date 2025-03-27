@@ -7,49 +7,17 @@ extends Node2D
 func _ready() -> void:
 	play_sound("Music")
 
-
 # Get the node for the sound and play it
-func play_sound(sound):
-	var sound_node = get_node(sound)
-	if not sound_node:
-		return
-
+func play_sound(sound: String) -> void:
+	var sound_node = get_node_or_null(sound)
 	sound_node.play()
 
 # Get the node for the sound and stop it
-func stop_sound(sound):
-	var sound_node = get_node(sound)
-	if not sound_node:
-		return
-
+func stop_sound(sound: String) -> void:
+	var sound_node = get_node_or_null(sound)
 	sound_node.stop()
 
-"""
-# Play BG Music
-func play_music():
-	$Music.play()
-
-# Play Laser Field
-func play_lazer():
-	$LazerField.play()
-
-# Play Player Jump
-func play_jump():
-	$PlayerJump.play()
-
-# Play Key Collect
-func play_key_collected():
-	$CardCollect.play()
-
-# Play Button Interact
-func play_button_pressed():
-	$ButtonInteract.play()
-
-# Play Plate Stepped
-func play_plate_stepped():
-	$PlateStepped.play()
-
-# Play Enemy Detect
-func play_enemy_detect():
-	$EnemyDetect.play()
-"""
+# Check if the sound node is playing
+func is_playing(sound: String) -> bool:
+	var sound_node = get_node_or_null(sound)
+	return sound_node.playing
