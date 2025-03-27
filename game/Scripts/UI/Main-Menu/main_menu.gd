@@ -13,4 +13,3 @@ func _ready() -> void:
 
 func quit_game():
 	get_tree().quit()
-

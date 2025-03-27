@@ -10,6 +10,8 @@ extends Node
 # Emit this when a body entered a Hitbox 
 # Pass in the body that entered the Area2D
 signal hitbox_entered(caller : Node2D, body : Node2D)
+func emit_hitbox_entered(caller : Node2D, body : Node2D):
+	hitbox_entered.emit(caller, body)
 signal hitbox_exited(caller : Node2D, body : Node2D)
 
 #------------------------------------------------------------------------------------------------

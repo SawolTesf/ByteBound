@@ -20,10 +20,11 @@ var level_paths : Array[String] = [
 var current_level_path: int = 0 # Start on the first level.
 var current_level = null
 
-
 var mainMenuPath : String = "res://UI/MainMenu/MainMenuControlNode.tscn"
 var levelSelectPath : String = "res://UI/Level-Select/LevelSelectMenu.tscn"
 var winMenuPath : String = "res://UI/GameOver/GameOver.tscn"
+var tutorialSelectPath : String = "res://UI/Level-Select/Tutorial-Levels/TutorialLevels.tscn"
+var regularSelectPath : String = "res://UI/Level-Select/Regular-Levels/RegularLevels.tscn"
 
 
 func _ready() -> void:
@@ -44,7 +45,12 @@ func open_win_menu():
 func open_level_select(): #function to navigate to the level select scene
 	load_level(levelSelectPath)
 
+func open_tutorial_selection():
+	load_level(tutorialSelectPath)
 
+func open_regualr_selection():
+	load_level(regularSelectPath)
+	
 func open_main_menu(): #function to navigate to main menu scene
 	load_level(mainMenuPath)
 	
