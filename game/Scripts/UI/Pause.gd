@@ -2,6 +2,7 @@ extends CanvasLayer
 @onready var reload_button: Button = %Reload
 @onready var main_menu_button: Button = %MainMenu
 @onready var quit_button: Button = %Quit
+@onready var settings_button: Button = %Settings
 
 func _ready():
 	hide()
@@ -9,6 +10,7 @@ func _ready():
 	main_menu_button.pressed.connect(SceneManager.open_main_menu)
 	reload_button.pressed.connect(SceneManager.reload)
 	quit_button.pressed.connect(quit_game)
+	settings_button.pressed.connect(SceneManager.open_settings_menu)
 
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):

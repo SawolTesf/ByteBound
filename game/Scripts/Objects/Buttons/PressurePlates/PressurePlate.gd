@@ -4,7 +4,7 @@ class_name PressurePlate extends TriggerButton
 ## Checks for collisions with different types of objects.
 ## This allows for things like the player to turn off a lazer by standing on it or by placing a box on it.
 
-var plateStepped : AudioStreamPlayer2D
+#var plateStepped : AudioStreamPlayer2D
 
 func _ready() -> void:
 	super._ready()
@@ -13,7 +13,7 @@ func _ready() -> void:
 	# connect the signal
 	body_exited.connect(_on_body_exited)
 
-	plateStepped = get_node("PlatePressed")
+	#plateStepped = get_node("PlatePressed")
 
 
 func _on_body_exited(body: Node2D) -> void:
@@ -29,7 +29,8 @@ func _on_body_exited(body: Node2D) -> void:
 
 		
 func signal_emiter() -> void:
-	plateStepped.play()
+	#plateStepped.play()
+	AudioController.play_plate_stepped()
 
 	if type != Globals.ButtonType.DEFAULT and is_activated:
 		SignalHub.emit_pressure_plate_activated(type)

@@ -25,7 +25,7 @@ var levelSelectPath : String = "res://UI/Level-Select/LevelSelectMenu.tscn"
 var winMenuPath : String = "res://UI/GameOver/GameOver.tscn"
 var tutorialSelectPath : String = "res://UI/Level-Select/Tutorial-Levels/TutorialLevels.tscn"
 var regularSelectPath : String = "res://UI/Level-Select/Regular-Levels/RegularLevels.tscn"
-
+var settingsMenuPath : String = "res://UI/OptionsMenu/Settings.tscn"
 
 func _ready() -> void:
 	var root = get_tree().root
@@ -45,6 +45,7 @@ func open_win_menu():
 func open_level_select(): #function to navigate to the level select scene
 	load_level(levelSelectPath)
 
+
 func open_tutorial_selection():
 	load_level(tutorialSelectPath)
 
@@ -54,11 +55,12 @@ func open_regualr_selection():
 func open_main_menu(): #function to navigate to main menu scene
 	load_level(mainMenuPath)
 	
+func open_settings_menu(): #function to navigate to main menu scene
+	load_level(settingsMenuPath)
 
 func load_level(level) -> void:
 	reset_pause()
 	_defered_load_level.call_deferred(level)
-
 
 func _defered_load_level(level) -> void:
 	# It is now safe to remove the current scene.
@@ -81,7 +83,6 @@ func _defered_load_level(level) -> void:
 func reload() -> void:
 	load_level(level_paths[current_level_path])
 
-
 func next() -> void:
 	current_level_path += 1
 	var message : String = "Current Level Index: %d\nNumber of Levels: %d"
@@ -97,7 +98,6 @@ func next() -> void:
 func previous() -> void:
 	current_level_path -= 1
 	load_level(level_paths[current_level_path])
-
 
 func reset_pause():
 	if get_tree().paused:
