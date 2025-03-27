@@ -45,7 +45,6 @@ func open_win_menu():
 func open_level_select(): #function to navigate to the level select scene
 	load_level(levelSelectPath)
 
-
 func open_tutorial_selection():
 	load_level(tutorialSelectPath)
 
