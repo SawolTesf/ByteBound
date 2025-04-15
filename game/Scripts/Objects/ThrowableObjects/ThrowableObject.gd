@@ -1,3 +1,4 @@
+
 class_name Throwable extends RigidBody2D
 
 var hand_node : Node

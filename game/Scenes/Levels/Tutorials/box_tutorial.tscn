@@ -76,6 +76,9 @@ polygon = PackedVector2Array(272, 152, 272, 144, 368, 144, 368, 152)
 
 [node name="BoxTutorial" instance=ExtResource("1_jhief")]
 
+[node name="ExitDoor" parent="." index="0"]
+position = Vector2(319, 113)
+
 [node name="PauseMenu" parent="UI" index="0"]
 visible = false
 
@@ -111,7 +114,7 @@ offset_left = 2.0
 offset_right = 2.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Boxes have many uses let us discover those together!"
+text = "Boxes have many uses, let us discover them together!"
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -141,9 +144,6 @@ can_idle = false
 
 [node name="Key" parent="Collectables" index="0"]
 position = Vector2(197, 24)
-
-[node name="ExitDoor" parent="." index="5"]
-position = Vector2(319, 113)
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="LightOccluders" index="0"]
 occluder = SubResource("OccluderPolygon2D_6ybql")
