@@ -68,6 +68,7 @@ folder_colors={
 
 Enemy="All Enemy units"
 Player="Player character"
+Throwable="Objects that can be picked up and thrown"
 
 [input]
 

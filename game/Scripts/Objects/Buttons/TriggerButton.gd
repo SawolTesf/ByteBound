@@ -27,27 +27,8 @@ func _ready() -> void:
 	light = find_child("PointLight2D")
 	assert(sprite != null, "Button Sprite not found")
 
-	# connect the signals
-	body_entered.connect(_on_body_entered)
-
 
 func signal_emiter() -> void:
 	pass 
 
 
-func _on_body_entered(body: Node2D) -> void:
-	Debug.debug(self, "%s Entered the buttons Area2D" % body.name, false)
-	if body.is_in_group("Player"):
-		# Only emit the signal if the button is not already activated
-		# Keeps the signal from emiting more then once per entering.
-		if not is_activated:
-			# Play the transition animation (button being pressed)
-			sprite.play("Activate")
-			light.enabled = false
-			
-			# Set before the signal is emitted
-			# Makes sure that on entering the activated signal is emitted
-			is_activated = true
-
-			# emit the proper signal
-			signal_emiter()
