@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cnwaro2tyjs8h"]
+[gd_scene load_steps=10 format=3 uid="uid://cnwaro2tyjs8h"]
 
 [ext_resource type="Script" path="res://Autoloads/AudioManager.gd" id="1_1hk6m"]
 [ext_resource type="AudioStream" uid="uid://bjbliqrsglpmp" path="res://Audio/True 8-Bit Music/Streets/Streets Full Track.wav" id="2_tmqy7"]
@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://byt1dygndmse1" path="res://Audio/Interactable_Button.wav" id="6_hhlvl"]
 [ext_resource type="AudioStream" uid="uid://dl2mkmn401o8r" path="res://Audio/Interactable_Plate.wav" id="7_p361f"]
 [ext_resource type="AudioStream" uid="uid://cppxm8tnt0k5b" path="res://Audio/EnemyDetect.wav" id="8_4fg7f"]
+[ext_resource type="AudioStream" uid="uid://dd8l0to6jlph1" path="res://Audio/LaserHit.wav" id="9_uw24f"]
 
 [node name="AudioController" type="Node2D"]
 script = ExtResource("1_1hk6m")
@@ -38,4 +39,8 @@ bus = &"SFX"
 
 [node name="EnemyDetect" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_4fg7f")
+bus = &"SFX"
+
+[node name="LaserCollision" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_uw24f")
 bus = &"SFX"

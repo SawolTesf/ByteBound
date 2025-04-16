@@ -11,4 +11,5 @@ func _ready() -> void:
 	message_timer.timeout.connect(_on_timeout)
 
 func _on_timeout():
+	print(message_timer)
 	visible = false

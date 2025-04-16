@@ -5,42 +5,19 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	if not mute:
-		play_music()
+	play_sound("Music")
 
-# Play BG Music
-func play_music():
-	if not mute:
-		$Music.play()
+# Get the node for the sound and play it
+func play_sound(sound: String) -> void:
+	var sound_node = get_node_or_null(sound)
+	sound_node.play()
 
-# Play Laser Field
-func play_lazer(isPlay):
-	if isPlay:
-		$LazerField.play()
-	else:
-		$LazerField.stop()
+# Get the node for the sound and stop it
+func stop_sound(sound: String) -> void:
+	var sound_node = get_node_or_null(sound)
+	sound_node.stop()
 
-# Play Player Jump
-func play_jump():
-	if not mute:
-		$PlayerJump.play()
-
-# Play Key Collect
-func play_key_collected():
-	if not mute:
-		$CardCollect.play()
-
-# Play Button Interact
-func play_button_pressed():
-	if not mute:
-		$ButtonInteract.play()
-
-# Play Plate Stepped
-func play_plate_stepped():
-	if not mute:
-		$PlateStepped.play()
-
-# Play Enemy Detect
-func play_enemy_detect():
-	if not mute:
-		$EnemyDetect.play()
+# Check if the sound node is playing
+func is_playing(sound: String) -> bool:
+	var sound_node = get_node_or_null(sound)
+	return sound_node.playing

@@ -19,8 +19,6 @@ var sight_distance: float
 
 func _ready() -> void:
 	body_entered.connect(_on_fov_entered)
-	#detect = get_node("PlayerDetect")
-
 	
 ## Sets up the fov variables. these variables should be passed in from the parent
 func init(body : Node2D, segments : int, angle : float, distance : float) -> void:
@@ -112,5 +110,5 @@ func update(direction : float) -> void:
 func _on_fov_entered(body: Node2D) -> void:
 	if body.name ==  "Player":
 		#detect.play()
-		AudioController.play_enemy_detect()
+		AudioController.play_sound("EnemyDetect")
 		SceneManager.reload()

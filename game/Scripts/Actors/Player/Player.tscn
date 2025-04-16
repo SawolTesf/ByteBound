@@ -163,8 +163,7 @@ debug_color = Color(0.86713, 0.322044, 0.392222, 0.42)
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="." groups=["Player"]]
 sprite_frames = SubResource("SpriteFrames_mxm4r")
-animation = &"Fall"
-frame_progress = 0.927161
+animation = &"Idle"
 
 [node name="Hitbox" type="Area2D" parent="." groups=["Player"]]
 collision_layer = 2

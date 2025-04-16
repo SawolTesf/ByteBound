@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://1qa8vshk26o3"]
+[gd_scene load_steps=18 format=3 uid="uid://1qa8vshk26o3"]
 
 [ext_resource type="Texture2D" uid="uid://cpqxip1tajkrg" path="res://Assets/Objects/Barriers/RedBeam/Disabled/RedBeamDisabled7.png" id="1_ajpgw"]
 [ext_resource type="Script" path="res://Scripts/Objects/Hazards/Lazers/RedLaser/RedLazer.gd" id="1_fw848"]
@@ -13,7 +13,6 @@
 [ext_resource type="Texture2D" uid="uid://c26trcbdcu17g" path="res://Assets/Objects/Barriers/RedBeam/Active/RedBeamActive3.png" id="10_llmur"]
 [ext_resource type="Texture2D" uid="uid://bqdewydm0dhly" path="res://Assets/Objects/Barriers/RedBeam/Active/RedBeamActive4.png" id="11_plsqa"]
 [ext_resource type="Texture2D" uid="uid://dsl85lqvvmhh1" path="res://Assets/Objects/Barriers/RedBeam/Active/RedBeamActive5.png" id="12_iedjm"]
-[ext_resource type="AudioStream" uid="uid://dtun8ph7ir3p3" path="res://Audio/LaserField.wav" id="14_gk3x6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lih6r"]
 size = Vector2(9, 48)
@@ -121,9 +120,3 @@ animation = &"Active"
 position = Vector2(1.5, -1)
 scale = Vector2(0.359375, 0.75)
 texture = SubResource("GradientTexture2D_v4ri4")
-
-[node name="LazerSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("14_gk3x6")
-volume_db = -7.25
-
-[node name="HitSound" type="AudioStreamPlayer2D" parent="."]

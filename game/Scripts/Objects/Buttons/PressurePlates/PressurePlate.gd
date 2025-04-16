@@ -30,7 +30,7 @@ func _on_body_exited(body: Node2D) -> void:
 		
 func signal_emiter() -> void:
 	#plateStepped.play()
-	AudioController.play_plate_stepped()
+	AudioController.play_sound("PlateStepped")
 
 	if type != Globals.ButtonType.DEFAULT and is_activated:
 		SignalHub.emit_pressure_plate_activated(type)

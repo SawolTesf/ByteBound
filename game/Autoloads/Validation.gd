@@ -4,7 +4,7 @@ extends Node
 ## Each check function has debugging built in.
 ## Each function should check if the value exists, 
 ## Attempt to set it if it is a node from the child list
-## Thow an error if it could not be set.
+## Throw an error if it could not be set.
 ## Return true or false depending if the var was set.
 
 

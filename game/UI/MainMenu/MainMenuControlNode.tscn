@@ -59,12 +59,12 @@ custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="VBox" type="VBoxContainer" parent="Panel/HBoxContainer/VBoxContainer/ButtonContainer"]
+[node name="HBox" type="HBoxContainer" parent="Panel/HBoxContainer/VBoxContainer/ButtonContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 alignment = 1
 
-[node name="New_Game" type="Button" parent="Panel/HBoxContainer/VBoxContainer/ButtonContainer/VBox"]
+[node name="New_Game" type="Button" parent="Panel/HBoxContainer/VBoxContainer/ButtonContainer/HBox"]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("2_3yayr")
@@ -75,7 +75,7 @@ theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
 text = "New Game"
 
-[node name="Select_Level" type="Button" parent="Panel/HBoxContainer/VBoxContainer/ButtonContainer/VBox"]
+[node name="Select_Level" type="Button" parent="Panel/HBoxContainer/VBoxContainer/ButtonContainer/HBox"]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("2_3yayr")
@@ -84,7 +84,7 @@ theme_override_colors/font_outline_color = Color(0, 0.615686, 0.701961, 1)
 theme_override_constants/outline_size = 10
 text = "Select Level"
 
-[node name="Settings" type="Button" parent="Panel/HBoxContainer/VBoxContainer/ButtonContainer/VBox"]
+[node name="Settings" type="Button" parent="Panel/HBoxContainer/VBoxContainer/ButtonContainer/HBox"]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("2_3yayr")
@@ -93,7 +93,7 @@ theme_override_colors/font_outline_color = Color(0, 0.615686, 0.701961, 1)
 theme_override_constants/outline_size = 10
 text = "Settings"
 
-[node name="Quit" type="Button" parent="Panel/HBoxContainer/VBoxContainer/ButtonContainer/VBox"]
+[node name="Quit" type="Button" parent="Panel/HBoxContainer/VBoxContainer/ButtonContainer/HBox"]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("2_3yayr")
