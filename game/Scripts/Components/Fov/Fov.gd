@@ -109,6 +109,6 @@ func update(direction : float) -> void:
 #Signals -------------------------------------------------------------------------------------------------
 func _on_fov_entered(body: Node2D) -> void:
 	if body.name ==  "Player":
-		#detect.play()
+		
 		AudioController.play_sound("EnemyDetect")
-		SceneManager.reload()
+		body.handleDeath()
