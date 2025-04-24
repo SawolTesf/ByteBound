@@ -51,4 +51,4 @@ func _on_body_entered(body : Node) -> void:
 		if is_active:
 			#hitSound.play()
 			AudioController.play_sound("LaserCollision")
-			SceneManager.reload()
+			body.handleDeath()
