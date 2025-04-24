@@ -27,9 +27,11 @@ class_name Enemy extends CharacterBody2D
 # Chase feature
 @export_category("Chase")
 @export var chase_duration: float = 5.0
+@export var chase_modulate_color: Color = Color(1, 0, 0, 0.6)
 var chase_timer: Timer
 var is_chasing: bool = false
 var chase_target: Node2D
+var _original_fov_modulate: Color
 
 var ray_params: PhysicsRayQueryParameters2D
 var player_in_range: bool
@@ -57,6 +59,8 @@ func _ready() -> void:
 	gravity.init(self)
 	# setup chase timer
 	setup_chase_timer()
+	# cache original FoV color for alert tint
+	_original_fov_modulate = fov.modulate
 
 
 func _physics_process(delta: float) -> void:
@@ -69,7 +73,7 @@ func _physics_process(delta: float) -> void:
 	# Chase behavior override
 	if is_chasing and chase_target:
 		var dx = chase_target.global_position.x - global_position.x
-		direction = dx != 0 ? sign(dx) : direction
+		direction = sign(dx) if dx != 0 else direction
 		movement.handle_horizontal_input(self, direction, delta)
 		move_and_slide()
 		return
@@ -139,11 +143,15 @@ func setup_chase_timer() -> void:
 func start_chase(target: Node2D) -> void:
 	chase_target = target
 	is_chasing = true
+	# tint FoV to alert color
+	fov.modulate = chase_modulate_color
 	chase_timer.start()
 
 func _on_chase_timeout() -> void:
 	is_chasing = false
 	chase_target = null
+	# restore FoV tint
+	fov.modulate = _original_fov_modulate
 	# resume normal behavior
 	if can_move:
 		move_timer.start()
