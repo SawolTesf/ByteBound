@@ -6,6 +6,8 @@ class_name Player extends CharacterBody2D
 @export var hand : Node
 @export var camera : Camera2D
 @export var movement_stats: MoveStats
+@onready var player_sprite: AnimatedSprite2D = $PlayerSprite
+@onready var explosion_sprite: AnimatedSprite2D = $ExplosionSprite
 
 var has_key: bool = false
 var was_spoted : bool = false
@@ -18,6 +20,10 @@ var dir : int # Constantly updated based on input
 
 const PUSH_FORCE: float = 15.0
 const MIN_PUSH_FORCE: float = 1.0
+
+#Variables to handle respawn
+var isDead = false
+var deathTimer = null
 
 # Builtins --------------------------------------------------------------------
 func _ready() -> void:
@@ -38,12 +44,19 @@ func _ready() -> void:
 	SignalHub.key_collected.connect(_on_key_collected)
 	
 	# fov signals
-	SignalHub.fov_entered.connect(_on_fov_entered)
+	#SignalHub.fov_entered.connect(_on_fov_entered)
 	
 	# hitbox signals
 	SignalHub.hitbox_entered.connect(_on_hitbox_entered)
 	SignalHub.hitbox_exited.connect(_on_hitbox_exited)
-
+	
+	# setup death timers and states to handle respawn
+	deathTimer = Timer.new()
+	deathTimer.one_shot = true #we only want the timer to run once for every death
+	deathTimer.wait_time = 1.0 #Delay in respawn
+	deathTimer.timeout.connect(_on_death_timer_timeout) #connect the functions
+	add_child(deathTimer) #create the timer child object
+	
 	
 func _physics_process(delta: float) -> void:
 	state_controller.process_physics(delta)
@@ -73,6 +86,10 @@ func _input(event : InputEvent) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	state_controller.process_input(event)
 
+
+func _on_death_timer_timeout():
+	#When timer runs out, we reload the scene
+	SceneManager.reload()
 		
 	
 # Signals --------------------------------------------------------------------
@@ -80,12 +97,11 @@ func _on_key_collected() -> void:
 	has_key = true
 	Debug.debug(self, "Player Collected a Key\nHas Key: %s" % has_key, false)
 
-
-func _on_fov_entered(caller : Node2D, body : Node2D) -> void:
+#Death by fov is already handled by fov script
+'''func _on_fov_entered(caller : Node2D, body : Node2D) -> void:
 	if self == body:
 		if caller is Enemy:
-			Debug.debug(self, "Player Was Spotted by the enemy", false)
-			SceneManager.reload()
+			handleDeath("enemy")'''
 
 			
 ## Determine which hitbox the player hit
@@ -111,6 +127,26 @@ func _on_hitbox_exited(caller : Node2D, body : Node2D):
 			caller.in_range = false
 			throwable_in_range = false
 			Debug.debug(self, "Player Exited the hitbox of the throwable %s" % caller.in_range, false)
+
+func handleDeath():
+	if isDead:
+		return #stop it from running the program multiple times if it dies
+		
+	isDead = true
+	
+	set_process_input(false) #stop taking player input on time of death
+	set_process(false)
+	set_physics_process(false)
+	
+	velocity = Vector2.ZERO
+	
+	player_sprite.visible = false
+	
+	
+	explosion_sprite.visible = true
+	deathTimer.start()
+	explosion_sprite.play("explode")
+	
 
 # Timers ---------------------------------------------------------------------
 func dash_cooldown_check(delta: float):
