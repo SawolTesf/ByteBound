@@ -24,6 +24,13 @@ class_name Enemy extends CharacterBody2D
 @export var can_move: bool
 @export var can_idle: bool
 
+# Chase feature
+@export_category("Chase")
+@export var chase_duration: float = 5.0
+var chase_timer: Timer
+var is_chasing: bool = false
+var chase_target: Node2D
+
 var ray_params: PhysicsRayQueryParameters2D
 var player_in_range: bool
 var player_in_sight: bool
@@ -48,7 +55,9 @@ func _ready() -> void:
 
 	fov.init(self, num_segments, sight_angle, sight_distance)
 	gravity.init(self)
-	
+	# setup chase timer
+	setup_chase_timer()
+
 
 func _physics_process(delta: float) -> void:
 	# Run fov and sight check
@@ -56,13 +65,21 @@ func _physics_process(delta: float) -> void:
 	# Things that always need to be handled
 	gravity.physics_update(delta)
 	animations.handle_move_animation(direction)
-	
+
+	# Chase behavior override
+	if is_chasing and chase_target:
+		var dx = chase_target.global_position.x - global_position.x
+		direction = dx != 0 ? sign(dx) : direction
+		movement.handle_horizontal_input(self, direction, delta)
+		move_and_slide()
+		return
+
+	# Patrol/idle behavior
 	if (can_move and can_idle) or can_move:
 		if is_idle and can_idle:
 			return
 		else:
 			movement.handle_horizontal_input(self, direction, delta)
-	
 	move_and_slide()
 	
 
@@ -110,47 +127,25 @@ func _on_idle_timeout() -> void:
 		#print("idle and move enabled start moving again")
 		is_idle = false # we want to move
 		move_timer.start() # we just finished idleing start moving
-	
 
+# Chase timer setup and handlers
+func setup_chase_timer() -> void:
+	chase_timer = Timer.new()
+	chase_timer.one_shot = true
+	chase_timer.wait_time = chase_duration
+	chase_timer.timeout.connect(_on_chase_timeout)
+	add_child(chase_timer)
 
-### State Implementation
-# @export_category("Components")
-# @export var fov : FoV
-# @export var sprite : AnimatedSprite2D
-# @export var state_machine : StateMachine
-# @export var move_stats : MoveStats
+func start_chase(target: Node2D) -> void:
+	chase_target = target
+	is_chasing = true
+	chase_timer.start()
 
-# @export_category("FoV variables")
-# @export var fov_segments : int = 20
-# @export var fov_distance : float = 100.0
-# @export var fov_angle : float = 45.0
-
-# var ray_params: PhysicsRayQueryParameters2D
-# var player_in_range: bool = false 
-# var player_in_sight: bool = false
-
-
-# # Built-Ins -----------------------------------------------------------------
-# func _ready() -> void:
-# 	# Make sure the refrences were set.
-# 	Validate.check_reference(self, "fov", "FoV")
-# 	Validate.check_reference(self, "sprite", "EnemySprite")
-# 	Validate.check_reference(self, "state_machine", "StateMachine")
-
-# 	assert(fov != null , "ERROR: no fov")
-# 	assert(sprite != null, "ERROR: no sprite")
-# 	assert(state_machine != null, "ERROR: No State Machine")
-
-# 	# Initalize the components
-# 	fov.init(self, fov_segments, fov_angle, fov_distance)
-# 	state_machine.init(self, sprite, move_stats)
-
-# func _unhandled_input(event: InputEvent) -> void:
-# 	state_machine.process_input(event)
-		
-# func _process(delta: float) -> void:
-# 	state_machine.process_frame(delta)
-	
-# func _physics_process(delta: float) -> void:
-# 	state_machine.process_physics(delta)
-# 	fov.update()
+func _on_chase_timeout() -> void:
+	is_chasing = false
+	chase_target = null
+	# resume normal behavior
+	if can_move:
+		move_timer.start()
+	elif can_idle:
+		idle_timer.start()

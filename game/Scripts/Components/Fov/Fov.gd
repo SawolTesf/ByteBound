@@ -108,7 +108,8 @@ func update(direction : float) -> void:
 
 #Signals -------------------------------------------------------------------------------------------------
 func _on_fov_entered(body: Node2D) -> void:
-	if body.name ==  "Player":
-		#detect.play()
+	if body.name == "Player":
+		# play detection sound and start chase on the parent enemy
 		AudioController.play_sound("EnemyDetect")
-		SceneManager.reload()
+		if parent.has_method("start_chase"):
+			parent.start_chase(body)
