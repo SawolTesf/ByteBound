@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=4 uid="uid://cyp10gpo2ujqo"]
+[gd_scene load_steps=7 format=4 uid="uid://cyp10gpo2ujqo"]
 
 [ext_resource type="PackedScene" uid="uid://dj33b6ynfouwy" path="res://Scenes/Level_Template.tscn" id="1_fde0d"]
 [ext_resource type="PackedScene" uid="uid://36pkp13b1yer" path="res://Scripts/Objects/Platforms/Oneway/OneWayPlatform.tscn" id="2_qvyih"]
 [ext_resource type="Script" path="res://Scenes/Levels/Tutorials/tutorial_text.gd" id="3_svdo4"]
+[ext_resource type="LabelSettings" uid="uid://dub5gxe28mu8s" path="res://Fonts/LabelSettings.tres" id="3_v0j1v"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_dpsou"]
 polygon = PackedVector2Array(-32, 320, 720, 320, 720, -48, -32, -48, -32, -128, 896, -128, 896, 384, -128, 384, -128, -128, -32, -128)
@@ -22,7 +23,6 @@ visible = false
 visible = false
 
 [node name="TutorialText" type="CanvasLayer" parent="UI" index="2" node_paths=PackedStringArray("message_timer", "text")]
-visible = false
 script = ExtResource("3_svdo4")
 message_timer = NodePath("Timer")
 text = NodePath("Panel/TextEdit")
@@ -31,9 +31,10 @@ text = NodePath("Panel/TextEdit")
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -136.0
-offset_right = 136.0
-offset_bottom = 88.0
+offset_left = -194.0
+offset_top = 29.0
+offset_right = 160.0
+offset_bottom = 89.0
 grow_horizontal = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
@@ -43,9 +44,12 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -13.0
+offset_right = 167.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Use Spacebar to jump to reach hard to get places. Press twice to double jump"
+text = "Use [SPACE] to jump to reach hard to get places. Press twice to double jump"
+label_settings = ExtResource("3_v0j1v")
 horizontal_alignment = 1
 autowrap_mode = 2
 
