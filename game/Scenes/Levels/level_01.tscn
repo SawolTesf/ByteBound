@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://3p516xh7bwo4"]
+[gd_scene load_steps=16 format=4 uid="uid://3p516xh7bwo4"]
 
 [ext_resource type="PackedScene" uid="uid://dj33b6ynfouwy" path="res://Scenes/Level_Template.tscn" id="1_yavgd"]
 [ext_resource type="PackedScene" uid="uid://biuxaol52s4r8" path="res://Scripts/Objects/Buttons/PressurePlates/BluePressurePlate/BluePressurePlate.tscn" id="2_gt7c3"]
@@ -50,6 +50,9 @@ polygon = PackedVector2Array(1152, 144, 1168, 144, 1168, 128, 1152, 128)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_56uus"]
 polygon = PackedVector2Array(-48, 144, -48, 448, 1120, 448, 1120, -32, 256, -32, 256, 144, 0, 144, 0, 208, 272, 208, 272, 144, 352, 144, 352, 208, 464, 208, 464, 176, 384, 176, 368, 160, 368, 96, 384, 80, 464, 80, 464, 32, 368, 32, 368, 0, 1056, 0, 1056, 336, 0, 336, 0, 208, 0, 144)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_nxv2w"]
+polygon = PackedVector2Array(1, 210, 0, 336, 1056, 336, 1056, 0, 368, 0, 368, 32, 464, 32, 464, 80, 384, 80, 368, 96, 368, 160, 384, 176, 464, 176, 464, 208, 352, 208, 352, 144, 272, 144, 272, 208, 16, 208, 16, 144, 256, 144, 256, -32, 1120, -32, 1120, 448, -48, 448, -48, 144, 16, 144, 16, 208)
 
 [node name="Level01" instance=ExtResource("1_yavgd")]
 
@@ -115,6 +118,9 @@ occluder = SubResource("OccluderPolygon2D_0sl3x")
 [node name="LightOccluder2D" type="LightOccluder2D" parent="LightOccluders" index="3"]
 visible = false
 occluder = SubResource("OccluderPolygon2D_56uus")
+
+[node name="LightOccluder2D2" type="LightOccluder2D" parent="LightOccluders" index="4"]
+occluder = SubResource("OccluderPolygon2D_nxv2w")
 
 [node name="Platforms" type="Node" parent="." index="11"]
 
