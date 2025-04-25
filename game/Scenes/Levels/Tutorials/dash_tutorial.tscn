@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=4 uid="uid://dx4o4jjxn55ai"]
+[gd_scene load_steps=6 format=4 uid="uid://dx4o4jjxn55ai"]
 
 [ext_resource type="PackedScene" uid="uid://dj33b6ynfouwy" path="res://Scenes/Level_Template.tscn" id="1_thgdx"]
 [ext_resource type="PackedScene" uid="uid://1qa8vshk26o3" path="res://Scripts/Objects/Hazards/Lazers/RedLaser/RedLazer.tscn" id="2_44ftb"]
@@ -6,6 +6,9 @@
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_6f1oy"]
 polygon = PackedVector2Array(152, 320, 152, 320, -57, 320, -56, 0, 776, 0, 777, 320, 536, 320, 536, 416, 1000, 416, 1000, -176, -344, -176, -344, 416, 152, 416)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_lq1uo"]
+polygon = PackedVector2Array(320, 320, 384, 320, 384, 416, 320, 416)
 
 [node name="DashTutorial" instance=ExtResource("1_thgdx")]
 
@@ -62,6 +65,9 @@ position = Vector2(352, 294)
 [node name="LightOccluder2D" type="LightOccluder2D" parent="LightOccluders" index="0"]
 position = Vector2(8, 0)
 occluder = SubResource("OccluderPolygon2D_6f1oy")
+
+[node name="LightOccluder2D2" type="LightOccluder2D" parent="LightOccluders" index="1"]
+occluder = SubResource("OccluderPolygon2D_lq1uo")
 
 [node name="RedLazer" parent="." index="7" instance=ExtResource("2_44ftb")]
 position = Vector2(236, 344)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=4 uid="uid://cyp10gpo2ujqo"]
+[gd_scene load_steps=7 format=4 uid="uid://cyp10gpo2ujqo"]
 
 [ext_resource type="PackedScene" uid="uid://dj33b6ynfouwy" path="res://Scenes/Level_Template.tscn" id="1_fde0d"]
 [ext_resource type="PackedScene" uid="uid://36pkp13b1yer" path="res://Scripts/Objects/Platforms/Oneway/OneWayPlatform.tscn" id="2_qvyih"]
@@ -9,6 +9,9 @@ polygon = PackedVector2Array(-32, 320, 720, 320, 720, -48, -32, -48, -32, -128, 
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_r0yne"]
 polygon = PackedVector2Array(496, 160, 528, 160, 512, 176)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_jeypd"]
+polygon = PackedVector2Array(640, 136, 720, 136, 720, 128, 640, 128)
 
 [node name="JumpTutorial" instance=ExtResource("1_fde0d")]
 
@@ -74,6 +77,9 @@ occluder = SubResource("OccluderPolygon2D_dpsou")
 
 [node name="LightOccluder2D2" type="LightOccluder2D" parent="LightOccluders" index="1"]
 occluder = SubResource("OccluderPolygon2D_r0yne")
+
+[node name="LightOccluder2D3" type="LightOccluder2D" parent="LightOccluders" index="2"]
+occluder = SubResource("OccluderPolygon2D_jeypd")
 
 [node name="OneWayPlatform" parent="." index="7" instance=ExtResource("2_qvyih")]
 position = Vector2(328, 200)
