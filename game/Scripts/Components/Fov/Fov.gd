@@ -1,4 +1,5 @@
-class_name FoV extends Area2D
+extends Area2D
+class_name FoV
 ## calculates and draws the fov of the character
 ##
 ## Uses RayCast2D to gather points in space to draw the fov collision polygon with.
@@ -113,9 +114,3 @@ func _on_fov_entered(body: Node2D) -> void:
 		AudioController.play_sound("EnemyDetect")
 		if parent.has_method("start_chase"):
 			parent.start_chase(body)
-	'''
-	if body.name ==  "Player":
-		
-		AudioController.play_sound("EnemyDetect")
-		body.handleDeath()
-''''
