@@ -41,9 +41,10 @@ var move_timer: Timer
 var idle_timer: Timer
 var is_idle: bool
 var direction: float
-
-
-
+var patrol_origin: Vector2
+var is_returning: bool = false
+@export var return_threshold: float = 4.0
+var hitbox: Area2D
 
 # Built-Ins -----------------------------------------------------------------
 func _ready() -> void:
@@ -61,40 +62,67 @@ func _ready() -> void:
 	setup_chase_timer()
 	# cache original FoV color for alert tint
 	_original_fov_modulate = fov.modulate
+	# record patrol start position
+	patrol_origin = global_position
+	# safely get HitBox node and connect if present
+	hitbox = get_node_or_null("HitBox")
+	if hitbox:
+		hitbox.body_entered.connect(_on_HitBox_body_entered)
 
 
 func _physics_process(delta: float) -> void:
-	# Run fov and sight check
 	fov.update(direction)
-	# Things that always need to be handled
 	gravity.physics_update(delta)
 	animations.handle_move_animation(direction)
 
-	# Chase behavior override
-	if is_chasing and chase_target:
+	if is_returning:
+		# Return-to-patrol override
+		var dx_ret = patrol_origin.x - global_position.x
+		if abs(dx_ret) > return_threshold:
+			direction = sign(dx_ret)
+			movement.handle_horizontal_input(self, direction, delta)
+			var prev_x = global_position.x
+			move_and_slide()
+			if is_on_floor() and abs(global_position.x - prev_x) < 1.0:
+				movement.handle_jump(self)
+				move_and_slide()
+			# detect contact during return
+			for i in range(get_slide_collision_count()):
+				var col = get_slide_collision(i).get_collider()
+				if col is Player:
+					col.handleDeath()
+		else:
+			# arrived back, resume patrol
+			is_returning = false
+			direction = starting_direction
+			if can_move or (can_idle and can_move): move_timer.start()
+			elif can_idle: idle_timer.start()
+		return
+	elif is_chasing and chase_target:
+		# Chase override with jump
 		var dx = chase_target.global_position.x - global_position.x
 		direction = sign(dx) if dx != 0 else direction
+		var dy = chase_target.global_position.y - global_position.y
+		if dy < -10 and is_on_floor():
+			movement.handle_jump(self)
 		movement.handle_horizontal_input(self, direction, delta)
 		move_and_slide()
-		# detect contact with player during chase
+		# detect contact and end chase
 		for i in range(get_slide_collision_count()):
-			var collider = get_slide_collision(i).get_collider()
-			if collider is Player:
-				collider.handleDeath()
+			var col = get_slide_collision(i).get_collider()
+			if col is Player:
+				col.handleDeath()
 		return
-
 	# Patrol/idle behavior
-	if (can_move and can_idle) or can_move:
-		if is_idle and can_idle:
-			return
-		else:
+	if can_move:
+		if not (is_idle and can_idle):
 			movement.handle_horizontal_input(self, direction, delta)
 	move_and_slide()
-	# detect contact with player during patrol/chase fallback
+	# detect contact during patrol
 	for i in range(get_slide_collision_count()):
-		var collider = get_slide_collision(i).get_collider()
-		if collider is Player:
-			collider.handleDeath()
+		var col = get_slide_collision(i).get_collider()
+		if col is Player:
+			col.handleDeath()
 
 # Timers -------------------------------------------------------------------
 func setup_move_timer() -> void:
@@ -161,8 +189,9 @@ func _on_chase_timeout() -> void:
 	chase_target = null
 	# restore FoV tint
 	fov.modulate = _original_fov_modulate
-	# resume normal behavior
-	if can_move:
-		move_timer.start()
-	elif can_idle:
-		idle_timer.start()
+	# begin return to patrol
+	is_returning = true
+
+func _on_HitBox_body_entered(body: Node) -> void:
+	if body is Player:
+		body.handleDeath()
