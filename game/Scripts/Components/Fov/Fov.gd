@@ -113,3 +113,9 @@ func _on_fov_entered(body: Node2D) -> void:
 		AudioController.play_sound("EnemyDetect")
 		if parent.has_method("start_chase"):
 			parent.start_chase(body)
+	'''
+	if body.name ==  "Player":
+		
+		AudioController.play_sound("EnemyDetect")
+		body.handleDeath()
+''''

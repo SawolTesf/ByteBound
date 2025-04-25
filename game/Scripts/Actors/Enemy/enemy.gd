@@ -76,6 +76,11 @@ func _physics_process(delta: float) -> void:
 		direction = sign(dx) if dx != 0 else direction
 		movement.handle_horizontal_input(self, direction, delta)
 		move_and_slide()
+		# detect contact with player during chase
+		for i in range(get_slide_collision_count()):
+			var collider = get_slide_collision(i).get_collider()
+			if collider is Player:
+				collider.handleDeath()
 		return
 
 	# Patrol/idle behavior
@@ -85,7 +90,11 @@ func _physics_process(delta: float) -> void:
 		else:
 			movement.handle_horizontal_input(self, direction, delta)
 	move_and_slide()
-	
+	# detect contact with player during patrol/chase fallback
+	for i in range(get_slide_collision_count()):
+		var collider = get_slide_collision(i).get_collider()
+		if collider is Player:
+			collider.handleDeath()
 
 # Timers -------------------------------------------------------------------
 func setup_move_timer() -> void:
