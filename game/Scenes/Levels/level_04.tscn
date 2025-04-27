@@ -121,6 +121,9 @@ dash_distance = 100.0
 [node name="Level_04" instance=ExtResource("1_0sa7l")]
 metadata/_edit_vertical_guides_ = [-28.0]
 
+[node name="ExitDoor" parent="." index="0"]
+position = Vector2(472, 288)
+
 [node name="PauseMenu" parent="UI" index="0"]
 visible = false
 
@@ -140,9 +143,6 @@ position = Vector2(-16, 16)
 
 [node name="Key" parent="Collectables" index="0"]
 position = Vector2(360, 400)
-
-[node name="ExitDoor" parent="." index="5"]
-position = Vector2(472, 288)
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="LightOccluders" index="0"]
 occluder = SubResource("OccluderPolygon2D_irmv3")
