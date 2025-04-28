@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=4 uid="uid://cyp10gpo2ujqo"]
+[gd_scene load_steps=8 format=4 uid="uid://cyp10gpo2ujqo"]
 
 [ext_resource type="PackedScene" uid="uid://dj33b6ynfouwy" path="res://Scenes/Level_Template.tscn" id="1_fde0d"]
 [ext_resource type="PackedScene" uid="uid://36pkp13b1yer" path="res://Scripts/Objects/Platforms/Oneway/OneWayPlatform.tscn" id="2_qvyih"]
+[ext_resource type="LabelSettings" uid="uid://c2oiwjha5g1c6" path="res://Font/TutortialText.tres" id="3_shsjw"]
 [ext_resource type="Script" path="res://Scenes/Levels/Tutorials/tutorial_text.gd" id="3_svdo4"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_dpsou"]
@@ -48,7 +49,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Use Spacebar to jump to reach hard to get places. Press twice to double jump"
+text = "Press [SPACE] to jump to reach hard to get places. Press twice to double jump"
+label_settings = ExtResource("3_shsjw")
 horizontal_alignment = 1
 autowrap_mode = 2
 

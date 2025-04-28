@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=4 uid="uid://yq8xvmnudp37"]
+[gd_scene load_steps=8 format=4 uid="uid://yq8xvmnudp37"]
 
 [ext_resource type="PackedScene" uid="uid://dj33b6ynfouwy" path="res://Scenes/Level_Template.tscn" id="1_tp3ig"]
 [ext_resource type="Script" path="res://Scenes/Levels/Tutorials/throw_tutorial.gd" id="2_3phd5"]
+[ext_resource type="LabelSettings" uid="uid://c2oiwjha5g1c6" path="res://Font/TutortialText.tres" id="3_5l7xa"]
 [ext_resource type="PackedScene" uid="uid://b5awsjbb8w6pi" path="res://Scripts/Objects/ThrowableObjects/ThrowableObject.tscn" id="3_ox7w2"]
 [ext_resource type="PackedScene" uid="uid://biuxaol52s4r8" path="res://Scripts/Objects/Buttons/PressurePlates/BluePressurePlate/BluePressurePlate.tscn" id="4_sbsd2"]
 [ext_resource type="PackedScene" uid="uid://deuxlw8xiqjyq" path="res://Scripts/Objects/Doors/TrapDoors/BlueTrapDoor/BlueTrapDoor.tscn" id="4_t25x1"]
@@ -21,6 +22,7 @@ visible = false
 visible = false
 
 [node name="TutorialText" type="CanvasLayer" parent="UI" index="2" node_paths=PackedStringArray("message_timer", "object1")]
+visible = false
 script = ExtResource("2_3phd5")
 message_timer = NodePath("Timer")
 object1 = NodePath("../../ThrowableObject")
@@ -44,7 +46,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Press [E] to pick up the ball
-Press [T] to throw the ball"
+Press [T] to throw it"
+label_settings = ExtResource("3_5l7xa")
 autowrap_mode = 2
 
 [node name="Timer" type="Timer" parent="UI/TutorialText" index="1"]

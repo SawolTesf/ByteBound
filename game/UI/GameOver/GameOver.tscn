@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://d3ggpjjansf68"]
+[gd_scene load_steps=4 format=3 uid="uid://d3ggpjjansf68"]
 
 [ext_resource type="Script" path="res://Scripts/UI/WinScreen/winScene.gd" id="1_uns16"]
 [ext_resource type="Theme" uid="uid://cjrb4f2yj7vjw" path="res://UI/MainMenu/MainMenuTheme.tres" id="2_i6lk6"]
+[ext_resource type="LabelSettings" uid="uid://baonky01jfi24" path="res://Font/Label.tres" id="3_pj7bs"]
 
 [node name="Game_Won" type="Control"]
 layout_mode = 3
@@ -52,6 +53,7 @@ theme_override_font_sizes/font_size = 45
 text = "The Robot is 
 Free!
 "
+label_settings = ExtResource("3_pj7bs")
 horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true

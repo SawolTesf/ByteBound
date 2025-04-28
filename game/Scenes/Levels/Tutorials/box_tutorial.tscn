@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=4 uid="uid://dgdwyprak6g4r"]
+[gd_scene load_steps=13 format=4 uid="uid://dgdwyprak6g4r"]
 
 [ext_resource type="PackedScene" uid="uid://dj33b6ynfouwy" path="res://Scenes/Level_Template.tscn" id="1_jhief"]
 [ext_resource type="Script" path="res://Scenes/Levels/Tutorials/box_tutorial.gd" id="2_ggn68"]
+[ext_resource type="LabelSettings" uid="uid://c2oiwjha5g1c6" path="res://Font/TutortialText.tres" id="3_g7mvi"]
 [ext_resource type="PackedScene" uid="uid://dveonqmfkatdx" path="res://Scripts/Objects/MovableSquare/MovableSquare.tscn" id="3_o5i6x"]
 [ext_resource type="PackedScene" uid="uid://bbnivbfgvtu3c" path="res://Scripts/Actors/Enemy/Enemy.tscn" id="4_5jsd5"]
 [ext_resource type="Script" path="res://Scripts/Components/Movement/move_stats.gd" id="5_w6yo4"]
@@ -115,6 +116,7 @@ offset_right = 2.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Boxes have many uses, let us discover them together!"
+label_settings = ExtResource("3_g7mvi")
 horizontal_alignment = 1
 autowrap_mode = 2
 
