@@ -8,8 +8,6 @@ var type : Globals.LazerType = Globals.LazerType.DEFAULT
 
 # set true when the player leaves pressure plate, set false one the Active animation is playing
 var just_activated : bool = false 
-#var lazerSound : AudioStreamPlayer2D
-#var hitSound : AudioStreamPlayer2D
 
 func _ready() -> void:
 	sprite = find_child("AnimatedSprite2D")
@@ -34,15 +32,9 @@ func _process(_delta: float) -> void:
 	update_sound()
 
 func update_sound():
-	"""
-	if is_active and !lazerSound.playing:
-		lazerSound.play()
-	elif !is_active:
-		lazerSound.stop()
-	"""
 	if is_active and !AudioController.is_playing("LaserField"):
 		AudioController.play_sound("LaserField")
-	else:
+	elif !is_active:
 		AudioController.stop_sound("LaserField")
 		
 func _on_body_entered(body : Node) -> void:

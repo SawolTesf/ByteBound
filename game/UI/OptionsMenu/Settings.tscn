@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bjo6wrwi3ucpp"]
+[gd_scene load_steps=6 format=3 uid="uid://bjo6wrwi3ucpp"]
 
 [ext_resource type="Script" path="res://UI/OptionsMenu/Settings.gd" id="2_6su7d"]
 [ext_resource type="Theme" uid="uid://cjrb4f2yj7vjw" path="res://UI/MainMenu/MainMenuTheme.tres" id="2_hf7g0"]
+[ext_resource type="LabelSettings" uid="uid://baonky01jfi24" path="res://Font/Label.tres" id="3_4nthg"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_47rsq"]
 
@@ -52,6 +53,7 @@ size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 45
 text = "SETTINGS
 "
+label_settings = ExtResource("3_4nthg")
 horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true

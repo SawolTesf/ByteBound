@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=4 uid="uid://cyp10gpo2ujqo"]
+[gd_scene load_steps=8 format=4 uid="uid://cyp10gpo2ujqo"]
 
 [ext_resource type="PackedScene" uid="uid://dj33b6ynfouwy" path="res://Scenes/Level_Template.tscn" id="1_fde0d"]
 [ext_resource type="PackedScene" uid="uid://36pkp13b1yer" path="res://Scripts/Objects/Platforms/Oneway/OneWayPlatform.tscn" id="2_qvyih"]
+[ext_resource type="LabelSettings" uid="uid://c2oiwjha5g1c6" path="res://Font/TutortialText.tres" id="3_shsjw"]
 [ext_resource type="Script" path="res://Scenes/Levels/Tutorials/tutorial_text.gd" id="3_svdo4"]
 [ext_resource type="LabelSettings" uid="uid://dub5gxe28mu8s" path="res://Fonts/LabelSettings.tres" id="3_v0j1v"]
 
@@ -10,6 +11,9 @@ polygon = PackedVector2Array(-32, 320, 720, 320, 720, -48, -32, -48, -32, -128, 
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_r0yne"]
 polygon = PackedVector2Array(496, 160, 528, 160, 512, 176)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_jeypd"]
+polygon = PackedVector2Array(640, 136, 720, 136, 720, 128, 640, 128)
 
 [node name="JumpTutorial" instance=ExtResource("1_fde0d")]
 
@@ -48,8 +52,8 @@ offset_left = -13.0
 offset_right = 167.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Use [SPACE] to jump to reach hard to get places. Press twice to double jump"
-label_settings = ExtResource("3_v0j1v")
+text = "Press [SPACE] to jump to reach hard to get places. Press twice to double jump"
+label_settings = ExtResource("3_shsjw")
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -78,6 +82,9 @@ occluder = SubResource("OccluderPolygon2D_dpsou")
 
 [node name="LightOccluder2D2" type="LightOccluder2D" parent="LightOccluders" index="1"]
 occluder = SubResource("OccluderPolygon2D_r0yne")
+
+[node name="LightOccluder2D3" type="LightOccluder2D" parent="LightOccluders" index="2"]
+occluder = SubResource("OccluderPolygon2D_jeypd")
 
 [node name="OneWayPlatform" parent="." index="7" instance=ExtResource("2_qvyih")]
 position = Vector2(328, 200)
