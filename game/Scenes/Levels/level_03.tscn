@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dxugnw28lgh3r" path="res://Scripts/Objects/Buttons/Pedestals/BluePedestal/BluePedestal.tscn" id="5_5y1yh"]
 [ext_resource type="PackedScene" uid="uid://bbnivbfgvtu3c" path="res://Scripts/Actors/Enemy/Enemy.tscn" id="5_hvuqc"]
 [ext_resource type="PackedScene" uid="uid://btec7li76t31c" path="res://Scripts/Objects/Buttons/Pedestals/GreenPedestal/GreenPedestal.tscn" id="6_hwbaw"]
-[ext_resource type="Script" path="res://Scripts/Components/Movement/move_stats.gd" id="7_xxuv1"]
+[ext_resource type="Script" uid="uid://krgx50cxctd0" path="res://Scripts/Components/Movement/move_stats.gd" id="7_xxuv1"]
 [ext_resource type="PackedScene" uid="uid://dveonqmfkatdx" path="res://Scripts/Objects/MovableSquare/MovableSquare.tscn" id="10_6cuj4"]
 [ext_resource type="PackedScene" uid="uid://36pkp13b1yer" path="res://Scripts/Objects/Platforms/Oneway/OneWayPlatform.tscn" id="11_5jje8"]
 

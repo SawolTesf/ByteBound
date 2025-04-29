@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://d3ggpjjansf68"]
 
-[ext_resource type="Script" path="res://Scripts/UI/WinScreen/winScene.gd" id="1_uns16"]
+[ext_resource type="Script" uid="uid://wsd44g7abyld" path="res://Scripts/UI/WinScreen/winScene.gd" id="1_uns16"]
 [ext_resource type="Theme" uid="uid://cjrb4f2yj7vjw" path="res://UI/MainMenu/MainMenuTheme.tres" id="2_i6lk6"]
 
 [node name="Game_Won" type="Control"]

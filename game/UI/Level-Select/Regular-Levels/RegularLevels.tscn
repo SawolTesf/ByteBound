@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bp3e2lq2s4onh"]
 
-[ext_resource type="Script" path="res://UI/Level-Select/Regular-Levels/regular_levels.gd" id="1_jvdqh"]
+[ext_resource type="Script" uid="uid://dbdaqcic08cle" path="res://UI/Level-Select/Regular-Levels/regular_levels.gd" id="1_jvdqh"]
 [ext_resource type="Theme" uid="uid://cjrb4f2yj7vjw" path="res://UI/MainMenu/MainMenuTheme.tres" id="2_spj7v"]
 
 [node name="LevelSelectMenu" type="Control"]

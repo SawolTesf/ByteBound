@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=4 uid="uid://yq8xvmnudp37"]
 
 [ext_resource type="PackedScene" uid="uid://dj33b6ynfouwy" path="res://Scenes/Level_Template.tscn" id="1_tp3ig"]
-[ext_resource type="Script" path="res://Scenes/Levels/Tutorials/throw_tutorial.gd" id="2_3phd5"]
+[ext_resource type="Script" uid="uid://ddkdf06gd06po" path="res://Scenes/Levels/Tutorials/throw_tutorial.gd" id="2_3phd5"]
 [ext_resource type="PackedScene" uid="uid://b5awsjbb8w6pi" path="res://Scripts/Objects/ThrowableObjects/ThrowableObject.tscn" id="3_ox7w2"]
 [ext_resource type="PackedScene" uid="uid://biuxaol52s4r8" path="res://Scripts/Objects/Buttons/PressurePlates/BluePressurePlate/BluePressurePlate.tscn" id="4_sbsd2"]
 [ext_resource type="PackedScene" uid="uid://deuxlw8xiqjyq" path="res://Scripts/Objects/Doors/TrapDoors/BlueTrapDoor/BlueTrapDoor.tscn" id="4_t25x1"]
