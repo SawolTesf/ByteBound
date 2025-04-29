@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://dm8a6mjvdewow"]
+[gd_scene load_steps=20 format=4 uid="uid://dm8a6mjvdewow"]
 
 [ext_resource type="PackedScene" uid="uid://dj33b6ynfouwy" path="res://Scenes/Level_Template.tscn" id="1_0sa7l"]
 [ext_resource type="PackedScene" uid="uid://bbgh8q32oohdc" path="res://Scripts/Objects/Hazards/Lazers/BlueLazer/BlueLazer.tscn" id="2_nwcw5"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bbnivbfgvtu3c" path="res://Scripts/Actors/Enemy/Enemy.tscn" id="8_c3ue0"]
 [ext_resource type="Script" path="res://Scripts/Components/Movement/move_stats.gd" id="9_tjvev"]
 [ext_resource type="PackedScene" uid="uid://36pkp13b1yer" path="res://Scripts/Objects/Platforms/Oneway/OneWayPlatform.tscn" id="10_8xhmy"]
+[ext_resource type="Script" path="res://Scenes/Levels/panning_camera.gd" id="11_k53sh"]
 
 [sub_resource type="Resource" id="Resource_f1h5d"]
 resource_local_to_scene = true
@@ -181,3 +182,6 @@ scale = Vector2(1.4, 1)
 position = Vector2(576, 200)
 
 [node name="LightOccluders2" type="Node" parent="." index="11"]
+
+[node name="PanningCamera" type="Camera2D" parent="." index="12"]
+script = ExtResource("11_k53sh")

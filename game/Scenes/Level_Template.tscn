@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dj33b6ynfouwy"]
+[gd_scene load_steps=10 format=3 uid="uid://dj33b6ynfouwy"]
 
 [ext_resource type="Script" path="res://Scenes/level_template.gd" id="1_74oc5"]
 [ext_resource type="PackedScene" uid="uid://bw0ew7stacm2" path="res://Scripts/Actors/Player/Player.tscn" id="1_dpdov"]
@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://dducu000804tv" path="res://UI/Game-Overlay/GameOverlay.tscn" id="6_ppcfl"]
 [ext_resource type="PackedScene" uid="uid://dds57a87tgua8" path="res://UI/PauseMenu/Pause.tscn" id="7_24df4"]
 [ext_resource type="AudioStream" uid="uid://bjbliqrsglpmp" path="res://Audio/True 8-Bit Music/Streets/Streets Full Track.wav" id="7_o51ty"]
-[ext_resource type="Script" path="res://Assets/Objects/panning_camera.gd" id="9_bum6s"]
 
 [sub_resource type="Environment" id="Environment_2s6sk"]
 background_mode = 3
@@ -69,6 +68,3 @@ scale = Vector2(1.5, 1.5)
 position = Vector2(287, 89)
 
 [node name="LightOccluders" type="Node" parent="."]
-
-[node name="PanningCamera" type="Camera2D" parent="."]
-script = ExtResource("9_bum6s")
