@@ -23,4 +23,3 @@ func toggle_pause():
 
 func quit_game():
 	get_tree().quit()
-
