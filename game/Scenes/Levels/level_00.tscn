@@ -193,6 +193,3 @@ position = Vector2(576, 200)
 position = Vector2(568, 296)
 zoom = Vector2(3.49, 3.185)
 script = ExtResource("11_k53sh")
-
-[node name="Timer" type="Timer" parent="PanningCamera" index="0"]
-wait_time = 2.0

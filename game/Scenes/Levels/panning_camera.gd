@@ -6,10 +6,12 @@ var init_activated: bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	SignalHub.blue_pedistal_activated.connect(_pan_camera)
-
+	
 func _pan_camera():
 	if !init_activated:	
 		init_activated = true
-		if player_cam.is_current():
-			make_current()
-
+		make_current()
+		await get_tree().create_timer(1.5).timeout
+		player_cam.make_current()
+		
+	

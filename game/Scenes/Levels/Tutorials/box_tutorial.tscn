@@ -4,7 +4,6 @@
 [ext_resource type="Script" path="res://Scenes/Levels/Tutorials/box_tutorial.gd" id="2_ggn68"]
 [ext_resource type="LabelSettings" uid="uid://c2oiwjha5g1c6" path="res://Font/TutortialText.tres" id="3_g7mvi"]
 [ext_resource type="PackedScene" uid="uid://dveonqmfkatdx" path="res://Scripts/Objects/MovableSquare/MovableSquare.tscn" id="3_o5i6x"]
-[ext_resource type="LabelSettings" uid="uid://dub5gxe28mu8s" path="res://Fonts/LabelSettings.tres" id="3_xjg56"]
 [ext_resource type="PackedScene" uid="uid://bbnivbfgvtu3c" path="res://Scripts/Actors/Enemy/Enemy.tscn" id="4_5jsd5"]
 [ext_resource type="Script" path="res://Scripts/Components/Movement/move_stats.gd" id="5_w6yo4"]
 [ext_resource type="PackedScene" uid="uid://36pkp13b1yer" path="res://Scripts/Objects/Platforms/Oneway/OneWayPlatform.tscn" id="6_1ry74"]
