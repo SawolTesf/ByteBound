@@ -1,7 +1,7 @@
 [gd_scene load_steps=18 format=3 uid="uid://1qa8vshk26o3"]
 
 [ext_resource type="Texture2D" uid="uid://cpqxip1tajkrg" path="res://Assets/Objects/Barriers/RedBeam/Disabled/RedBeamDisabled7.png" id="1_ajpgw"]
-[ext_resource type="Script" path="res://Scripts/Objects/Hazards/Lazers/RedLaser/RedLazer.gd" id="1_fw848"]
+[ext_resource type="Script" uid="uid://drt4agewtorg6" path="res://Scripts/Objects/Hazards/Lazers/RedLaser/RedLazer.gd" id="1_fw848"]
 [ext_resource type="Texture2D" uid="uid://crv5ejeq1muyn" path="res://Assets/Objects/Barriers/RedBeam/Disabled/RedBeamDisabled6.png" id="2_5xy4r"]
 [ext_resource type="Texture2D" uid="uid://by4jfrjkliq1s" path="res://Assets/Objects/Barriers/RedBeam/Disabled/RedBeamDisabled5.png" id="3_30py2"]
 [ext_resource type="Texture2D" uid="uid://dt1c0vtik53gf" path="res://Assets/Objects/Barriers/RedBeam/Disabled/RedBeamDisabled4.png" id="4_08hji"]

@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://1qa8vshk26o3" path="res://Scripts/Objects/Hazards/Lazers/RedLaser/RedLazer.tscn" id="2_w7oxu"]
 [ext_resource type="PackedScene" uid="uid://bbgh8q32oohdc" path="res://Scripts/Objects/Hazards/Lazers/BlueLazer/BlueLazer.tscn" id="3_fb50h"]
 [ext_resource type="PackedScene" uid="uid://bbnivbfgvtu3c" path="res://Scripts/Actors/Enemy/Enemy.tscn" id="4_3ijp6"]
-[ext_resource type="Script" path="res://Scripts/Components/Movement/move_stats.gd" id="5_mosd4"]
+[ext_resource type="Script" uid="uid://krgx50cxctd0" path="res://Scripts/Components/Movement/move_stats.gd" id="5_mosd4"]
 [ext_resource type="PackedScene" uid="uid://bgcbd2ho8pv1d" path="res://Scripts/Objects/Buttons/Pedestals/RedPedestal/RedPedestal.tscn" id="7_1pbmr"]
 [ext_resource type="PackedScene" uid="uid://dveonqmfkatdx" path="res://Scripts/Objects/MovableSquare/MovableSquare.tscn" id="8_8p6gn"]
 [ext_resource type="PackedScene" uid="uid://btec7li76t31c" path="res://Scripts/Objects/Buttons/Pedestals/GreenPedestal/GreenPedestal.tscn" id="9_8yh6r"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://biddtthbbkyfa"]
 
-[ext_resource type="Script" path="res://Scripts/Objects/Key/KeyBody.gd" id="1_p7i6w"]
+[ext_resource type="Script" uid="uid://bw2pv1awjtcs7" path="res://Scripts/Objects/Key/KeyBody.gd" id="1_p7i6w"]
 [ext_resource type="Texture2D" uid="uid://dqmdkvic37urm" path="res://Assets/Objects/KeyCard.png" id="2_f65xj"]
 [ext_resource type="PackedScene" uid="uid://yn8mnupom0tf" path="res://Scripts/Components/Gravity/gravity_component.tscn" id="3_chiga"]
 [ext_resource type="PackedScene" uid="uid://t4ij3l5v76t" path="res://Scripts/Components/HitBox/HitBox.tscn" id="4_hl6ni"]
