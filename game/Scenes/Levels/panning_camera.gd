@@ -12,7 +12,4 @@ func _pan_camera():
 		init_activated = true
 		if player_cam.is_current():
 			make_current()
-		else:
-			player_cam.make_current()
 
-		
