@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://cnwaro2tyjs8h"]
 
-[ext_resource type="Script" uid="uid://py60gkfakohk" path="res://Autoloads/AudioManager.gd" id="1_1hk6m"]
+[ext_resource type="Script" path="res://Autoloads/AudioManager.gd" id="1_1hk6m"]
 [ext_resource type="AudioStream" uid="uid://bjbliqrsglpmp" path="res://Audio/True 8-Bit Music/Streets/Streets Full Track.wav" id="2_tmqy7"]
 [ext_resource type="AudioStream" uid="uid://dtun8ph7ir3p3" path="res://Audio/LaserField.wav" id="3_im3yq"]
 [ext_resource type="AudioStream" uid="uid://kbuq1jxcu6qj" path="res://Audio/PlayerJump.wav" id="4_fjyhq"]
