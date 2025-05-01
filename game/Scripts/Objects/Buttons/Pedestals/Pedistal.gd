@@ -6,8 +6,6 @@ class_name Pedestal extends TriggerButton
 ## For this we use a enum to define the type of the pedistal. (Set this for each subclass)
 ## The pedistal will emit a signal when the player enters the area. (call signal_emiter() in the subclass)
 
-#var buttonPressed : AudioStreamPlayer2D
-
 func _ready() -> void:
 	super._ready()
 	# Add the pedistal to the "Pedistals" group

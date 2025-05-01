@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://c5tbal8syc23y"]
+[gd_scene load_steps=4 format=3 uid="uid://c5tbal8syc23y"]
 
 [ext_resource type="Script" path="res://Scripts/UI/Main-Menu/main_menu.gd" id="1_y1ou8"]
 [ext_resource type="Theme" uid="uid://cjrb4f2yj7vjw" path="res://UI/MainMenu/MainMenuTheme.tres" id="2_3yayr"]
+[ext_resource type="LabelSettings" uid="uid://baonky01jfi24" path="res://Font/Label.tres" id="3_k0g7g"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -50,6 +51,7 @@ size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 45
 text = "ByteBound
 "
+label_settings = ExtResource("3_k0g7g")
 horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true

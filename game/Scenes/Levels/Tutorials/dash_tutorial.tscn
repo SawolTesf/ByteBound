@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=4 uid="uid://dx4o4jjxn55ai"]
+[gd_scene load_steps=7 format=4 uid="uid://dx4o4jjxn55ai"]
 
 [ext_resource type="PackedScene" uid="uid://dj33b6ynfouwy" path="res://Scenes/Level_Template.tscn" id="1_thgdx"]
 [ext_resource type="PackedScene" uid="uid://1qa8vshk26o3" path="res://Scripts/Objects/Hazards/Lazers/RedLaser/RedLazer.tscn" id="2_44ftb"]
-[ext_resource type="Script" uid="uid://cpq7ux537wjyc" path="res://Scenes/Levels/Tutorials/tutorial_text.gd" id="3_1kfuk"]
+[ext_resource type="Script" path="res://Scenes/Levels/Tutorials/tutorial_text.gd" id="3_1kfuk"]
+[ext_resource type="LabelSettings" uid="uid://c2oiwjha5g1c6" path="res://Font/TutortialText.tres" id="3_gd3fm"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_6f1oy"]
 polygon = PackedVector2Array(152, 320, 152, 320, -57, 320, -56, 0, 776, 0, 777, 320, 536, 320, 536, 416, 1000, 416, 1000, -176, -344, -176, -344, 416, 152, 416)
@@ -22,12 +23,12 @@ visible = false
 visible = false
 
 [node name="TutorialText" type="CanvasLayer" parent="UI" index="2" node_paths=PackedStringArray("message_timer", "text")]
+visible = false
 script = ExtResource("3_1kfuk")
 message_timer = NodePath("Timer")
 text = NodePath("Panel/TextEdit")
 
 [node name="Panel" type="Panel" parent="UI/TutorialText" index="0"]
-visible = false
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -43,9 +44,13 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -1.0
+offset_right = 1.0
+offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Sometimes a double jump just won't cut it. In those cases press [SHIFT] to dash."
+label_settings = ExtResource("3_gd3fm")
 autowrap_mode = 3
 
 [node name="Timer" type="Timer" parent="UI/TutorialText" index="1"]

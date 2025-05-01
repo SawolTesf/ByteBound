@@ -75,4 +75,8 @@ func emit_pressure_plate_deactivated(type : Globals.ButtonType):
 		Globals.ButtonType.DEFAULT:
 			print("DEBUG: The pressure plate type was not set.")
 
+signal camera_panning
+func emit_camera_panning(cam: Camera2D):
+	print(cam.position)
+	camera_panning.emit()
 #------------------------------------------------------------------------------------------------
