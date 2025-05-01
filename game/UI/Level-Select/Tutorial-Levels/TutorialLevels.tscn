@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bmbscg208h3f4"]
+[gd_scene load_steps=4 format=3 uid="uid://bmbscg208h3f4"]
 
-[ext_resource type="Script" path="res://UI/Level-Select/Tutorial-Levels/tutorial_levels.gd" id="1_qccxi"]
+[ext_resource type="Script" uid="uid://oao7tariy3h3" path="res://UI/Level-Select/Tutorial-Levels/tutorial_levels.gd" id="1_qccxi"]
 [ext_resource type="Theme" uid="uid://cjrb4f2yj7vjw" path="res://UI/MainMenu/MainMenuTheme.tres" id="2_l0jv8"]
+[ext_resource type="LabelSettings" uid="uid://baonky01jfi24" path="res://Font/Label.tres" id="3_wpdij"]
 
 [node name="Tutorial Select" type="Control"]
 layout_mode = 3
@@ -48,6 +49,7 @@ size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 45
 text = "Tutorial Levels
 "
+label_settings = ExtResource("3_wpdij")
 horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true

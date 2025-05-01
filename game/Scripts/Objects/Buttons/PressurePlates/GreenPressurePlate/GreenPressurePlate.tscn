@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://b4hocxvkrbg3s"]
 
-[ext_resource type="Script" path="res://Scripts/Objects/Buttons/PressurePlates/GreenPressurePlate/GreenPressurePlate.gd" id="1_s1op5"]
+[ext_resource type="Script" uid="uid://b1tbcuyedhdm3" path="res://Scripts/Objects/Buttons/PressurePlates/GreenPressurePlate/GreenPressurePlate.gd" id="1_s1op5"]
 [ext_resource type="Texture2D" uid="uid://b47e3wswv3mkg" path="res://Assets/Objects/Buttons/GreenPressurePlate/GreenPressurePlate3.png" id="2_mh3bu"]
 [ext_resource type="Texture2D" uid="uid://d0k7ksd063j8v" path="res://Assets/Objects/Buttons/GreenPressurePlate/GreenPressurePlate2.png" id="3_vbwya"]
 [ext_resource type="Texture2D" uid="uid://dy1ltab3jslyw" path="res://Assets/Objects/Buttons/GreenPressurePlate/GreenPressurePlate1.png" id="4_njx3d"]

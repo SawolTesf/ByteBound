@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="MoveStats" load_steps=2 format=3 uid="uid://cl15epbgotcko"]
 
-[ext_resource type="Script" path="res://Scripts/Components/Movement/move_stats.gd" id="1_bp7pb"]
+[ext_resource type="Script" uid="uid://krgx50cxctd0" path="res://Scripts/Components/Movement/move_stats.gd" id="1_bp7pb"]
 
 [resource]
 resource_local_to_scene = true

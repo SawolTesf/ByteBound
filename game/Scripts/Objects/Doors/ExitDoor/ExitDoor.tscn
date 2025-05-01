@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://b6io5qp6db3l"]
 
-[ext_resource type="Script" path="res://Scripts/Objects/Doors/ExitDoor/exit_door.gd" id="1_hvh2g"]
+[ext_resource type="Script" uid="uid://bk1ahg1hlnte5" path="res://Scripts/Objects/Doors/ExitDoor/exit_door.gd" id="1_hvh2g"]
 [ext_resource type="Texture2D" uid="uid://dqrcdrqke0cj" path="res://Assets/Objects/Doors/LockedDoor/TechDoorLocked.png" id="2_ley1g"]
 [ext_resource type="Texture2D" uid="uid://b7q71hp7gmnt6" path="res://Assets/Objects/Doors/UnlockedDoor/TechDoorsUnlocked1.png" id="3_u5coc"]
 [ext_resource type="Texture2D" uid="uid://d0optvjy86wt0" path="res://Assets/Objects/Doors/UnlockedDoor/TechDoorsUnlocked2.png" id="4_3ipho"]

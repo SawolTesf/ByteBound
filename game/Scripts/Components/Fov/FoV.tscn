@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cq5skp1ss73rt"]
 
-[ext_resource type="Script" path="res://Scripts/Components/Fov/Fov.gd" id="1_2l6iq"]
+[ext_resource type="Script" uid="uid://wnu2b5e5s607" path="res://Scripts/Components/Fov/Fov.gd" id="1_2l6iq"]
 
 [node name="FoV" type="Area2D" node_paths=PackedStringArray("fov_collision", "fov_display")]
 script = ExtResource("1_2l6iq")

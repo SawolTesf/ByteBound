@@ -9,7 +9,6 @@ func _ready() -> void:
 	SignalHub.red_pressure_plate_activated.connect(_on_red_pressure_plate_activated)
 	SignalHub.red_pressure_plate_deactivated.connect(_on_red_pressure_plate_deactivated)
 
-
 func _on_red_pedistal_activated() -> void:
 	perma_open = true # if opened by pedistal keep the lazer off
 	if is_active:

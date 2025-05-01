@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://36pkp13b1yer" path="res://Scripts/Objects/Platforms/Oneway/OneWayPlatform.tscn" id="2_xnktr"]
 [ext_resource type="PackedScene" uid="uid://b5awsjbb8w6pi" path="res://Scripts/Objects/ThrowableObjects/ThrowableObject.tscn" id="3_l8gwj"]
 [ext_resource type="PackedScene" uid="uid://bbnivbfgvtu3c" path="res://Scripts/Actors/Enemy/Enemy.tscn" id="4_j1gdk"]
-[ext_resource type="Script" path="res://Scripts/Components/Movement/move_stats.gd" id="5_81st2"]
+[ext_resource type="Script" uid="uid://krgx50cxctd0" path="res://Scripts/Components/Movement/move_stats.gd" id="5_81st2"]
 [ext_resource type="PackedScene" uid="uid://dveonqmfkatdx" path="res://Scripts/Objects/MovableSquare/MovableSquare.tscn" id="6_d5meh"]
 
 [sub_resource type="Resource" id="Resource_fh7g2"]

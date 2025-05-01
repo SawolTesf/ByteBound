@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://biuxaol52s4r8" path="res://Scripts/Objects/Buttons/PressurePlates/BluePressurePlate/BluePressurePlate.tscn" id="6_ue57e"]
 [ext_resource type="PackedScene" uid="uid://bgcbd2ho8pv1d" path="res://Scripts/Objects/Buttons/Pedestals/RedPedestal/RedPedestal.tscn" id="7_p1hs2"]
 [ext_resource type="PackedScene" uid="uid://bbnivbfgvtu3c" path="res://Scripts/Actors/Enemy/Enemy.tscn" id="8_c3ue0"]
-[ext_resource type="Script" path="res://Scripts/Components/Movement/move_stats.gd" id="9_d7lt6"]
+[ext_resource type="Script" uid="uid://krgx50cxctd0" path="res://Scripts/Components/Movement/move_stats.gd" id="9_d7lt6"]
 [ext_resource type="PackedScene" uid="uid://deuxlw8xiqjyq" path="res://Scripts/Objects/Doors/TrapDoors/BlueTrapDoor/BlueTrapDoor.tscn" id="10_pm2d0"]
 [ext_resource type="PackedScene" uid="uid://dveonqmfkatdx" path="res://Scripts/Objects/MovableSquare/MovableSquare.tscn" id="10_yqv8w"]
 

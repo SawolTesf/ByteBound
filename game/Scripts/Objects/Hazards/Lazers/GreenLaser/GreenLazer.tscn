@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=3 uid="uid://da24un2f3vxpg"]
 
-[ext_resource type="Script" path="res://Scripts/Objects/Hazards/Lazers/GreenLaser/GreenLazer.gd" id="1_2eoge"]
+[ext_resource type="Script" uid="uid://cv5v1rd6loa37" path="res://Scripts/Objects/Hazards/Lazers/GreenLaser/GreenLazer.gd" id="1_2eoge"]
 [ext_resource type="Texture2D" uid="uid://b0cj1ib8pslf0" path="res://Assets/Objects/Barriers/GreenBeam/Disabled/GreenBeamDisabled7.png" id="1_i5abx"]
 [ext_resource type="Texture2D" uid="uid://dpjrwqolsgert" path="res://Assets/Objects/Barriers/GreenBeam/Disabled/GreenBeamDisabled6.png" id="2_elpxy"]
 [ext_resource type="Texture2D" uid="uid://c7rc5e81m3xgo" path="res://Assets/Objects/Barriers/GreenBeam/Disabled/GreenBeamDisabled5.png" id="3_od6wv"]
