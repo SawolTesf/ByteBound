@@ -1,294 +1,38 @@
 class_name Enemy extends CharacterBody2D
 
-@export_category("Components")
-@export_subgroup("Internal")
-@export var animations: AnimationComponent
-@export var gravity: GravityComponent
-@export var movement: MoveStats
-@export var fov : FoV
-@export_subgroup("External")
-@export var player: Player
+@export var state_machine: StateMachine
+@export var sprite: AnimatedSprite2D
+@export var movement_stats: MoveStats
+@export var hitbox: Hitbox
 
-@export_category("Timers")
-@export_subgroup("Length")
-@export var idle_duration: float = 2.0
-@export var move_duration: float = 2.0
-
-@export_category("Sight")
+@export_category("Field of View")
+@export var fov: FoV
 @export var num_segments: int
 @export var sight_distance: float
 @export var sight_angle: float
 
-@export_category("Actions")
-@export var starting_direction: int = 1
-@export var can_move: bool
-@export var can_idle: bool
-
-# Chase feature
-@export_category("Chase")
-@export var chase_duration: float = 5.0
-@export var chase_modulate_color: Color = Color(1, 0, 0, 0.6)
-var chase_timer: Timer
-var is_chasing: bool = false
-var chase_target: Node2D
-var _original_fov_modulate: Color
-
-var ray_params: PhysicsRayQueryParameters2D
-var player_in_range: bool
+var dir: int
 var player_in_sight: bool
+var original_color: Color = Color(1, 0.270588, 0, 1)
+var player: CharacterBody2D
 
-var move_timer: Timer
-var idle_timer: Timer
-var is_idle: bool
-var direction: float
-var patrol_origin: Vector2
-var is_returning: bool = false
-@export var return_threshold: float = 4.0
-var hitbox: Area2D
 
-# Saved patrol state for resuming patrol after chase
-var prev_direction: float
-var prev_is_idle: bool
-var prev_move_time_left: float
-var prev_idle_time_left: float
-var post_chase_timer: Timer
-var post_chase_phase: int
-var spotted_direction: float
-var is_looking: bool = false
-var pending_post_chase_look: bool = false
-
-# Built-Ins -----------------------------------------------------------------
 func _ready() -> void:
-	direction = starting_direction
-	setup_idle_timer()
-	setup_move_timer()
-	if can_move or (can_idle and can_move):
-		move_timer.start()
-	elif can_idle and not can_move:
-		idle_timer.start()
-
+	state_machine.init(self, sprite, movement_stats)
 	fov.init(self, num_segments, sight_angle, sight_distance)
-	gravity.init(self)
-	# setup chase timer
-	setup_chase_timer()
-	setup_post_chase_timer()
-	fov.body_exited.connect(_on_fov_exited)
+	hitbox.init(self)
+	dir = movement_stats.starting_dir
 
-	# cache original FoV color for alert tint
-	_original_fov_modulate = fov.modulate
-	# record patrol start position
-	patrol_origin = global_position
-	# safely get HitBox node and connect if present
-	hitbox = get_node_or_null("HitBox")
-	if hitbox:
-		hitbox.body_entered.connect(_on_HitBox_body_entered)
-
-
-# Calculates jump velocity to exactly reach patrol_origin.y
-func dynamic_jump() -> void:
-	var diff = global_position.y - patrol_origin.y
-	if diff > 0:
-		var g = movement.gravity
-		velocity.y = -sqrt(2 * g * diff)
-	else:
-		movement.handle_jump(self)
-
-func _physics_process(delta: float) -> void:
-	# always update FoV and animations for detection
-	fov.update(direction)
-	gravity.physics_update(delta)
-	animations.handle_move_animation(direction)
-
-	# immediate chase override if spotted
-	if is_chasing and chase_target:
-		# Chase override with jump
-		var dx = chase_target.global_position.x - global_position.x
-		direction = sign(dx) if dx != 0 else direction
-		var dy = chase_target.global_position.y - global_position.y
-		if dy < -10 and is_on_floor():
-			dynamic_jump()
-		movement.handle_horizontal_input(self, direction, delta)
-		move_and_slide()
-		# detect contact and end chase
-		for i in range(get_slide_collision_count()):
-			var col = get_slide_collision(i).get_collider()
-			if col is Player:
-				col.handleDeath()
-		return
-
-	# start post-chase look when landed
-	if pending_post_chase_look and is_on_floor():
-		pending_post_chase_look = false
-		is_looking = true
-		post_chase_phase = 0
-		post_chase_timer.start()
-		return
-
-	# look pause
-	if is_looking:
-		velocity.x = 0
-		return
-
-	# Return-to-patrol override
-	if is_returning:
-		var dx_ret = patrol_origin.x - global_position.x
-		if abs(dx_ret) > return_threshold:
-			direction = sign(dx_ret)
-			movement.handle_horizontal_input(self, direction, delta)
-			var prev_ret_x = global_position.x
-			move_and_slide()
-			if is_on_floor() and abs(global_position.x - prev_ret_x) < 1.0:
-				dynamic_jump()
-				move_and_slide()
-			# detect contact during return
-			for i in range(get_slide_collision_count()):
-				var col = get_slide_collision(i).get_collider()
-				if col is Player:
-					col.handleDeath()
-		else:
-			# arrived back, resume patrol state
-			is_returning = false
-			direction = prev_direction
-			is_idle = prev_is_idle
-			if not prev_is_idle:
-				move_timer.start(prev_move_time_left)
-			else:
-				idle_timer.start(prev_idle_time_left)
-		return
-
-	# Patrol/idle behavior
-	var prev_patrol_x = global_position.x
-	if can_move:
-		if not (is_idle and can_idle):
-			movement.handle_horizontal_input(self, direction, delta)
-			move_and_slide()
-			# if stuck on floor, jump out
-			if is_on_floor() and abs(global_position.x - prev_patrol_x) < 1.0:
-				dynamic_jump()
-				move_and_slide()
-		else:
-			# idle state, just slide to maintain gravity
-			move_and_slide()
-	else:
-		move_and_slide()
-	# detect contact during patrol
-	for i in range(get_slide_collision_count()):
-		var col = get_slide_collision(i).get_collider()
-		if col is Player:
-			col.handleDeath()
-
-# Timers -------------------------------------------------------------------
-func setup_move_timer() -> void:
-	move_timer = Timer.new()
-	move_timer.one_shot = true
-	move_timer.wait_time = move_duration
-	move_timer.timeout.connect(_on_move_timeout)
-	add_child(move_timer)
-
-func setup_idle_timer() -> void:
-	idle_timer = Timer.new()
-	idle_timer.one_shot = true
-	idle_timer.wait_time = idle_duration
-	idle_timer.timeout.connect(_on_idle_timeout)
-	add_child(idle_timer)
-
-## This signial should only be called if move is enabled
-## if both move and idle are enabled, then go to idle when called
-## if only move is eabled then flip directions and restart the timer
-func _on_move_timeout() -> void:
-	#print("Move Timer Ended")
-	if can_idle and can_move:
-		#print("move and idle are enabled")
-		is_idle = true
-		idle_timer.start()
-	elif can_move and not can_idle:
-		direction = -direction
-		move_timer.start()
 	
-## This function should only ever go off if idle is enabled.
-## If both move and idle are enabled, Start moving when this is called
-## if only idle is enabled restart the timer
-## regardless of options the direction will switch if this signal is called
-func _on_idle_timeout() -> void:
-	#print("Idle Timer Ended")
-	direction = -direction
-	# if only idle is enabled
-	if not can_move and can_idle:
-		#print("only idle is enabled restart the timer")
-		idle_timer.start() # restart the timer
-	# if both move and idle are enabled
-	if can_idle and can_move:
-		#print("idle and move enabled start moving again")
-		is_idle = false # we want to move
-		move_timer.start() # we just finished idleing start moving
+func _physics_process(delta: float) -> void:
+	state_machine.process_physics(delta)
+	sprite.flip_h = dir < 0
+	fov.update(dir)
 
-# Chase timer setup and handlers
-func setup_chase_timer() -> void:
-	chase_timer = Timer.new()
-	chase_timer.one_shot = true
-	chase_timer.wait_time = chase_duration
-	chase_timer.timeout.connect(_on_chase_timeout)
-	add_child(chase_timer)
+	
+func _process(delta: float) -> void:
+	state_machine.process_frame(delta)
 
-func start_chase(target: Node2D) -> void:
-	spotted_direction = sign(target.global_position.x - global_position.x)
-	# reset any prior return or look state
-	pending_post_chase_look = false
-	is_looking = false
-	is_returning = false
-	# Save current patrol state
-	prev_direction = direction
-	prev_is_idle = is_idle
-	if is_idle:
-		prev_idle_time_left = idle_timer.time_left
-	else:
-		prev_move_time_left = move_timer.time_left
-	# Stop patrol timers
-	move_timer.stop()
-	idle_timer.stop()
 
-	chase_target = target
-	is_chasing = true
-	# tint FoV to alert color
-	fov.modulate = chase_modulate_color
-	chase_timer.start()
-
-func _on_chase_timeout() -> void:
-	is_chasing = false
-	chase_target = null
-	# restore FoV tint
-	fov.modulate = _original_fov_modulate
-	# begin post-chase look sequence
-	pending_post_chase_look = true
-
-func setup_post_chase_timer() -> void:
-	post_chase_timer = Timer.new()
-	post_chase_timer.one_shot = true
-	post_chase_timer.wait_time = 0.5
-	post_chase_timer.timeout.connect(_on_post_chase_timeout)
-	add_child(post_chase_timer)
-
-func _on_post_chase_timeout() -> void:
-	post_chase_phase += 1
-	if post_chase_phase == 1:
-		direction = -spotted_direction
-		post_chase_timer.start()
-	elif post_chase_phase == 2:
-		direction = spotted_direction
-		post_chase_timer.start()
-	elif post_chase_phase == 3:
-		direction = -spotted_direction
-		post_chase_timer.start()
-	else:
-		direction = spotted_direction
-		is_looking = false
-		is_returning = true
-
-func _on_fov_exited(body: Node2D) -> void:
-	if is_chasing and body is Player:
-		chase_timer.stop()
-		_on_chase_timeout()
-
-func _on_HitBox_body_entered(body: Node2D) -> void:
-	if body is Player:
-		body.handleDeath()
+func _unhandled_input(event: InputEvent) -> void:
+	state_machine.process_input(event)

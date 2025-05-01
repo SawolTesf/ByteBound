@@ -1,54 +1,52 @@
 extends State
 
-@export var idle : State
-@export var patrol : State
-var direction : float = 1
-var patrol_timer : float = 0
-var goto_idle : bool = false
-var goto_patrol : bool = false
+@export var idle: State
+@export var patrol: State
+@export var chase: State
+
+var patrol_timer: Timer
+var in_patrol: bool
 
 func enter():
 	super()
-	patrol_timer = move_stats.move_time
 	Debug.debug(self, "Enemy entered the Patrol State")
+	parent.fov.modulate = parent.original_color
+	in_patrol = true
+	setup_timer()
+	patrol_timer.start()
 	
-
-func process_physics(delta: float):
+	
+func process_physics(delta: float) -> State:
+	move_stats.handle_horizontal_input(parent, parent.dir, delta)
 	move_stats.handle_gravity(parent, false, delta)
-	if parent:
-		move_stats.handle_horizontal_input(parent, direction, delta)
 	parent.move_and_slide()
-
-	
-func process_frame(delta : float) -> State:
-	update_timer(delta)
-
-	if goto_idle:
-		return idle
-	if goto_patrol:
-		return patrol
 	return null
 
 	
+func process_frame(_delta : float) -> State:
+	if not in_patrol:
+		if move_stats.can_move and not move_stats.can_idle:
+			parent.dir = -parent.dir
+			return patrol
+		if move_stats.can_idle:
+			return idle
+	if parent.player_in_sight: # if the player is seen chase them.
+		return chase
+	return null
+
+
 func exit():
 	super()
-	patrol_timer = 0
-	goto_idle = false
-	goto_patrol = false
 
 
-func update_timer(delta : float) -> void:
-	patrol_timer -= delta
-	if patrol_timer >= 0:
-		return
-	
-	direction = -direction
-	# if moving is not allowd go back to the idle state
-	if move_stats.can_idle:
-		goto_idle = true
-	# if moving is allowed go to the move state
-	if !move_stats.can_idle:
-		goto_patrol = true
+func setup_timer():
+	patrol_timer = Timer.new()
+	patrol_timer.wait_time = move_stats.move_time
+	patrol_timer.one_shot = true
+	patrol_timer.timeout.connect(_on_timer_timeout)
+	add_child(patrol_timer)
 
 
-	
+func _on_timer_timeout():
+	#Debug.debug(self, "patrol_timer timed out")
+	in_patrol = false

@@ -20,6 +20,8 @@ var sight_distance: float
 
 func _ready() -> void:
 	body_entered.connect(_on_fov_entered)
+	body_exited.connect(_on_fov_exited)
+
 	
 ## Sets up the fov variables. these variables should be passed in from the parent
 func init(body : Node2D, segments : int, angle : float, distance : float) -> void:
@@ -112,5 +114,13 @@ func _on_fov_entered(body: Node2D) -> void:
 	if body.name == "Player":
 		# play detection sound and start chase on the parent enemy
 		AudioController.play_sound("EnemyDetect")
-		if parent.has_method("start_chase"):
-			parent.start_chase(body)
+		parent.player_in_sight = true # use this to change state in the state machine.
+		parent.player = body
+		Debug.debug(self, "%s"%parent.player)
+		#Debug.debug(self, "player is in sight range: %s"%parent.player_in_sight)
+
+
+func _on_fov_exited(body: Node2D) -> void:
+	if body.name == "Player":
+		parent.player_in_sight = false
+		#Debug.debug(self, "player is in sight range: %s"%parent.player_in_sight)
