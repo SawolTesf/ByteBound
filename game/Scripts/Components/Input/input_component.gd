@@ -46,4 +46,3 @@ func get_throw() -> bool:
 	if rv:
 		print("trow was press if object held it should be thrown")
 	return rv
-

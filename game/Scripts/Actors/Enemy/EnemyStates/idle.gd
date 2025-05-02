@@ -2,52 +2,57 @@ extends State
 
 @export var patrol : State
 @export var idle : State
-var direction: int
-var idle_timer : float = 0
-var goto_idle : bool = false
-var goto_patrol : bool = false
-var swap_dir: bool = false
+@export var chase : State
+
+var idle_timer: Timer
+## allows the enemy to change state when the timer ends
+var in_idle: bool
 
 func enter():
 	super()
+	in_idle = true
 	Debug.debug(self, "Enemy entered idle state")
-	idle_timer = move_stats.idle_time
+	parent.fov.modulate = parent.original_color
+	parent.dir = -parent.dir
 	parent.velocity = Vector2.ZERO
-	parent.velocity.x = move_stats.starting_dir * -1
+	setup_timer()
+	idle_timer.start()
 
-
-func process_frame(delta : float) -> State:
-	update_timer(delta)
-	if goto_idle:
-		return idle
-	if goto_patrol:
-		return patrol
+	
+func process_frame(_delta : float) -> State:
+	if not in_idle:
+		# if the enemy is allowed to move and the idle is over
+		if move_stats.can_move:
+			parent.dir = -parent.dir
+			return patrol
+		# if the enemy can only idle and the current idle is over.
+		if not move_stats.can_move and move_stats.can_idle:
+			return idle
+	if parent.player_in_sight: # anytime the player is seen chase them
+		return chase
 	return null
 
+
 func process_physics(delta : float):
+	move_stats.handle_gravity(parent, false, delta)
 	parent.move_and_slide()
+	return null
 
 	
 func exit():
 	super()
-	idle_timer = 0
-	goto_idle = false
-	goto_patrol = false
 
-	
-func update_timer(delta : float) -> void:
-	idle_timer -= delta
-	if idle_timer >= 0:
-		return
-	
-	# if moving is not allowd go back to the idle state
-	if !move_stats.can_move:
-		move_stats.starting_dir *= -1
-		swap_dir = true
-		goto_idle = true
-	# if moving is allowed go to the move state
-	if move_stats.can_move:
-		goto_patrol = true
 
+func setup_timer():
+	idle_timer = Timer.new()
+	idle_timer.wait_time = move_stats.idle_time
+	idle_timer.one_shot = true
+	idle_timer.timeout.connect(_on_timer_timeout)
+	add_child(idle_timer)
+		
+
+func _on_timer_timeout():
+	in_idle = false # when the timer ends allow the enemy to change states
+	
 
 	

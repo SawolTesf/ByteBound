@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://b5awsjbb8w6pi"]
 
 [ext_resource type="Texture2D" uid="uid://hmdkfr13ipvd" path="res://Assets/Objects/ThrowableObjects/ThrowableObject.png" id="1_2cyfx"]
-[ext_resource type="Script" uid="uid://d2l43dq23b643" path="res://Scripts/Objects/ThrowableObjects/ThrowableObject.gd" id="2_n3j1o"]
+[ext_resource type="Script" path="res://Scripts/Objects/ThrowableObjects/ThrowableObject.gd" id="2_n3j1o"]
 [ext_resource type="PackedScene" uid="uid://t4ij3l5v76t" path="res://Scripts/Components/HitBox/HitBox.tscn" id="3_shsdt"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_h8ma4"]
