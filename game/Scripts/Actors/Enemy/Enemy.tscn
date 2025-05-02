@@ -133,7 +133,6 @@ script = ExtResource("6_encld")
 patrol = NodePath("../Patrol")
 idle = NodePath(".")
 chase = NodePath("../Chase")
-animation_name = null
 
 [node name="Patrol" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle", "patrol", "chase")]
 script = ExtResource("6_la3kd")

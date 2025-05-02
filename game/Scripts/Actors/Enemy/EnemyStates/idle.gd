@@ -23,7 +23,7 @@ func process_frame(_delta : float) -> State:
 	if not in_idle:
 		# if the enemy is allowed to move and the idle is over
 		if move_stats.can_move:
-			parent.dir = -parent.dir
+			#parent.dir = -parent.dir
 			return patrol
 		# if the enemy can only idle and the current idle is over.
 		if not move_stats.can_move and move_stats.can_idle:

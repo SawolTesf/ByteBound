@@ -6,16 +6,43 @@
 [ext_resource type="PackedScene" uid="uid://1qa8vshk26o3" path="res://Scripts/Objects/Hazards/Lazers/RedLaser/RedLazer.tscn" id="2_w7oxu"]
 [ext_resource type="PackedScene" uid="uid://bbgh8q32oohdc" path="res://Scripts/Objects/Hazards/Lazers/BlueLazer/BlueLazer.tscn" id="3_fb50h"]
 [ext_resource type="PackedScene" uid="uid://bbnivbfgvtu3c" path="res://Scripts/Actors/Enemy/Enemy.tscn" id="4_3ijp6"]
-[ext_resource type="Script" uid="uid://krgx50cxctd0" path="res://Scripts/Components/Movement/move_stats.gd" id="5_mosd4"]
+[ext_resource type="Script" path="res://Scripts/Components/Movement/move_stats.gd" id="5_mosd4"]
 [ext_resource type="PackedScene" uid="uid://bgcbd2ho8pv1d" path="res://Scripts/Objects/Buttons/Pedestals/RedPedestal/RedPedestal.tscn" id="7_1pbmr"]
 [ext_resource type="PackedScene" uid="uid://dveonqmfkatdx" path="res://Scripts/Objects/MovableSquare/MovableSquare.tscn" id="8_8p6gn"]
 [ext_resource type="PackedScene" uid="uid://btec7li76t31c" path="res://Scripts/Objects/Buttons/Pedestals/GreenPedestal/GreenPedestal.tscn" id="9_8yh6r"]
 
-[sub_resource type="Resource" id="Resource_26dc5"]
-resource_local_to_scene = true
+[sub_resource type="Resource" id="Resource_20qlo"]
+script = ExtResource("5_mosd4")
+can_move = true
+can_idle = true
+idle_time = 1.0
+move_time = 3.0
+starting_dir = 1
+advanced_movement = false
+multi_jump = false
+enable_dash = false
+ground_speed = 100.0
+air_speed = 50.0
+ground_acceleration = 80.0
+air_acceleration = 20.0
+ground_decceleration = 50.0
+air_decceleratoin = 80.0
+gravity = 980.0
+fast_fall_gravity = 1500.0
+jump_height = -400.0
+max_jumps = 1
+multi_jump_height_multiplier = 0.8
+coyote_jump_time = 0.5
+jump_buffer_time = 0.2
+dash_multipler = 2.0
+dash_duration = 2.0
+dash_cooldown = 4.0
+dash_distance = 100.0
+
+[sub_resource type="Resource" id="Resource_jet1e"]
 script = ExtResource("5_mosd4")
 can_move = false
-can_idle = false
+can_idle = true
 idle_time = 4.0
 move_time = 4.0
 starting_dir = 1
@@ -40,40 +67,10 @@ dash_duration = 2.0
 dash_cooldown = 4.0
 dash_distance = 100.0
 
-[sub_resource type="Resource" id="Resource_vurua"]
-resource_local_to_scene = true
+[sub_resource type="Resource" id="Resource_uafy1"]
 script = ExtResource("5_mosd4")
 can_move = false
-can_idle = false
-idle_time = 4.0
-move_time = 4.0
-starting_dir = 1
-advanced_movement = false
-multi_jump = false
-enable_dash = false
-ground_speed = 100.0
-air_speed = 50.0
-ground_acceleration = 80.0
-air_acceleration = 20.0
-ground_decceleration = 50.0
-air_decceleratoin = 80.0
-gravity = 980.0
-fast_fall_gravity = 1500.0
-jump_height = -400.0
-max_jumps = 1
-multi_jump_height_multiplier = 0.8
-coyote_jump_time = 0.5
-jump_buffer_time = 0.2
-dash_multipler = 2.0
-dash_duration = 2.0
-dash_cooldown = 4.0
-dash_distance = 100.0
-
-[sub_resource type="Resource" id="Resource_7bcta"]
-resource_local_to_scene = true
-script = ExtResource("5_mosd4")
-can_move = false
-can_idle = false
+can_idle = true
 idle_time = 4.0
 move_time = 4.0
 starting_dir = 1
@@ -136,21 +133,16 @@ position = Vector2(88, 308)
 
 [node name="Enemy" parent="Characters/Enemies" index="0" instance=ExtResource("4_3ijp6")]
 position = Vector2(610, 213)
-movement = SubResource("Resource_26dc5")
-idle_duration = 0.5
-move_duration = 3.0
+movement_stats = SubResource("Resource_20qlo")
 
 [node name="Enemy2" parent="Characters/Enemies" index="1" instance=ExtResource("4_3ijp6")]
 position = Vector2(718, 310)
-movement = SubResource("Resource_vurua")
-can_move = false
+movement_stats = SubResource("Resource_jet1e")
 
 [node name="Enemy3" parent="Characters/Enemies" index="2" instance=ExtResource("4_3ijp6")]
 position = Vector2(704, 118)
-movement = SubResource("Resource_7bcta")
-idle_duration = 3.0
+movement_stats = SubResource("Resource_uafy1")
 sight_distance = 80.0
-can_move = false
 
 [node name="Key" parent="Collectables" index="0"]
 position = Vector2(718, 278)
