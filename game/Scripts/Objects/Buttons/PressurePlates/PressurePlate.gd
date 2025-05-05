@@ -19,7 +19,7 @@ func _ready() -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	Debug.debug(self, "%s Entered the buttons Area2D" % body.name, false)
-	if body.is_in_group("Player") or body.is_in_group("Throwable"):
+	if body.is_in_group("Player") or body.is_in_group("Throwable") or body.is_in_group("Movable"):
 		# Only emit the signal if the button is not already activated
 		# Keeps the signal from emiting more then once per entering.
 		if not is_activated:
@@ -36,7 +36,7 @@ func _on_body_entered(body: Node2D) -> void:
 
 func _on_body_exited(body: Node2D) -> void:
 	Debug.debug(self, "%s Left the area of the pressure plate" % body.get_script().get_global_name(), false)
-	if body.is_in_group("Player") or body.is_in_group("Throwable"):
+	if body.is_in_group("Player") or body.is_in_group("Throwable") or body.is_in_group("Movable"):
 		# Play the transition animation (button being pressed)
 		sprite.play("Deactivate")
 		

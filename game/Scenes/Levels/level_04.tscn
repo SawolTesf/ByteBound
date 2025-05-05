@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://dpvi06276d1ki"]
+[gd_scene load_steps=18 format=4 uid="uid://dpvi06276d1ki"]
 
 [ext_resource type="PackedScene" uid="uid://dj33b6ynfouwy" path="res://Scenes/Level_Template.tscn" id="1_0sa7l"]
 [ext_resource type="PackedScene" uid="uid://bbgh8q32oohdc" path="res://Scripts/Objects/Hazards/Lazers/BlueLazer/BlueLazer.tscn" id="2_nwcw5"]
@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://biuxaol52s4r8" path="res://Scripts/Objects/Buttons/PressurePlates/BluePressurePlate/BluePressurePlate.tscn" id="6_ue57e"]
 [ext_resource type="PackedScene" uid="uid://bgcbd2ho8pv1d" path="res://Scripts/Objects/Buttons/Pedestals/RedPedestal/RedPedestal.tscn" id="7_p1hs2"]
 [ext_resource type="PackedScene" uid="uid://bbnivbfgvtu3c" path="res://Scripts/Actors/Enemy/Enemy.tscn" id="8_c3ue0"]
-[ext_resource type="Script" uid="uid://krgx50cxctd0" path="res://Scripts/Components/Movement/move_stats.gd" id="9_d7lt6"]
 [ext_resource type="PackedScene" uid="uid://deuxlw8xiqjyq" path="res://Scripts/Objects/Doors/TrapDoors/BlueTrapDoor/BlueTrapDoor.tscn" id="10_pm2d0"]
 [ext_resource type="PackedScene" uid="uid://dveonqmfkatdx" path="res://Scripts/Objects/MovableSquare/MovableSquare.tscn" id="10_yqv8w"]
 
@@ -30,93 +29,6 @@ polygon = PackedVector2Array(-80, 784, -64, 800, -48, 784)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_oo12q"]
 polygon = PackedVector2Array(-80, 872, -80, 864, -32, 864, -32, 872)
-
-[sub_resource type="Resource" id="Resource_ysvax"]
-resource_local_to_scene = true
-script = ExtResource("9_d7lt6")
-can_move = false
-can_idle = false
-idle_time = 4.0
-move_time = 4.0
-starting_dir = 1
-advanced_movement = false
-multi_jump = false
-enable_dash = false
-ground_speed = 100.0
-air_speed = 50.0
-ground_acceleration = 80.0
-air_acceleration = 20.0
-ground_decceleration = 50.0
-air_decceleratoin = 80.0
-gravity = 980.0
-fast_fall_gravity = 1500.0
-jump_height = -400.0
-max_jumps = 1
-multi_jump_height_multiplier = 0.8
-coyote_jump_time = 0.5
-jump_buffer_time = 0.2
-dash_multipler = 2.0
-dash_duration = 2.0
-dash_cooldown = 4.0
-dash_distance = 100.0
-
-[sub_resource type="Resource" id="Resource_mw1to"]
-resource_local_to_scene = true
-script = ExtResource("9_d7lt6")
-can_move = false
-can_idle = false
-idle_time = 4.0
-move_time = 4.0
-starting_dir = 1
-advanced_movement = false
-multi_jump = false
-enable_dash = false
-ground_speed = 100.0
-air_speed = 50.0
-ground_acceleration = 80.0
-air_acceleration = 20.0
-ground_decceleration = 50.0
-air_decceleratoin = 80.0
-gravity = 980.0
-fast_fall_gravity = 1500.0
-jump_height = -400.0
-max_jumps = 1
-multi_jump_height_multiplier = 0.8
-coyote_jump_time = 0.5
-jump_buffer_time = 0.2
-dash_multipler = 2.0
-dash_duration = 2.0
-dash_cooldown = 4.0
-dash_distance = 100.0
-
-[sub_resource type="Resource" id="Resource_0fbiq"]
-resource_local_to_scene = true
-script = ExtResource("9_d7lt6")
-can_move = false
-can_idle = false
-idle_time = 4.0
-move_time = 4.0
-starting_dir = 1
-advanced_movement = false
-multi_jump = false
-enable_dash = false
-ground_speed = 100.0
-air_speed = 50.0
-ground_acceleration = 80.0
-air_acceleration = 20.0
-ground_decceleration = 50.0
-air_decceleratoin = 80.0
-gravity = 980.0
-fast_fall_gravity = 1500.0
-jump_height = -400.0
-max_jumps = 1
-multi_jump_height_multiplier = 0.8
-coyote_jump_time = 0.5
-jump_buffer_time = 0.2
-dash_multipler = 2.0
-dash_duration = 2.0
-dash_cooldown = 4.0
-dash_distance = 100.0
 
 [node name="Level_04" instance=ExtResource("1_0sa7l")]
 metadata/_edit_vertical_guides_ = [-28.0]
@@ -218,27 +130,15 @@ rotation = 0.720004
 
 [node name="Enemy" parent="Enemies" index="0" instance=ExtResource("8_c3ue0")]
 position = Vector2(-352, 150)
-movement = SubResource("Resource_ysvax")
-idle_duration = 1.0
-move_duration = 1.0
 sight_angle = 90.0
 
 [node name="Enemy2" parent="Enemies" index="1" instance=ExtResource("8_c3ue0")]
 position = Vector2(872, 424)
-movement = SubResource("Resource_mw1to")
-move_duration = 0.0
-starting_direction = -1
-can_move = false
 
 [node name="Enemy3" parent="Enemies" index="2" instance=ExtResource("8_c3ue0")]
 position = Vector2(-56, 856)
-movement = SubResource("Resource_0fbiq")
-idle_duration = 4.0
-move_duration = 1.0
 sight_distance = 120.0
 sight_angle = 60.0
-starting_direction = -1
-can_move = false
 
 [node name="Buttons" type="Node" parent="." index="9"]
 
@@ -265,3 +165,8 @@ scale = Vector2(2.6, 2)
 
 [node name="MovableSquare" parent="Boxes" index="0" instance=ExtResource("10_yqv8w")]
 position = Vector2(-248, 88)
+acceleration = 10.0
+push_force = 40.0
+max_push_force = 80.0
+friction = 6.0
+gravity_scale = 0.5
